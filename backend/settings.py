@@ -73,6 +73,8 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
     'https://127.0.0.1:3000',
+    'https://172.30.1.255:3000',
+    'https://172.30.1.26:3000',
 )
 
 JWT_AUTH = {
