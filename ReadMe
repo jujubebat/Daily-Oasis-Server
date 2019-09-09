@@ -1,2 +1,9 @@
 라이브러리는 아래 명령어로 한 번에 설치가능
 pip install -r python_library.txt
+
+테이블삭제 프로시저
+CREATE PROCEDURE `del` ()
+BEGIN
+delete from daily_oasis.main_activity;
+alter table daily_oasis.main_activity auto_increment=0;
+END

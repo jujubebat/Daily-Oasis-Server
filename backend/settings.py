@@ -78,8 +78,10 @@ CORS_ORIGIN_WHITELIST = (
 )
 
 JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'backend.utils.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'backend.utils.my_jwt_response_handler' #토큰검사
 }
+
+AUTH_USER_MODEL = 'main.User'
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -115,7 +117,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysite',
+        'NAME': 'daily_oasis',
         'USER': 'root',
         'PASSWORD': '0000',
         'HOST': 'localhost',
