@@ -125,8 +125,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'daily_oasis',
         'USER': 'root',
-        'PASSWORD': '0000',
-        'HOST': 'localhost',
+        'PASSWORD': '00000000',
+        'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
+        #'HOST': 'localhost',
         'PORT': '',
     }
 }
