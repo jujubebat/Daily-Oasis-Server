@@ -25,7 +25,10 @@ SECRET_KEY = '&jt_vtd46^e@b1$uxmc5-2y)b1%c9l4((*6y0^&sn!p!#%7b+h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'ec2-13-125-234-154.ap-northeast-2.compute.amazonaws.com',
+]
 
 INTERNAL_IPS = ('127.0.0.1', )
 
