@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'ec2-13-125-234-154.ap-northeast-2.compute.amazonaws.com',
     '15.164.194.2',
+    'dailyoasis.shop',
 ]
 
 INTERNAL_IPS = ('127.0.0.1', )

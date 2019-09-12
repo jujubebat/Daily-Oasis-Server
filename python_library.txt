@@ -6,5 +6,5 @@ djangorestframework-jwt
 django-cors-headers
 xmltodict
 django-debug-toolbar
-
+django-silk
 

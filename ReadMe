@@ -8,4 +8,4 @@ delete from daily_oasis.main_activity;
 alter table daily_oasis.main_activity auto_increment=0;
 END
 
-request 디버깅을 위해 django-debug-toolbar와 silk 라이브러리 사용
+request 디버깅을 위해 django-debug-toolbar와 silk 라이브 -러리 사용
