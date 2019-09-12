@@ -1,12 +1,10 @@
-from django.http import HttpResponseRedirect
-from django.contrib.auth.models import User
 from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer
 from .models import Activity
-from django.shortcuts import render, redirect, get_object_or_404
+
 
 #데이터베이스로부터 데이터를 가져오고, 선언해둔 시리얼라이저를 통해 데이터를 직렬화해준다.
 class activity(APIView):

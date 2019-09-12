@@ -1,9 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
-
 
 #Character
 class Character(models.Model):
@@ -12,34 +8,27 @@ class Character(models.Model):
     level = models.IntegerField(default=0) #레벨
     img = models.CharField(max_length=100, blank=True, null=True)  # 이미지
 
-
-class User(AbstractUser):
-    name = models.CharField(max_length=100, blank=True, null=True)  # 사용자 이름
-    level = models.IntegerField(default=0)  # 레벨
-    exp = models.IntegerField(default=0)  # 경험치
-    delegateTitle = models.CharField(max_length=100, blank=True, null=True)  # 대표칭호
-    character_num = models.ForeignKey(Character, on_delete=models.SET_NULL, null=True)  # 캐릭터
-    postNum = models.CharField(max_length=100, blank=True, null=True)  # 우편번호
-    address = models.CharField(max_length=100, blank=True, null=True)  # 주소
-    nickName = models.CharField(max_length=100, blank=True, null=True)  # 닉네임
-
-
-
-#Prefrence(취향)
-class Preference(models.Model):
-    num = models.AutoField(primary_key=True) #번호
-    name = models.CharField(max_length=100, blank=True, null=True) #취향명
-
-    #분위기 있는
-    #야외
-    #
-
 #Title(칭호)
 class Title(models.Model):
     num = models.AutoField(primary_key=True) #번호
     name = models.CharField(max_length=100, blank=True, null=True) #취향명
     text = models.CharField(max_length=100, blank=True, null=True)  # 취향설명
     img = models.CharField(max_length=100, blank=True, null=True)  # 이미지
+
+class User(AbstractUser):
+    name = models.CharField(max_length=100, blank=True, null=True)  # 사용자 이름
+    nickName = models.CharField(max_length=100, blank=True, null=True)  # 닉네임
+    address = models.CharField(max_length=100, blank=True, null=True)  # 주소
+    postNum = models.CharField(max_length=100, blank=True, null=True)  # 우편번호
+    level = models.IntegerField(default=0)  # 레벨
+    exp = models.IntegerField(default=0)  # 경험치
+    character_num = models.ForeignKey(Character, on_delete=models.SET_NULL, null=True)  # 캐릭터
+    title_num = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True)
+
+#Prefrence(취향)
+class Preference(models.Model):
+    num = models.AutoField(primary_key=True) #번호
+    name = models.CharField(max_length=100, blank=True, null=True) #취향명
 
 #Activity(엑티비티)
 class Activity(models.Model):

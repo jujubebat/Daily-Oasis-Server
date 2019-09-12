@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = ('127.0.0.1', )
 
 # Application definition
 
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'main',
+    'debug_toolbar',
+    'silk',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +57,9 @@ MIDDLEWARE = [
 
     'corsheaders.middleware.CorsMiddleware', # Note that this needs to be placed above CommonMiddleware
     'django.middleware.common.CommonMiddleware', # This should already exist
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
+    'silk.middleware.SilkyMiddleware',
 ]
 
 REST_FRAMEWORK = {
