@@ -9,3 +9,12 @@ alter table daily_oasis.main_activity auto_increment=0;
 END
 
 request 디버깅을 위해 django-debug-toolbar와 silk 라이브 -러리 사용
+
+<리눅스 관련>
+
+루트권한 획득 : sudo su
+
+ps aux | grep -i manage
+
+nohup python3 manage.py runserver 0.0.0.0:8000 &
+
