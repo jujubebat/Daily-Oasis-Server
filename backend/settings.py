@@ -35,11 +35,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'main',
-    'debug_toolbar',
+    #'debug_toolbar',
     'silk',
+    #'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # Note that this needs to be placed above CommonMiddleware
+    'django.middleware.common.CommonMiddleware',  # This should already exist
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -47,11 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'corsheaders.middleware.CorsMiddleware', # Note that this needs to be placed above CommonMiddleware
-    'django.middleware.common.CommonMiddleware', # This should already exist
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'silk.middleware.SilkyMiddleware',
 ]
 
@@ -68,7 +67,7 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = False
 
 # CORS_ORIGIN_WHITELIST = (
 #     'https://127.0.0.1:3000',
