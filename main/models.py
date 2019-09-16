@@ -25,7 +25,7 @@ class User(AbstractUser):
     character_num = models.ForeignKey(Character, on_delete=models.SET_NULL, null=True)  # 캐릭터
     title_num = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True)
 
-#Prefrence(취향)
+#Prefrence(취향)(태그)
 class Preference(models.Model):
     num = models.AutoField(primary_key=True) #번호
     name = models.CharField(max_length=100, blank=True, null=True) #취향명
@@ -44,7 +44,7 @@ class Activity(models.Model):
     tel = models.CharField(max_length=255, blank=True, null=True) #엑티비티 전화번호
     img = models.CharField(max_length=255, blank=True, null=True) #엑티비티 이미지
 
-#유저들의 취향 목록
+#유저들의 취향(태그) 목록
 class User_Preference(models.Model):
     num = models.AutoField(primary_key=True) #번호
     user_num = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -62,8 +62,8 @@ class User_Activity(models.Model):
     user_num = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     activity_num = models.ForeignKey(Activity, on_delete=models.SET_NULL, null=True)
 
-#엑티비티들의 취향 목록
+#엑티비티들의 취향(태그) 목록
 class Activity_Preference(models.Model):
     num = models.AutoField(primary_key=True) #번호
-    user_num = models.ForeignKey(Activity, on_delete=models.SET_NULL, null=True)
+    activity_num = models.ForeignKey(Activity, on_delete=models.SET_NULL, null=True)
     preference_num = models.ForeignKey(Preference, on_delete=models.SET_NULL, null=True)
