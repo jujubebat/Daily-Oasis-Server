@@ -42,9 +42,9 @@ INSTALLED_APPS = [
 # 'debug_toolbar',
 # 'rest_framework_swagger',
 
-# CRONJOBS = [
-#     ('0   0 1 * *', 'myapp.cron.my_scheduled_job', '>> /tmp/scheduled_job.log'),
-# ]
+CRONJOBS = [
+    ('*/1 * * * *', 'main.views.scheduler', '>> /tmp/scheduled_job.log'),
+]
 #CRONTAB_DJANGO_SETTINGS_MODULE = 'backend.settings'
 
 

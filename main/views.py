@@ -82,3 +82,7 @@ class UserList(APIView):
 # def RecommendActivity(self):
 #         print("xxxxx")
 #     return 0
+
+def scheduler():
+    print("d")
+    return 0
