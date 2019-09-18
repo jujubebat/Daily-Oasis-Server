@@ -11,6 +11,7 @@ urlpatterns = [
     path('activity/', activity.as_view()),
     path('login/', obtain_jwt_token),
     path('silk/', include('silk.urls', namespace='silk'))
+
 ]
 
 # if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:

@@ -7,14 +7,14 @@ class ActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Activity
-        fields = ('name', 'eventStartDate', 'eventEndDate', 'eventTime', 'eventPlace', 'discription', 'mapx', 'mapy', 'tel', 'img')
+        fields = ('num', 'name', 'eventStartDate', 'eventEndDate', 'eventTime', 'eventPlace', 'discription', 'mapx', 'mapy', 'tel', 'img')
 
 #유저 데이터를 직렬화
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username','nickName','address','postNum', 'level', 'exp', 'character_num', 'title_num')
+        fields = ('id','username','nickName','address','postNum', 'level', 'exp', 'character_num', 'title_num')
 
 #유저 데이터 + 토큰정보 + 회원가입 관련 직렬화
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -60,4 +60,4 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('token', 'username', 'password','nickName','address','postNum', 'level', 'exp', 'character_num')
+        fields = ('id','token', 'username', 'password','nickName','address','postNum', 'level', 'exp', 'character_num')

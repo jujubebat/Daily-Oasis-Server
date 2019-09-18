@@ -7,4 +7,5 @@ django-cors-headers
 xmltodict
 django-debug-toolbar
 django-silk
-
+pandas
+django-crontab

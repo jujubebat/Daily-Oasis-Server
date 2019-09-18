@@ -26,6 +26,7 @@ INTERNAL_IPS = ('127.0.0.1', )
 # Application definition
 
 INSTALLED_APPS = [
+    'django-crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -35,10 +36,19 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'main',
-    #'debug_toolbar',
     'silk',
+
+    #'debug_toolbar',
     #'rest_framework_swagger',
 ]
+
+CRONJOBS = [
+    ('* * * * *', 'main.cron.scheduler')
+]
+
+#CRONTAB_DJANGO_SETTINGS_MODULE = 'backend.settings'
+
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -111,14 +121,27 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #     }
 # }
 
+#아마존 RDS
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'daily_oasis',
+#         'USER': 'root',
+#         'PASSWORD': '00000000',
+#         'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
+#         #'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
+#로컬
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'daily_oasis',
         'USER': 'root',
-        'PASSWORD': '00000000',
-        'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
-        #'HOST': 'localhost',
+        'PASSWORD': '0000',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
