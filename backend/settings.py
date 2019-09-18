@@ -16,6 +16,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'ec2-13-125-234-154.ap-northeast-2.compute.amazonaws.com',
+    'ec2-15-164-219-72.ap-northeast-2.compute.amazonaws.com',
     '15.164.194.2',
     'api.dailyoasis.shop',
     'localhost',
@@ -121,29 +122,28 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # }
 
 #아마존 RDS
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'daily_oasis',
-#         'USER': 'root',
-#         'PASSWORD': '00000000',
-#         'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
-#         #'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
-
-#로컬
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'daily_oasis',
         'USER': 'root',
-        'PASSWORD': '0000',
-        'HOST': 'localhost',
+        'PASSWORD': '00000000',
+        'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
         'PORT': '',
     }
 }
+
+# #로컬
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'daily_oasis',
+#         'USER': 'root',
+#         'PASSWORD': '0000',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
