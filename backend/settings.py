@@ -26,7 +26,6 @@ INTERNAL_IPS = ('127.0.0.1', )
 # Application definition
 
 INSTALLED_APPS = [
-    'django-crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,15 +36,15 @@ INSTALLED_APPS = [
     'corsheaders',
     'main',
     'silk',
-
-    #'debug_toolbar',
-    #'rest_framework_swagger',
+    'django_crontab',
 ]
 
-CRONJOBS = [
-    ('* * * * *', 'main.cron.scheduler')
-]
+# 'debug_toolbar',
+# 'rest_framework_swagger',
 
+# CRONJOBS = [
+#     ('0   0 1 * *', 'myapp.cron.my_scheduled_job', '>> /tmp/scheduled_job.log'),
+# ]
 #CRONTAB_DJANGO_SETTINGS_MODULE = 'backend.settings'
 
 
