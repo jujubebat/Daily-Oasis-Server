@@ -1,3 +1,1 @@
 
-def scheduler():
-    pass
