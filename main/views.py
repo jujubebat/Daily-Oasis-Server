@@ -86,9 +86,9 @@ def scheduler():
     # data = User_Activity.objects.all()
     # data.delete()
 
-    # temp = Title.objects.create()
-    # temp.name = 'hello world'
-    # temp.save()
+    temp = Title.objects.create()
+    temp.name = 'hello world'
+    temp.save()
 
     #모든 유저에 대한 모든 엑티비티의 자코드 유사도를 구하고 그중 상위 10개중에 3개를 추출하여 user_activity(quest)테이블에 넣어야한다.
     activity_jacard_shema = {'activity_num': [], 'Jacard_similarity': []}
