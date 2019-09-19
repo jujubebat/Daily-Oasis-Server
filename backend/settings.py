@@ -16,7 +16,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'ec2-13-125-234-154.ap-northeast-2.compute.amazonaws.com',
-    'ec2-15-164-219-72.ap-northeast-2.compute.amazonaws.com',
+    'ec2-15-164-219-72.ap-northeast-2.compute.amazonaws.com', #새로 할당 받은 주소
     '15.164.194.2',
     'api.dailyoasis.shop',
     'localhost',
@@ -38,10 +38,9 @@ INSTALLED_APPS = [
     'main',
     'silk',
     'django_crontab',
+    # 'debug_toolbar',
+    # 'rest_framework_swagger',
 ]
-
-# 'debug_toolbar',
-# 'rest_framework_swagger',
 
 CRONJOBS = [
     ('*/1 * * * *', 'main.views.scheduler', '>> /tmp/scheduled_job.log'),
