@@ -90,45 +90,45 @@ def scheduler():
     temp.name = 'hello world'
     temp.save()
 
-    #모든 유저에 대한 모든 엑티비티의 자코드 유사도를 구하고 그중 상위 10개중에 3개를 추출하여 user_activity(quest)테이블에 넣어야한다.
-    activity_jacard_shema = {'activity_num': [], 'Jacard_similarity': []}
-    activity_jacard_data = pandas.DataFrame(activity_jacard_shema)  # activity, jacard 유사도 데이터 프레임 테이블
-    i = 0
-
-    user_items = User.objects.all()
-
-    for user_item in user_items: #모든 user 튜플을 가져와서 하나씩 꺼낸다.
-        user_id = user_item.id
-        User_Preference_items = User_Preference.objects.filter(user_num_id=user_id)  #각 user들이 가지고 있는 preference 목록
-        user_tags = []  #자카드 유사도를 구하기 위해 딕셔너리 형태로 preference를 정리해 놓음, 유저의 preference 목록임(preference의 name에 띄어쓰기가 있으면 안된다.)
-                        #ex) ['분위기있는' '야외의' '실내의' '신나는']
-        for User_Preference_item in User_Preference_items:
-            tag = Preference.objects.get(pk=User_Preference_item.preference_num_id)#user_preference 튜플의(item) preference 키를 이용하여 prefernce 튜플을 추출한후 preference의 이름을 tag에 저장
-            user_tags.append(tag.name)  # 유저가 보유한 태그 딕셔너리에 preferene를 추가
-
-        activity_items = Activity.objects.all()  # 모든 엑티비티를 가져와서
-        for activity_item in activity_items:  # 하나씩 엑티비티의 태그와 유저의 태그에 대해 자카드 유사도를 계산한다.
-            activity_tags = []
-            items = Activity_Preference.objects.filter(activity_num_id=activity_item.num)  # 엑티비티가 가지고 있는 선호도 목록
-            for item in items:
-                tag = Preference.objects.get(pk=item.preference_num_id)
-                activity_tags.append(tag.name)  # 엑티비티가 보유한 태그 딕셔너리
-
-            union = set(user_tags).union(set(activity_tags))  # 합집합
-            intersection = set(user_tags).intersection(set(activity_tags))  # 교집합합
-            Jacard_similarity = len(intersection) / len(union)  # 유저태그와 엑티비티태그의 자카드 유사도
-            # 엑티비티, 자카드 유사도
-            activity_jacard_data.loc[i] = [activity_item.num, Jacard_similarity]  # 엑티비티 번호, 자카드 유사도 insert
-            i += 1
-
-        activity_jacard_data_sorted = activity_jacard_data.sort_values(by=['Jacard_similarity'],ascending=False)  # 유저태그와 엑티비티태그에 대한 자카드유사도 계산후 오름차순정렬
-        activity_jacard_data_sorted_10 = activity_jacard_data_sorted.head(10)  # 자카드 유사도순 상위 10개의 데이터프레임 추출
-        activity_jacard_data_sorted_3 = activity_jacard_data_sorted_10.sample(n=3)  # 자카드 유사도순 상위 10개의 데이터프레임중 랜덤으로 3개의 데이터프레임 추출
-        activity_jacard_data_sorted_3 = activity_jacard_data_sorted_3.reset_index(drop=True)  # 인덱스 0부터 시작하도록 초기화
-        activity_jacard_data_sorted_3 = activity_jacard_data_sorted_3['activity_num']  # 엑티비티 속성만 추출
-
-        for i in range(3):
-            quest = User_Activity.objects.create()
-            quest.user_num = User.objects.get(pk=user_id)
-            quest.activity_num = Activity.objects.get(pk=activity_jacard_data_sorted_3.iloc[i])
+    # #모든 유저에 대한 모든 엑티비티의 자코드 유사도를 구하고 그중 상위 10개중에 3개를 추출하여 user_activity(quest)테이블에 넣어야한다.
+    # activity_jacard_shema = {'activity_num': [], 'Jacard_similarity': []}
+    # activity_jacard_data = pandas.DataFrame(activity_jacard_shema)  # activity, jacard 유사도 데이터 프레임 테이블
+    # i = 0
+    #
+    # user_items = User.objects.all()
+    #
+    # for user_item in user_items: #모든 user 튜플을 가져와서 하나씩 꺼낸다.
+    #     user_id = user_item.id
+    #     User_Preference_items = User_Preference.objects.filter(user_num_id=user_id)  #각 user들이 가지고 있는 preference 목록
+    #     user_tags = []  #자카드 유사도를 구하기 위해 딕셔너리 형태로 preference를 정리해 놓음, 유저의 preference 목록임(preference의 name에 띄어쓰기가 있으면 안된다.)
+    #                     #ex) ['분위기있는' '야외의' '실내의' '신나는']
+    #     for User_Preference_item in User_Preference_items:
+    #         tag = Preference.objects.get(pk=User_Preference_item.preference_num_id)#user_preference 튜플의(item) preference 키를 이용하여 prefernce 튜플을 추출한후 preference의 이름을 tag에 저장
+    #         user_tags.append(tag.name)  # 유저가 보유한 태그 딕셔너리에 preferene를 추가
+    #
+    #     activity_items = Activity.objects.all()  # 모든 엑티비티를 가져와서
+    #     for activity_item in activity_items:  # 하나씩 엑티비티의 태그와 유저의 태그에 대해 자카드 유사도를 계산한다.
+    #         activity_tags = []
+    #         items = Activity_Preference.objects.filter(activity_num_id=activity_item.num)  # 엑티비티가 가지고 있는 선호도 목록
+    #         for item in items:
+    #             tag = Preference.objects.get(pk=item.preference_num_id)
+    #             activity_tags.append(tag.name)  # 엑티비티가 보유한 태그 딕셔너리
+    #
+    #         union = set(user_tags).union(set(activity_tags))  # 합집합
+    #         intersection = set(user_tags).intersection(set(activity_tags))  # 교집합합
+    #         Jacard_similarity = len(intersection) / len(union)  # 유저태그와 엑티비티태그의 자카드 유사도
+    #         # 엑티비티, 자카드 유사도
+    #         activity_jacard_data.loc[i] = [activity_item.num, Jacard_similarity]  # 엑티비티 번호, 자카드 유사도 insert
+    #         i += 1
+    #
+    #     activity_jacard_data_sorted = activity_jacard_data.sort_values(by=['Jacard_similarity'],ascending=False)  # 유저태그와 엑티비티태그에 대한 자카드유사도 계산후 오름차순정렬
+    #     activity_jacard_data_sorted_10 = activity_jacard_data_sorted.head(10)  # 자카드 유사도순 상위 10개의 데이터프레임 추출
+    #     activity_jacard_data_sorted_3 = activity_jacard_data_sorted_10.sample(n=3)  # 자카드 유사도순 상위 10개의 데이터프레임중 랜덤으로 3개의 데이터프레임 추출
+    #     activity_jacard_data_sorted_3 = activity_jacard_data_sorted_3.reset_index(drop=True)  # 인덱스 0부터 시작하도록 초기화
+    #     activity_jacard_data_sorted_3 = activity_jacard_data_sorted_3['activity_num']  # 엑티비티 속성만 추출
+    #
+    #     for i in range(3):
+    #         quest = User_Activity.objects.create()
+    #         quest.user_num = User.objects.get(pk=user_id)
+    #         quest.activity_num = Activity.objects.get(pk=activity_jacard_data_sorted_3.iloc[i])
     return 0
