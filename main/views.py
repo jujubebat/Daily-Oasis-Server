@@ -81,14 +81,14 @@ class UserList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def scheduler(request):
+def scheduler():
     temp = Title.objects.create()
-    temp.name='hello world'
+    temp.name = 'hello world'
     temp.save()
 
     #기존 user_activity 다 삭제해야함
     #User_Activity.objects.bulk_delete()
-    #Title.objects.bulk_delete()
+    Title.objects.bulk_delete()
     '''
     #모든 유저에 대한 모든 엑티비티의 자코드 유사도를 구하고 그중 상위 10개중에 3개를 추출하여 user_activity(quest)테이블에 넣어야한다.
     activity_jacard_shema = {'activity_num': [], 'Jacard_similarity': []}
