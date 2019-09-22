@@ -24,6 +24,8 @@ class User(AbstractUser):
     exp = models.IntegerField(default=0)  # 경험치
     character_num = models.ForeignKey(Character, on_delete=models.SET_NULL, null=True)  # 캐릭터
     title_num = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True)
+    longitude = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True) #x좌표 #경도
+    latitude = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True) #x좌표 #위도
 
 #Prefrence(취향)(태그)
 class Preference(models.Model):
@@ -56,11 +58,12 @@ class User_Title(models.Model):
     user_num = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     preference_num = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True)
 
-#유저들의 엑티비티 목록
+#유저들의 엑티비티 목록(퀘스트)
 class User_Activity(models.Model):
     num = models.AutoField(primary_key=True) #번호
     user_num = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     activity_num = models.ForeignKey(Activity, on_delete=models.SET_NULL, null=True)
+    done= models.BooleanField(default=False)
 
 #엑티비티들의 취향(태그) 목록
 class Activity_Preference(models.Model):
