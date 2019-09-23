@@ -127,7 +127,7 @@ def test():
         a=scheduler()
         print("테스트 함수에서 실행")
         print(a)
-        return 0#render(request, 'test.html',{})
+        return 0 # render(request, 'test.html',{})
 
 
 
