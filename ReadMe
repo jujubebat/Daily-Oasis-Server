@@ -2,7 +2,7 @@
 pip install -r python_library.txt
 
 테이블삭제 프로시저
-CREATE PROCEDURE `del` ()
+CREATE PROCEDURE `del_activity` ()
 BEGIN
 delete from daily_oasis.main_activity;
 alter table daily_oasis.main_activity auto_increment=0;

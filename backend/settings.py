@@ -15,17 +15,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'ec2-13-125-234-154.ap-northeast-2.compute.amazonaws.com',
-    'ec2-15-164-219-72.ap-northeast-2.compute.amazonaws.com', #새로 할당 받은 주소
-    '15.164.194.2',
-    'api.dailyoasis.shop',
     'localhost',
+    'ec2-15-164-219-72.ap-northeast-2.compute.amazonaws.com', #아마존 EC2 인스턴스 주소
+    'api.dailyoasis.shop',
 ]
 
 INTERNAL_IPS = ('127.0.0.1', )
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,13 +39,6 @@ INSTALLED_APPS = [
     # 'rest_framework_swagger',
 ]
 
-CRONJOBS = [
-    ('*/1 * * * *', 'main.views.scheduler', '>> /tmp/scheduled_job.log'),
-]
-#CRONTAB_DJANGO_SETTINGS_MODULE = 'backend.settings'
-
-
-
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,35 +49,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'silk.middleware.SilkyMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-}
-
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = False
-
-# CORS_ORIGIN_WHITELIST = (
-#     'https://127.0.0.1:3000',
-#     'https://172.30.1.255:3000',
-#     'https://172.30.1.26:3000',
-# )
-
-JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'backend.utils.my_jwt_response_handler' #토큰검사
-}
-
-AUTH_USER_MODEL = 'main.User'
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -108,17 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 #아마존 RDS
 DATABASES = {
@@ -146,7 +100,6 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -181,3 +134,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Rest framework 관련
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+#토큰 인증 관련
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'backend.utils.my_jwt_response_handler' #토큰검사
+}
+
+AUTH_USER_MODEL = 'main.User'
+
+
+#CORS 설정
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
+
+#Crontab 설정(배치 프로그램)
+CRONJOBS = [
+    ('*/1 * * * *', 'main.views.scheduler', '>> /tmp/scheduled_job.log'),
+]

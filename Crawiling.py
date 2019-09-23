@@ -20,11 +20,10 @@ cursor.execute("SELECT VERSION()")
 data=cursor.fetchone()
 print(data)
 
-# #기존 테이블 데이터 삭제
-# sql = "call del()" # mysql에 정의해둔 프로시저 사용
-# cursor.execute(sql)
-# conn.commit()
-
+#기존 테이블 데이터 삭제
+sql = "call del_activity()" # mysql에 정의해둔 프로시저 사용
+cursor.execute(sql)
+conn.commit()
 
 numOfData = 0
 numOfRows=100
