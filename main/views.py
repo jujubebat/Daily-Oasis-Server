@@ -67,7 +67,7 @@ class UserList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def scheduler(request):
+def scheduler():
     # 배치 프로그램 동작 테스트용
     # data = User_Activity.objects.all()
     # data.delete()
@@ -140,7 +140,7 @@ def scheduler(request):
 
 def test(request):
     User_Activity.objects.all().delete()  # 기존 엑티비티 추천목록 삭제
-    a=scheduler(request)
+
     print("테스트 함수에서 실행")
     print(a)
     pass
