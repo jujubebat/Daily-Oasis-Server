@@ -16,6 +16,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    '15.164.219.72',
     'ec2-15-164-219-72.ap-northeast-2.compute.amazonaws.com', #아마존 EC2 인스턴스 주소
     'api.dailyoasis.shop',
 ]
