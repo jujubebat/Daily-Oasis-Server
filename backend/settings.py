@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'main',
     'silk',
     'django_crontab',
-    # 'debug_toolbar',
+    'debug_toolbar',
     # 'rest_framework_swagger',
 ]
 
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'silk.middleware.SilkyMiddleware',
-    #'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 
@@ -83,6 +83,7 @@ DATABASES = {
         'PASSWORD': '00000000',
         'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
         'PORT': '',
+       #'ATOMIC_REQUESTS': True,
     }
 }
 
@@ -161,5 +162,5 @@ CORS_ALLOW_CREDENTIALS = False
 
 #Crontab 설정(배치 프로그램)
 CRONJOBS = [
-    ('*/1 * * * *', 'main.views.scheduler', '>> /tmp/scheduled_job.log'),
+    ('*/30 * * * *', 'main.views.test', '>> /tmp/scheduled_job.log'),
 ]
