@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 import pandas
-from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, CurrentQuestSerializer
+from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer # CurrentQuestSerializer
 from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User
 
 class CurrentQuest(APIView):
