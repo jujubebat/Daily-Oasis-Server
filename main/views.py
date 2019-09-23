@@ -4,22 +4,22 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 import pandas
-from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer # CurrentQuestSerializer
+from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, CurrentQuestSerializer
 from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User
 
-# class CurrentQuest(APIView):
-#
-#     #지금 User_Activity에 done 속성을 추가하고 migrate를 안해서 장고가 모델인식을 못하여 아래 코드가 동작 안하는 거 같음
-#     def get(self, request):
-#         user_id = request.user.id
-#         fuck = User_Activity.objects.filter(pk=1)
-#         items = User_Activity.objects.filter(user_num_id=user_id)
-#         list=[]
-#         for item in items:
-#             list.append(item.activity_num)
-#         data=Activity.objects.filter(pk__in=[list[0],list[1],list[2]])
-#         serializer = CurrentQuestSerializer(data, many=True)
-#         return Response({"CurrentQuest":serializer.data})
+class CurrentQuest(APIView):
+
+    #지금 User_Activity에 done 속성을 추가하고 migrate를 안해서 장고가 모델인식을 못하여 아래 코드가 동작 안하는 거 같음
+    def get(self, request):
+        user_id = request.user.id
+        fuck = User_Activity.objects.filter(pk=1)
+        items = User_Activity.objects.filter(user_num_id=user_id)
+        list=[]
+        for item in items:
+            list.append(item.activity_num)
+        data=Activity.objects.filter(pk__in=[list[0],list[1],list[2]])
+        serializer = CurrentQuestSerializer(data, many=True)
+        return Response({"CurrentQuest":serializer.data})
 
 
 #데이터베이스로부터 데이터를 가져오고, 선언해둔 시리얼라이저를 통해 데이터를 직렬화해준다.
