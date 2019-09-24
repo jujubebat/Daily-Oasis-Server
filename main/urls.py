@@ -4,7 +4,7 @@ from django.conf.urls import include
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_swagger.views import get_swagger_view
 from . import views
-from .views import  DoneQuest, ActivityList, CurrentQuest, FinishQuest, UserList, #ActivityReview
+from .views import  DoneQuest, ActivityList, CurrentQuest, FinishQuest, UserList
 
 urlpatterns = [
     path('current_user', views.current_user),
