@@ -2,20 +2,13 @@ from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from .models import Activity, User, User_Preference, Preference, User_Activity
 
-#진행중인 퀘스트 직렬화
-class CurrentQuestSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User_Activity
-        fields = '__all__'
-
 #엑티비티 데이터 직렬화
 class ActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Activity
         fields = ('num', 'name', 'eventStartDate', 'eventEndDate', 'eventTime', 'eventPlace', 'discription', 'mapx', 'mapy', 'tel', 'img')
-
+        # fields = '__all__'
 #유저 데이터를 직렬화
 class UserSerializer(serializers.ModelSerializer):
 
@@ -44,15 +37,19 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         postNum = validated_data.pop('postNum', None)
         address = validated_data.pop('address', None)
         character_num = validated_data.pop('character_num', None)
+        longitude = validated_data.pop('longitude', None)
+        latitude = validated_data.pop('latitude', None)
 
         instance = self.Meta.model(**validated_data) #User 인스턴스 생성
         if password is not None:
             instance.set_password(password)
 
-        instance.nickName = nickName
+        instance.nickName = nickName #새로 만든 User 인스턴스에 회원가입 정보 저장
         instance.postNum = postNum
         instance.address = address
         instance.character_num = character_num
+        instance.longitude = longitude
+        instance.latitude = latitude
         instance.save()
 
         #유저에 태그 등록하는 부분
@@ -67,5 +64,5 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id','token', 'username', 'password','nickName','address','postNum', 'level', 'exp', 'character_num')
+        fields = ('id','token', 'username', 'password','nickName','address','postNum', 'level', 'exp', 'character_num','longitude','latitude')
         # fields = '__all__'

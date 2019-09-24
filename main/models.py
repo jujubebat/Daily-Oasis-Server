@@ -46,6 +46,20 @@ class Activity(models.Model):
     tel = models.CharField(max_length=255, blank=True, null=True) #엑티비티 전화번호
     img = models.CharField(max_length=255, blank=True, null=True) #엑티비티 이미지
 
+#Activity(엑티비티)
+class ActivityTemp(models.Model):
+    num = models.AutoField(primary_key=True) #번호
+    name = models.CharField(max_length=100, blank=True, null=True) #엑티비티 이름
+    eventStartDate = models.CharField(max_length=100, blank=True, null=True) #엑티비티 시작일
+    eventEndDate = models.CharField(max_length=100, blank=True, null=True) #엑티비티 종료일
+    eventTime = models.TextField(max_length=1000, blank=True, null=True) #엑티비티 시간
+    eventPlace = models.TextField(max_length=1000, blank=True, null=True) #엑티비티 장소명
+    discription = models.TextField(max_length=1000, blank=True, null=True)  # 엑티비티 설명
+    mapx = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True) #x좌표
+    mapy = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True) #y좌표
+    tel = models.CharField(max_length=255, blank=True, null=True) #엑티비티 전화번호
+    img = models.CharField(max_length=255, blank=True, null=True) #엑티비티 이미지
+
 #유저들의 취향(태그) 목록
 class User_Preference(models.Model):
     num = models.AutoField(primary_key=True) #번호

@@ -1,7 +1,7 @@
-라이브러리는 아래 명령어로 한 번에 설치가능
+<라이브러리는 아래 명령어로 한 번에 설치가능>
 pip install -r python_library.txt
 
-테이블삭제 프로시저
+<테이블삭제 프로시저>
 CREATE PROCEDURE `del_activity` ()
 BEGIN
 delete from daily_oasis.main_activity;
@@ -11,11 +11,11 @@ END
 request 디버깅을 위해 django-debug-toolbar와 silk 라이브 -러리 사용
 
 <리눅스 관련>
-
 루트권한 획득 : sudo su
-
 ps aux | grep -i manage
-
 nohup python3 manage.py runserver 0.0.0.0:8000 &
+
+<mysql 엔진확인 쿼리>
+SELECT engine FROM information_schema.TABLES where table_name='main_user_activity' AND table_schema='daily_oasis';
 
 
