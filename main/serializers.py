@@ -21,7 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id','username','nickName','address','postNum', 'level', 'exp', 'character_num', 'title_num')
+        fields = ('id','username','nickName','address','postNum', 'level', 'exp', 'character_num', 'title_num','longitude','latitude')
 
 #칭호 데이터를 직렬화
 class TitleSerializer(serializers.ModelSerializer):
