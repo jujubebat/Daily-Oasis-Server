@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'silk',
     'django_crontab',
     'debug_toolbar',
-    # 'rest_framework_swagger',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -148,6 +148,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
 #토큰 인증 관련
@@ -166,3 +167,4 @@ CORS_ALLOW_CREDENTIALS = False
 CRONJOBS = [
     ('*/30 * * * *', 'main.views.test', '>> /tmp/scheduled_job.log'),
 ]
+
