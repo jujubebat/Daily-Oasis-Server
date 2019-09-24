@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/temp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReadMe" beforeDir="false" afterPath="$PROJECT_DIR$/ReadMe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,8 +83,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="39" lean-forward="true" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+            <state relative-caret-position="228">
+              <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -333,13 +326,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565614495831</updated>
-    </task>
-    <task id="LOCAL-00001" summary="-프로젝트 초기 셋팅 완료&#10; -Python 3.7.2&#10; -Django 2.2.4&#10; -Django Rest Framework 3.10.2&#10; -MySQL 8.0.15&#10; &#10;-jwt을 활용한 토큰 방식 회원가입, 로그인, 로그아웃 api 구현">
-      <created>1565617453414</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1565617453414</updated>
     </task>
     <task id="LOCAL-00002" summary="-DB 모델생성 (models.py)&#10;-API 데이터 받아오는 로직 구현중(DailyOasisCrawling.py)&#10; -지역기반 api로 서울에 있는 관광정보를 받아온후에, 소개 상세정보 api를 이용해&#10;  상세 데이터를 받아오는 것을 구현하고 있음 mysql에 자동 저장로직까지 구현할 계획">
       <created>1567170577896</created>
@@ -670,7 +656,21 @@
       <option name="project" value="LOCAL" />
       <updated>1569341633934</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="-view import 오류 수정">
+      <created>1569341937004</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1569341937004</updated>
+    </task>
+    <task id="LOCAL-00050" summary="-view import 오류 수정2">
+      <created>1569341994716</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1569341994717</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView">
@@ -725,8 +725,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-AWS 우분투 환경 테스트 하기위한 커밋(pandas 관련 오류가 우분투에서 발생함)" />
-    <MESSAGE value="-AWS 테스트용" />
     <MESSAGE value="-AWS 설정 수정" />
     <MESSAGE value="-배치 프로그램 테스트" />
     <MESSAGE value="-관광 추천 기능 수정" />
@@ -750,7 +748,9 @@
     <MESSAGE value="-main.views에 있는 함수에 아래와 같은 코드를 추가했더니 view import 오류가 나서 참조 방식 바꿈&#10;&#10;permission_classes = (permissions.AllowAny,)" />
     <MESSAGE value="-누락 파일 추가" />
     <MESSAGE value="-Signup 오류 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Signup 오류 수정" />
+    <MESSAGE value="-view import 오류 수정" />
+    <MESSAGE value="-view import 오류 수정2" />
+    <option name="LAST_COMMIT_MESSAGE" value="-view import 오류 수정2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1002,8 +1002,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="39" lean-forward="true" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+        <state relative-caret-position="228">
+          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>

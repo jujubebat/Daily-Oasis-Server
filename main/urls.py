@@ -17,6 +17,7 @@ urlpatterns = [
     path('doneQuest', views.CurrentQuest),
     path('finishQuest', views.FinishQuest),
     #path('activityReview', ActivityReview.as_view()), #엑티비티하고 엑티비티 리뷰들 제공
+    path('activityReview', views.ActivityReview),
     path('writeReview', views.WriteReview),  #리뷰작성
 ]
 
