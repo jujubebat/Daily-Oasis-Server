@@ -160,6 +160,11 @@ class UserList(APIView):
     method here too, for retrieving a list of all User objects.
     """
     permission_classes = (permissions.AllowAny,)
+    def get(self, request):
+        data = User.objects.filter(pk=request.user.id)
+        serializer = UserSerializer(data, many=True)
+        return Response({"UserInfo" : serializer.data})
+
     def post(self, request, format=None):
         serializer = UserSerializerWithToken(data=request.data)
         if serializer.is_valid():
