@@ -12,8 +12,8 @@ request 디버깅을 위해 django-debug-toolbar와 silk 라이브 -러리 사�
 
 <리눅스 관련>
 루트권한 획득 : sudo su
-ps aux | grep -i manage
-nohup python3 manage.py runserver 0.0.0.0:8000 &
+프로세스 조회 : ps aux | grep -i manage
+데몬으로 서버 돌리기 : nohup python3 manage.py runserver 0.0.0.0:8000 &
 
 <mysql 엔진확인 쿼리>
 SELECT engine FROM information_schema.TABLES where table_name='main_user_activity' AND table_schema='daily_oasis';

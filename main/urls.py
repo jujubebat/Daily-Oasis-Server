@@ -4,7 +4,7 @@ from django.conf.urls import include
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_swagger.views import get_swagger_view
 from . import views
-from .views import  DoneQuest, ActivityList, CurrentQuest, FinishQuest, UserList, ActivityReview
+from .views import  DoneQuest, ActivityList, CurrentQuest, FinishQuest, UserList, #ActivityReview
 
 urlpatterns = [
     path('current_user', views.current_user),
@@ -16,7 +16,7 @@ urlpatterns = [
     path('currentQuest', views.DoneQuest),
     path('doneQuest', views.CurrentQuest),
     path('finishQuest', views.FinishQuest),
-    path('activityReview', ActivityReview.as_view()), #엑티비티하고 엑티비티 리뷰들 제공
+    #path('activityReview', ActivityReview.as_view()), #엑티비티하고 엑티비티 리뷰들 제공
     path('writeReview', views.WriteReview),  #리뷰작성
 ]
 

@@ -1,6 +1,13 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from .models import Activity, User, User_Preference, Preference, User_Activity
+from .models import Activity, User, User_Preference, Preference, User_Activity, Title, Review
+
+#엑티비티 데이터 직렬화
+class UserActivitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User_Activity
+        fields = ('num', 'user_num', 'activity_num', 'done')
 
 #엑티비티 데이터 직렬화
 class ActivitySerializer(serializers.ModelSerializer):
@@ -15,6 +22,32 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id','username','nickName','address','postNum', 'level', 'exp', 'character_num', 'title_num')
+
+#칭호 데이터를 직렬화
+class TitleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Title
+        fields = ('num','name','text','img')
+
+#유저 타이틀 직렬화
+class UserTitleSerializer(serializers.ModelSerializer):
+
+    user = UserSerializer(many=True)
+    title = TitleSerializer(many=True)
+
+#리뷰 데이터 직렬화
+class ReviewSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Review
+        fields = ('num', 'date', 'user_nickName', 'text', 'grade', 'activity_num', 'user_num')
+
+#엑티비티 리뷰 직렬화
+class ActivityReviewSerializer(serializers.ModelSerializer):
+
+    activity = ActivitySerializer(many=True)
+    review = ReviewSerializer(many=True)
 
 #유저 데이터 + 토큰정보 + 회원가입 관련 직렬화
 class UserSerializerWithToken(serializers.ModelSerializer):

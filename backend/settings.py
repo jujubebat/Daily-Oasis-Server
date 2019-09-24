@@ -168,3 +168,4 @@ CRONJOBS = [
     ('*/30 * * * *', 'main.views.test', '>> /tmp/scheduled_job.log'),
 ]
 
+
