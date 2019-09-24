@@ -1,10 +1,9 @@
 from django.conf import settings
 from django.urls import path
-from django.conf.urls import include, url
-from .views import current_user, UserList, ActivityList, CurrentQuest,DoneQuest,FinishQuest
+from django.conf.urls import include
+from .views import current_user, UserList, CurrentQuest, DoneQuest, FinishQuest
 from . import views
 from rest_framework_jwt.views import obtain_jwt_token
-from django.conf.urls import url
 from rest_framework_swagger.views import get_swagger_view
 
 urlpatterns = [
@@ -13,7 +12,7 @@ urlpatterns = [
     path('test',views.test),
     path('login', obtain_jwt_token),
     path('signup', UserList.as_view()),
-    path('activityList', ActivityList.as_view()),
+    path('activityList', views.ActivityList),
     path('currentQuest', DoneQuest.as_view()),
     path('doneQuest', CurrentQuest.as_view()),
     path('finishQuest', FinishQuest.as_view()),
