@@ -85,7 +85,6 @@ DATABASES = {
         'PASSWORD': '00000000',
         'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
         'PORT': '',
-       #'ATOMIC_REQUESTS': True,
     }
 }
 
