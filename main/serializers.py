@@ -39,13 +39,34 @@ class UserTitleSerializer(serializers.ModelSerializer):
 #리뷰 데이터 직렬화
 class ReviewSerializer(serializers.ModelSerializer):
 
+    def create(self, validated_data):
+        date = validated_data.pop('date', None) #validated_data는 Meta 클래스에 등록한 속성들만 추린 데이터(헷갈리면 디버깅해보자)
+        user_nickName = validated_data.pop('user_nickName', None)
+        text = validated_data.pop('text', None)
+        grade = validated_data.pop('grade', None)
+        activity_num = validated_data.pop('activity_num', None)
+        user_num = validated_data.pop('user_num', None)
+
+        instance = self.Meta.model(**validated_data) #Review 인스턴스 생성
+        instance.date = date
+        instance.user_nickName = user_nickName
+        instance.text = text
+        instance.grade = grade
+        instance.activity_num = activity_num
+        instance.user_num = user_num
+        instance.save()
+
+        return instance
+
     class Meta:
         model = Review
         fields = ('num', 'date', 'user_nickName', 'text', 'grade', 'activity_num', 'user_num')
 
 #엑티비티 리뷰 직렬화
 class ActivityReviewSerializer(serializers.ModelSerializer):
-
+    class Meta:
+        model = Activity,Review
+        fields = '__all__'
     activity = ActivitySerializer(many=True)
     review = ReviewSerializer(many=True)
 

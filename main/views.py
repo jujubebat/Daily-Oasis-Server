@@ -3,11 +3,10 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-import pandas
-from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, UserTitleSerializer, ActivityReviewSerializer
-from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title
+import pandas, json
+from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, UserTitleSerializer, ActivityReviewSerializer, ReviewSerializer
+from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title,Review
 from django.db import transaction
-from django.db.models import F
 from collections import namedtuple
 
 class CurrentQuest(APIView):
@@ -20,7 +19,6 @@ class CurrentQuest(APIView):
         data=Activity.objects.filter(pk__in=[list[0].num, list[1].num, list[2].num])
         serializer = ActivitySerializer(data, many=True)
         return Response({"CurrentQuest":serializer.data})
-
 
 #엑티비티 리스트 제공
 class ActivityList(APIView):
@@ -73,14 +71,10 @@ def UpdateTitle(request):
     #~~~~~~~~~~~
     #~~~~~~~~~~~
 
+    #레벨 기반 칭호 부여
+
     #획득한 타이틀이 다수일 경우 쿼리셋 합쳐서 반환 https://wayhome25.github.io/django/2017/11/26/merge-queryset/
     return newUserTitle
-
-#1.request로 User_Activity pk가 날아온다.
-#2.완료처리(done=1)
-#3.레벨 처리
-#4.칭호 처리
-#5.User, 유저가 보유한 Title 반환
 
 #인풋으로 퀘스트 num
 class FinishQuest(APIView): #유저의 정보(레벨, 경험치)와, 유저가 보유한 칭호 정보 리턴
@@ -100,51 +94,31 @@ class FinishQuest(APIView): #유저의 정보(레벨, 경험치)와, 유저가 �
             user=User.objects.get(pk=user_id),
             title=newUserTitle,
         )
-        serializer = UserTitleSerializer(user_title_data)
+        serializer = UserTitleSerializer(user_title_data)#유저와 칭호 한번에 직렬화
         return Response({"UserInfoAndNewTitle" : serializer.data})
 
-        # usersTitlelist = []
-        # for item in User_Title.objects.filter(user_num_id=user_id):
-        #     usersTitlelist.append(item.title_num_id)
-        #
-        #
-        # user_title = namedtuple('user_title',('user', 'title'))
-        #
-        # user_title_data = user_title(
-        #     user=User.objects.get(pk=user_id),
-        #     title=Title.objects.filter(pk__in=usersTitlelist),
-        # )
-
+#쿼리셋으로 activity_num 번호 받으면 해당하는 activity와 activity에 대한 review 데이터 제공
 class ActivityReview(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
-        data = Activity.objects.all()
-        serializer = ActivitySerializer(data, many=True)
-        return Response({"ActivityList": serializer.data})
+        activity_num = request.query_params['activity_num']#엑티비티 번호
 
-        # serializer = UserActivitySerializer(data=request.data)
-        # Quest_pk = serializer.validated_data.pop('num', None)  # User_Activity의 pk
-        # activity_review = namedtuple('activity_review', ('activity', 'review'))
-        # activity_review_data = activity_review(
-        #     user=User.objects.get(pk=user_id),
-        #     title=newUserTitle,
-        # )
-        # serializer = UserTitleSerializer(user_title_data)
-        # return Response({"DoneQuest" : serializer.data})
+        activity = Activity.objects.get(pk=activity_num)
+        activity_serializer = ActivitySerializer(activity)
 
+        review = Review.objects.filter(activity_num_id=activity_num)
+        review_serializer = ReviewSerializer(review, many=True)
+
+        return Response({"Actibity" : activity_serializer.data,"Reviews" : review_serializer.data})
+
+class WriteReview(APIView):
+    permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
-        serializer = UserSerializerWithToken(data=request.data)
+        serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class WriteReview(APIView):
-    permission_classes = (permissions.AllowAny,)
-    def get(self, request):
-        data = User_Activity.objects.filter(user_num_id=request.user.id, questDone=1)
-        serializer = ActivitySerializer(data, many=True)
-        return Response({"DoneQuest" : serializer.data})
 
 @api_view(['GET'])
 def current_user(request):
@@ -160,10 +134,6 @@ class UserList(APIView):
     method here too, for retrieving a list of all User objects.
     """
     permission_classes = (permissions.AllowAny,)
-    def get(self, request):
-        data = User.objects.filter(pk=request.user.id)
-        serializer = UserSerializer(data, many=True)
-        return Response({"UserInfo" : serializer.data})
 
     def post(self, request, format=None):
         serializer = UserSerializerWithToken(data=request.data)
@@ -228,17 +198,6 @@ def test(request):
     print("테스트 함수에서 실행")
     print(a)
     return render(request, 'test.html',{})
-
-#메모
-#위치기반 추천기능 추가
-#Tmap 지오코딩
-
-#만들어야할 api 목록
-#진행중인 퀘스트 목록
-#완료 퀘스트 목록
-#전체 엑티비티 퀘스트 목록
-#퀘스트 완료 -> 레벨, 칭호 로직 반영
-#댓글 기능 -> 레벨, 칭호, 로직 반영
 
 
 
