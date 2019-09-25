@@ -4,23 +4,23 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 import pandas, json
-from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, UserTitleSerializer, ActivityReviewSerializer, ReviewSerializer
+from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, UserTitleSerializer, ActivityReviewSerializer, ReviewSerializer, TitleSerializer
 from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title,Review
 from django.db import transaction
-from collections import namedtuple
 
+#현재 유저가 진행중인 퀘스트 목록(엑티비티) 리턴
 class CurrentQuest(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
-        items = User_Activity.objects.filter(user_num_id=request.user.id)
+        items = User_Activity.objects.filter(user_num_id=request.user.id, questDone=0)
         list=[]
         for item in items:
-            list.append(item.activity_num)
-        data=Activity.objects.filter(pk__in=[list[0].num, list[1].num, list[2].num])
+            list.append(item.activity_num.num)
+        data=Activity.objects.filter(pk__in=list)
         serializer = ActivitySerializer(data, many=True)
         return Response({"CurrentQuest":serializer.data})
 
-#엑티비티 리스트 제공
+#모든 엑티비티 리스트 제공
 class ActivityList(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
@@ -28,11 +28,15 @@ class ActivityList(APIView):
         serializer = ActivitySerializer(data, many=True)
         return Response({"ActivityList":serializer.data})
 
-#완료된 퀘스트 제공
+#유저가 완료한 퀘스트 제공(발자취)
 class DoneQuest(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
-        data = User_Activity.objects.filter(user_num_id=request.user.id, questDone=1)
+        items = User_Activity.objects.filter(user_num_id=request.user.id, questDone=1)
+        list = []
+        for item in items:
+            list.append(item.activity_num.num)
+        data = Activity.objects.filter(pk__in=list)
         serializer = ActivitySerializer(data, many=True)
         return Response({"DoneQuest":serializer.data})
 
@@ -49,53 +53,68 @@ def UpdateLevel(request):
 #완료한 퀘스트 1, 3, 5, 7, 9, 12
 def UpdateTitle(request):
     user_id = request.user.id
+    user = User.objects.get(pk=user_id)
     # 완료된 퀘스트수 기반 칭호 부여
     DoneQuest = User_Activity.objects.filter(user_num_id=user_id, questDone=1) #유저가 완료한 퀘스트 목록
     DoneQuestNum = DoneQuest.count()
     if DoneQuestNum == 1:
-        newUserTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=1)
+        newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=1)
     elif DoneQuestNum == 3:
-        newUserTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=2)
+        newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=2)
     elif DoneQuestNum == 5:
-        newUserTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=3)
+        newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=3)
     elif DoneQuestNum == 7:
-        newUserTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=4)
+        newUserQuestTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=4)
     elif DoneQuestNum == 9:
-        newUserTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=5)
-    elif DoneQuestNum == 12:
-        pass
+        newUserQuestTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=5)
 
     #후기 작성수 기반 칭호 부여
-    #~~~~~~~~~~~
-    #~~~~~~~~~~~
-    #~~~~~~~~~~~
-    #~~~~~~~~~~~
+    UsersReview = Review.objects.filter(user_num_id=user_id)
+    UsersReviewNum = Review.objects.filter(user_num_id=user_id).count()
+    if UsersReviewNum == 2:
+        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=6)
+    elif UsersReviewNum == 4:
+        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=7)
+    elif UsersReviewNum == 6:
+        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=8)
+    elif UsersReviewNum == 8:
+        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=9)
+    elif UsersReviewNum == 10:
+        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=10)
 
     #레벨 기반 칭호 부여
+    if user.level == 2:
+        newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=11)
+    elif user.level == 7:
+        newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=12)
+    elif user.level == 12:
+        newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=13)
+
+
+    newUserTitle = newUserQuestTitle | newUserReviewTitle | newUserlevelTitle
 
     #획득한 타이틀이 다수일 경우 쿼리셋 합쳐서 반환 https://wayhome25.github.io/django/2017/11/26/merge-queryset/
     return newUserTitle
 
-#인풋으로 퀘스트 num
-class FinishQuest(APIView): #유저의 정보(레벨, 경험치)와, 유저가 보유한 칭호 정보 리턴
+
+#퀘스트 완료 처리를 해줌. 퀘스트 완료후 보상 적용이 된 유저의 정보와 새로 받은 칭호 정보 리턴(쿼리셋으로 activity_num 보내줘야함)
+class FinishQuest(APIView):
     permission_classes = (permissions.AllowAny,)
-
     def get(self, request):
-        user_id = request.user.id
-        serializer = UserActivitySerializer(data=request.data)
-        Quest_pk =serializer.validated_data.pop('num', None) #User_Activity의 pk
-        Quest = User_Activity.objects.get(pk=Quest_pk)
-        Quest.questDone = 1
-        UpdateLevel(request) #레벨 업데이트
-        newUserTitle = UpdateTitle(request) #칭호 업데이트
+        # 퀘스트 완료 처리
+        activity_num = request.query_params['activity_num']  # 엑티비티 번호
+        quest = User_Activity.objects.filter(activity_num_id=activity_num, user_num_id=request.user.id)
+        quest.questDone = 1
 
-        user_title = namedtuple('user_title', ('user', 'title'))
-        user_title_data = user_title(
-            user=User.objects.get(pk=user_id),
-            title=newUserTitle,
-        )
-        serializer = UserTitleSerializer(user_title_data)#유저와 칭호 한번에 직렬화
-        return Response({"UserInfoAndNewTitle" : serializer.data})
+        #보상 업데이트
+        UpdateLevel(request)
+        newTitle=UpdateTitle(request)
+
+        user = User.objects.get(pk=request.user.id)
+        user_serializer = UserSerializer(user)
+        title_serializer = TitleSerializer(newTitle, many=True)
+
+        return Response({"User": user_serializer.data, "NewTitle": title_serializer.data})
 
 #쿼리셋으로 activity_num 번호 받으면 해당하는 activity와 activity에 대한 review 데이터 제공
 class ActivityReview(APIView):
@@ -111,15 +130,21 @@ class ActivityReview(APIView):
 
         return Response({"Actibity" : activity_serializer.data,"Reviews" : review_serializer.data})
 
+#리뷰를 작성하게 해줌
 class WriteReview(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
-        serializer = ReviewSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+        quest = User_Activity.objects.filter(user_num_id=request.data.get('user_num'), activity_num_id=request.data.get('activity_num'), questDone=1, reviewDone=0)
+        isQuestExist = quest.exists()
+        if isQuestExist: #사용자가 완료한 퀘스트가 존재하고 아직 리뷰를 작성하지 않았을 경우에만 리뷰작성 가능
+            print("dfsfdff")
+            quest.update(reviewDone = True)
+            serializer = ReviewSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 @api_view(['GET'])
 def current_user(request):
     """

@@ -16,11 +16,14 @@ urlpatterns = [
     path('signup', UserList.as_view()), #회원가입
     path('current_user', views.current_user), #유저 정보 데이터 제공
     path('activityList', views.ActivityList.as_view()), #모든 엑티비티 데이터 제공
-    path('currentQuest', views.CurrentQuest.as_view()), #유저가 진행중인 퀘스트 데이터 제공(엑티비티 제공)
-    path('doneQuest', views.DoneQuest.as_view()), #유저가 완료한 퀘스트 제공
-    path('activityReview', views.ActivityReview.as_view()), #엑티비티와 엑티비티에 달려있는 댓글 데이터 제공 (두 개의 모델을 하나로 직렬화)
-    path('finishQuest', views.FinishQuest.as_view()), #퀘스트 완료 로직 실행 후 갱신된 유저 정보와 새로얻은 칭호 정보제공 (두 개의 모델을 하나로 직렬화)
+    path('activityReview', views.ActivityReview.as_view()), #엑티비티와 엑티비티에 달려있는 댓글 데이터 제공 (두 개의 모델을 하나로 직렬화) /activityReview?activity_num=1
     path('writeReview', views.WriteReview.as_view()), #리뷰작성로직 실행
+
+
+    path('currentQuest', views.CurrentQuest.as_view()), #유저가 진행중인 퀘스트 데이터 제공(엑티비티 제공)
+    path('doneQuest', views.DoneQuest.as_view()), #유저가 완료한 퀘스트 제공(발자취)
+    path('finishQuest', views.FinishQuest.as_view()), #퀘스트 완료 로직 실행 후 갱신된 유저 정보와 새로얻은 칭호 정보제공 (두 개의 모델을 하나로 직렬화) /finishQuest?activity_num=1
+
 
     #개발예정
     # path('updateUser'), #유저 정보 수정
