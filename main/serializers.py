@@ -7,7 +7,7 @@ class UserActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User_Activity
-        fields = ('num', 'user_num', 'activity_num', 'done')
+        fields = ('num', 'user_num', 'activity_num', 'questDone', 'reviewDone')
 
 #엑티비티 데이터 직렬화
 class ActivitySerializer(serializers.ModelSerializer):
@@ -47,8 +47,6 @@ class ReviewSerializer(serializers.ModelSerializer):
         activity_num = validated_data.pop('activity_num', None)
         user_num = validated_data.pop('user_num', None)
 
-        a=1
-
         instance = self.Meta.model(**validated_data) #Review 인스턴스 생성
         instance.date = date
         instance.user_nickName = user_nickName
@@ -57,8 +55,6 @@ class ReviewSerializer(serializers.ModelSerializer):
         instance.activity_num_id = activity_num.num
         instance.user_num_id = user_num.id
         instance.save()
-
-
 
         return instance
 

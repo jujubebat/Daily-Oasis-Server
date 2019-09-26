@@ -80,6 +80,8 @@ class User_Activity(models.Model):
     activity_num = models.ForeignKey(Activity, on_delete=models.SET_NULL, null=True)
     questDone = models.BooleanField(default=False) #퀘스트 완료 여부
     reviewDone = models.BooleanField(default=False) #리뷰 작성여부
+    doneTime = models.DateTimeField(blank=True, null=True)
+
 
 #엑티비티들의 취향(태그) 목록
 class Activity_Preference(models.Model):

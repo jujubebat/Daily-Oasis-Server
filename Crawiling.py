@@ -5,10 +5,10 @@ import sys
 import pprint
 
 conn = pymysql.connect(
-    #host='localhost',
-    host = 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
+    host='localhost',
+    #host = 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
     user='root',
-    password='00000000',
+    password='0000',
     db='daily_oasis',
     charset='utf8'
 )

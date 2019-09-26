@@ -12,13 +12,34 @@ from django.db import transaction
 class CurrentQuest(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
-        items = User_Activity.objects.filter(user_num_id=request.user.id, questDone=0)
+        quests = User_Activity.objects.filter(user_num_id=request.user.id, questDone=0)
+        quest_serializer = UserActivitySerializer(quests, many=True)
+
         list=[]
-        for item in items:
-            list.append(item.activity_num.num)
-        data=Activity.objects.filter(pk__in=list)
-        serializer = ActivitySerializer(data, many=True)
-        return Response({"CurrentQuest":serializer.data})
+        for quest in quests:
+            list.append(quest.activity_num.num)
+
+        activity=Activity.objects.filter(pk__in=list)
+        activity_serializer = ActivitySerializer(activity, many=True)
+
+        return Response({"CurrentQuest":quest_serializer.data, "CurrentActivity":activity_serializer.data})
+
+#유저가 완료한 퀘스트 제공(발자취)
+class DoneQuest(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def get(self, request):
+        quests = User_Activity.objects.filter(user_num_id=request.user.id, questDone=1)
+        quest_serializer = UserActivitySerializer(quests, many=True)
+
+        list = []
+        for quest in quests:
+            list.append(quest.activity_num.num)
+
+        activity = Activity.objects.filter(pk__in=list)
+        activity_serializer = ActivitySerializer(activity, many=True)
+
+        return Response({"DoneQuest": quest_serializer.data, "DoneActivity":activity_serializer.data})
+
 
 #모든 엑티비티 리스트 제공
 class ActivityList(APIView):
@@ -28,17 +49,6 @@ class ActivityList(APIView):
         serializer = ActivitySerializer(data, many=True)
         return Response({"ActivityList":serializer.data})
 
-#유저가 완료한 퀘스트 제공(발자취)
-class DoneQuest(APIView):
-    permission_classes = (permissions.AllowAny,)
-    def get(self, request):
-        items = User_Activity.objects.filter(user_num_id=request.user.id, questDone=1)
-        list = []
-        for item in items:
-            list.append(item.activity_num.num)
-        data = Activity.objects.filter(pk__in=list)
-        serializer = ActivitySerializer(data, many=True)
-        return Response({"DoneQuest":serializer.data})
 
 #레벨 보상 관련 로직
 #레벨 1부터시작 / 3업마다 외형 변화 / 12랩이 만랩
@@ -116,7 +126,7 @@ class FinishQuest(APIView):
 
         return Response({"User": user_serializer.data, "NewTitle": title_serializer.data})
 
-#쿼리셋으로 activity_num 번호 받으면 해당하는 activity와 activity에 대한 review 데이터 제공
+#쿼리셋으로 activity_num 번호 받으면 해당하는 activity와 activity에 대한 review 데이터 제공(쿼리셋으로 activity_num 보내줘야함)
 class ActivityReview(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
@@ -134,7 +144,7 @@ class ActivityReview(APIView):
 class WriteReview(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
-        quest = User_Activity.objects.filter(user_num_id=request.data.get('user_num'), activity_num_id=request.data.get('activity_num'), questDone=1, reviewDone=0)
+        quest = User_Activity.objects.filter(user_num_id=request.user.id, activity_num_id=request.data.get('activity_num'), questDone=1, reviewDone=0)
         isQuestExist = quest.exists()
         if isQuestExist: #사용자가 완료한 퀘스트가 존재하고 아직 리뷰를 작성하지 않았을 경우에만 리뷰작성 가능
             print("dfsfdff")

@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'main',
     'silk',
     'django_crontab',
-    'debug_toolbar',
     'rest_framework_swagger',
+    #'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'silk.middleware.SilkyMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 
@@ -76,29 +76,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-#아마존 RDS
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'daily_oasis',
-        'USER': 'root',
-        'PASSWORD': '00000000',
-        'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
-        'PORT': '',
-    }
-}
-
-# #로컬
+# #아마존 RDS
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'daily_oasis',
 #         'USER': 'root',
-#         'PASSWORD': '0000',
-#         'HOST': 'localhost',
+#         'PASSWORD': '00000000',
+#         'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
 #         'PORT': '',
 #     }
 # }
+
+#로컬
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'daily_oasis',
+        'USER': 'root',
+        'PASSWORD': '0000',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
