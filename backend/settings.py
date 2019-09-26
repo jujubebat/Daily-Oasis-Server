@@ -152,7 +152,8 @@ REST_FRAMEWORK = {
 
 #토큰 인증 관련
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    #'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_VERIFY_EXPIRATION': False,
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'backend.utils.my_jwt_response_handler' #토큰검사
 }
 
