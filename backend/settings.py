@@ -1,5 +1,5 @@
 import os
-
+import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -76,29 +76,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-#아마존 RDS
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'daily_oasis',
-        'USER': 'root',
-        'PASSWORD': '00000000',
-        'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
-        'PORT': '',
-    }
-}
-
-# #로컬
+# #아마존 RDS
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'daily_oasis',
 #         'USER': 'root',
-#         'PASSWORD': '0000',
-#         'HOST': 'localhost',
+#         'PASSWORD': '00000000',
+#         'HOST': 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
 #         'PORT': '',
 #     }
 # }
+
+#로컬
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'daily_oasis',
+        'USER': 'root',
+        'PASSWORD': '0000',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -152,6 +152,7 @@ REST_FRAMEWORK = {
 
 #토큰 인증 관련
 JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'backend.utils.my_jwt_response_handler' #토큰검사
 }
 
