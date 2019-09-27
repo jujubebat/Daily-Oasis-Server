@@ -1,20 +1,20 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from .models import Activity, User, User_Preference, Preference, User_Activity, Title, Review
-
+import datetime
 #엑티비티 데이터 직렬화
 class UserActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User_Activity
-        fields = ('num', 'user_num', 'activity_num', 'questDone', 'reviewDone')
+        fields = ('num', 'user_num', 'activity_num', 'questDone', 'reviewDone','doneTime')
 
 #엑티비티 데이터 직렬화
 class ActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Activity
-        fields = ('num', 'name', 'eventStartDate', 'eventEndDate', 'eventTime', 'eventPlace', 'discription', 'mapx', 'mapy', 'tel', 'img')
+        fields = ('num', 'name', 'eventStartDate', 'eventEndDate', 'eventTime', 'eventPlace', 'discription', 'mapx', 'mapy', 'tel', 'img', 'grade')
         # fields = '__all__'
 #유저 데이터를 직렬화
 class UserSerializer(serializers.ModelSerializer):
@@ -40,20 +40,20 @@ class UserTitleSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
-        date = validated_data.pop('date', None) #validated_data는 Meta 클래스에 등록한 속성들만 추린 데이터(헷갈리면 디버깅해보자)
+        #date = validated_data.pop('date', None) #validated_data는 Meta 클래스에 등록한 속성들만 추린 데이터(헷갈리면 디버깅해보자)
         user_nickName = validated_data.pop('user_nickName', None)
         text = validated_data.pop('text', None)
         grade = validated_data.pop('grade', None)
         activity_num = validated_data.pop('activity_num', None)
-        user_num = validated_data.pop('user_num', None)
+        #user_num = validated_data.pop('user_num', None)
 
         instance = self.Meta.model(**validated_data) #Review 인스턴스 생성
-        instance.date = date
+        instance.date = datetime.datetime.now()
         instance.user_nickName = user_nickName
         instance.text = text
         instance.grade = grade
         instance.activity_num_id = activity_num.num
-        instance.user_num_id = user_num.id
+        instance.user_num_id = None
         instance.save()
 
         return instance
