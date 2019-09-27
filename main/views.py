@@ -205,7 +205,7 @@ class WriteReview(APIView):
             if serializer.is_valid():
                 serializer.save()
                 review = serializer.instance
-                review.date = datetime.datetime.now()
+                review.date = datetime.datetime.now().date()
                 review.user_num_id = request.user.id
                 UpdateLevel(request, True)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
