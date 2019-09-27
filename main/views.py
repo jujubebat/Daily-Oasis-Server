@@ -204,6 +204,8 @@ class WriteReview(APIView):
             serializer = ReviewSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
+                review = serializer.instance
+                review.update(date=datetime.datetime.now())
                 UpdateLevel(request, True)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
