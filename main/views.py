@@ -162,18 +162,18 @@ class FinishQuest(APIView):
         quest = User_Activity.objects.filter(pk=quest_num)
         # 유저가 보유한 퀘스트이면서 완료되지 않은 퀘스트일 경우만
         if (quest.get().user_num_id == request.user.id and quest.get().questDone == False):
-
+            print("Dfsfdf")
             quest.update(questDone=True)
             date = datetime.datetime.now()
             quest.update(doneTime=date)
             #보상 업데이트(x테스트 해야함)
             newUser = UpdateLevel(request, False)
-            newTitle=UpdateTitle(request)
+            newTitle= UpdateTitle(request)
             #newTitle=Title.objects.all()
             user_serializer = UserSerializer(newUser)
             title_serializer = TitleSerializer(newTitle, many=True)
             #return Response(status=status.HTTP_100_CONTINUE)
-
+            a=1
             return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data})
         return Response(status=status.HTTP_400_BAD_REQUEST) #유저가 보유한 퀘스트가 아니거나 이미 완료한 퀘스트면 400리턴
 
@@ -206,6 +206,7 @@ class WriteReview(APIView):
                 serializer.save()
                 review = serializer.instance
                 review.update(date=datetime.datetime.now())
+                review.update(user_num_id=request.user.id)
                 UpdateLevel(request, True)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
