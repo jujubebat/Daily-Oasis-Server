@@ -88,6 +88,10 @@ def UpdateTitle(request):
     # 완료된 퀘스트수 기반 칭호 부여
     DoneQuest = User_Activity.objects.filter(user_num_id=user_id, questDone=1) #유저가 완료한 퀘스트 목록
     DoneQuestNum = DoneQuest.count()
+
+    title_nums =[]
+    a=1
+
     if DoneQuestNum == 1:
         newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=1)
     elif DoneQuestNum == 3:
@@ -98,11 +102,16 @@ def UpdateTitle(request):
         newUserQuestTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=4)
     elif DoneQuestNum == 9:
         newUserQuestTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=5)
+    else:
+        newUserQuestTitle = None
+
+    if  newUserQuestTitle != None:
+        title_nums.append(newUserQuestTitle.title_num_id)
 
     #후기 작성수 기반 칭호 부여
     UsersReview = Review.objects.filter(user_num_id=user_id)
     UsersReviewNum = Review.objects.filter(user_num_id=user_id).count()
-    if UsersReviewNum == 2:
+    if UsersReviewNum == 1:
         newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=6)
     elif UsersReviewNum == 4:
         newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=7)
@@ -112,6 +121,11 @@ def UpdateTitle(request):
         newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=9)
     elif UsersReviewNum == 10:
         newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=10)
+    else:
+        newUserReviewTitle = None
+
+    if  newUserReviewTitle != None:
+        title_nums.append(newUserReviewTitle.title_num_id)
 
     #레벨 기반 칭호 부여
     if user.level == 2:
@@ -120,12 +134,18 @@ def UpdateTitle(request):
         newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=12)
     elif user.level == 12:
         newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=13)
+    else:
+        newUserlevelTitle = None
 
+    if newUserlevelTitle != None:
+        title_nums.append(newUserlevelTitle.title_num_id)
 
-    newUserTitle = newUserQuestTitle | newUserReviewTitle | newUserlevelTitle
+    a=1
+    newTitle = Title.objects.filter(pk__in=title_nums)
 
+    a=1
     #획득한 타이틀이 다수일 경우 쿼리셋 합쳐서 반환 https://wayhome25.github.io/django/2017/11/26/merge-queryset/
-    return newUserTitle
+    return newTitle
 
 #FinishQuest 기능
 #1.퀘스트 완료처리
@@ -148,13 +168,13 @@ class FinishQuest(APIView):
             quest.update(doneTime=date)
             #보상 업데이트(x테스트 해야함)
             newUser = UpdateLevel(request, False)
-            #newTitle=UpdateTitle(request)
-            newTitle=Title.objects.all()
-
+            newTitle=UpdateTitle(request)
+            #newTitle=Title.objects.all()
             user_serializer = UserSerializer(newUser)
             title_serializer = TitleSerializer(newTitle, many=True)
-            return Response(status=status.HTTP_100_CONTINUE)
-            #return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data})
+            #return Response(status=status.HTTP_100_CONTINUE)
+
+            return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data})
         return Response(status=status.HTTP_400_BAD_REQUEST) #유저가 보유한 퀘스트가 아니거나 이미 완료한 퀘스트면 400리턴
 
 #쿼리셋으로 activity_num 번호 받으면 해당하는 activity와 activity에 대한 review 데이터 제공(쿼리셋으로 activity_num 보내줘야함)
@@ -172,6 +192,8 @@ class ActivityReview(APIView):
         return Response({"Activity" : activity_serializer.data, "Reviews" : review_serializer.data})
 
 #리뷰를 작성하게 해줌
+
+#activity 평균 평점 계산 로직구현해야함
 class WriteReview(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
