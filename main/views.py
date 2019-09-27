@@ -208,7 +208,14 @@ class WriteReview(APIView):
                 review.date = datetime.datetime.now().date()
                 review.user_num_id = request.user.id
                 UpdateLevel(request, True)
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                UpdateTitle(request)
+
+                newUser = UpdateLevel(request, False)
+                newTitle = UpdateTitle(request)
+                user_serializer = UserSerializer(newUser)
+                title_serializer = TitleSerializer(newTitle, many=True)
+
+                return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data})
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
