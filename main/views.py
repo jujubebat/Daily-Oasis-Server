@@ -3,7 +3,7 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-import pandas, json
+import pandas, json, datetime
 from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, UserTitleSerializer, ActivityReviewSerializer, ReviewSerializer, TitleSerializer
 from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title,Review
 from django.db import transaction
@@ -52,12 +52,33 @@ class ActivityList(APIView):
 
 #레벨 보상 관련 로직
 #레벨 1부터시작 / 3업마다 외형 변화 / 12랩이 만랩
-def UpdateLevel(request):
+def UpdateLevel(request, isReview):
     user = User.objects.get(id=request.user.id)
-    user.exp += 100 / (user.level / 1.5)
-    if(user.exp >= 200):
-        user.level = user.exp/100
-    return 0
+
+    if(isReview == False):
+        user.exp = user.exp + 100 / (user.level / 1.5)
+        user.save()
+    elif(isReview == True):
+        user.exp = user.exp + 25
+        user.save()
+
+    if(user.exp >= 100):
+        user.level += 1
+        user.exp %= 100
+        user.save()
+
+
+    if user.character_num == 3:
+        pass
+    elif user.character_num == 6:
+        pass
+    elif user.character_num == 9:
+        pass
+    elif user.character_num == 12:
+        pass
+
+    #케릭터 외형변화 로직추가하고 새롭게 변화된 외형 리턴해줘야함
+    return user
 
 #칭호 보상 관련 로직
 #완료한 퀘스트 1, 3, 5, 7, 9, 12
@@ -106,25 +127,35 @@ def UpdateTitle(request):
     #획득한 타이틀이 다수일 경우 쿼리셋 합쳐서 반환 https://wayhome25.github.io/django/2017/11/26/merge-queryset/
     return newUserTitle
 
+#FinishQuest 기능
+#1.퀘스트 완료처리
+#2.레벨업 처리 -> 레벨에 따른 케릭터 변경처리
+#3.칭호처리 -> 완료퀘스트수, 작성한 댓글수, 레벨 기반 칭호 부여
+#4.최종적으로 UdpateUser, UdpateTitle, UdpateCharacter 3개 데이터 반환
 
-#퀘스트 완료 처리를 해줌. 퀘스트 완료후 보상 적용이 된 유저의 정보와 새로 받은 칭호 정보 리턴(쿼리셋으로 activity_num 보내줘야함)
+#퀘스트 완료 처리를 해줌. 퀘스트 완료후 보상 적용이 된 유저의 정보와 새로 받은 칭호 정보 리턴(쿼리셋으로 quest_num 보내줘야함)
 class FinishQuest(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
         # 퀘스트 완료 처리
-        activity_num = request.query_params['activity_num']  # 엑티비티 번호
-        quest = User_Activity.objects.filter(activity_num_id=activity_num, user_num_id=request.user.id)
-        quest.questDone = 1
+        quest_num = request.query_params['quest_num']  #쿼리셋으로 받은 퀘스트 번호
+        quest = User_Activity.objects.filter(pk=quest_num)
+        # 유저가 보유한 퀘스트이면서 완료되지 않은 퀘스트일 경우만
+        if (quest.get().user_num_id == request.user.id and quest.get().questDone == False):
 
-        #보상 업데이트
-        UpdateLevel(request)
-        newTitle=UpdateTitle(request)
+            quest.update(questDone=True)
+            date = datetime.datetime.now()
+            quest.update(doneTime=date)
+            #보상 업데이트(x테스트 해야함)
+            newUser = UpdateLevel(request, False)
+            #newTitle=UpdateTitle(request)
+            newTitle=Title.objects.all()
 
-        user = User.objects.get(pk=request.user.id)
-        user_serializer = UserSerializer(user)
-        title_serializer = TitleSerializer(newTitle, many=True)
-
-        return Response({"User": user_serializer.data, "NewTitle": title_serializer.data})
+            user_serializer = UserSerializer(newUser)
+            title_serializer = TitleSerializer(newTitle, many=True)
+            return Response(status=status.HTTP_100_CONTINUE)
+            #return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data})
+        return Response(status=status.HTTP_400_BAD_REQUEST) #유저가 보유한 퀘스트가 아니거나 이미 완료한 퀘스트면 400리턴
 
 #쿼리셋으로 activity_num 번호 받으면 해당하는 activity와 activity에 대한 review 데이터 제공(쿼리셋으로 activity_num 보내줘야함)
 class ActivityReview(APIView):
@@ -138,7 +169,7 @@ class ActivityReview(APIView):
         review = Review.objects.filter(activity_num_id=activity_num)
         review_serializer = ReviewSerializer(review, many=True)
 
-        return Response({"Actibity" : activity_serializer.data,"Reviews" : review_serializer.data})
+        return Response({"Activity" : activity_serializer.data, "Reviews" : review_serializer.data})
 
 #리뷰를 작성하게 해줌
 class WriteReview(APIView):
@@ -147,27 +178,73 @@ class WriteReview(APIView):
         quest = User_Activity.objects.filter(user_num_id=request.user.id, activity_num_id=request.data.get('activity_num'), questDone=1, reviewDone=0)
         isQuestExist = quest.exists()
         if isQuestExist: #사용자가 완료한 퀘스트가 존재하고 아직 리뷰를 작성하지 않았을 경우에만 리뷰작성 가능
-            print("dfsfdff")
             quest.update(reviewDone = True)
             serializer = ReviewSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
+                UpdateLevel(request, True)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['GET'])
 def current_user(request):
     """
     Determine the current user by their token, and return their data
     """
     serializer = UserSerializer(request.user)
-    return Response(serializer.data)
+    return Response({"User" :serializer.data})
 
 class UserList(APIView):
     """
     Create a new user. It's called 'UserList' because normally we'd have a get
     method here too, for retrieving a list of all User objects.
     """
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format=None):
+        serializer = UserSerializerWithToken(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#유저 기본 정보 업데이트
+#nickName, address, character_num, title_num, longitude, latitude, preference_num
+class UpdateUser(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format=None):
+        serializer = UserSerializerWithToken(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#선호도(태그) 업데이트
+class UpdatePreference(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format=None):
+        serializer = UserSerializerWithToken(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#주소 업데이트
+class UpdateAddress(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format=None):
+        serializer = UserSerializerWithToken(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#케릭터 업데이트
+class UpdateCharacter(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
@@ -232,7 +309,7 @@ def test(request):
     a=scheduler()
     print("테스트 함수에서 실행")
     print(a)
-    return render(request, 'test.html',{})
+    return render(request, 'test.html', {})
 
 
 
