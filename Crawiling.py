@@ -5,10 +5,10 @@ import sys
 import pprint
 
 conn = pymysql.connect(
-    host='localhost',
-    #host = 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
+    #host='localhost',
+    host = 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
     user='root',
-    password='0000',
+    password='00000000',
     db='daily_oasis',
     charset='utf8'
 )
@@ -96,7 +96,7 @@ while 1:
                 contentid = A_item["contentid"]
                 # 서울에 있는 총 관광정보 약 291,600개
                 # 관광지 12(238개) / 문화시설 14(211 개) / 축제-공연-행사 15(187개)/ 여행코스 25(0개-상세정보없음) / 레포츠 28(0개-상세정보없음) / 숙박 32 / 쇼핑 38 / 음식 39
-                contentTypeId = 14
+                contentTypeId = 15
 
                 #컨텐츠 ID를 사용하여 상세조회 (서울)
                 detailIntro_url = f"http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro?ServiceKey=TkWnKo4m9%2Bg22VKIj4%2B8C6Y%2BGwnrqO6QbFL5gvsi97hijXief5DvTU5rwE79p9wmY%2BpZVwwfqWBPT%2Fs9e%2BxvVQ%3D%3D&contentId={contentid}&contentTypeId={contentTypeId}&MobileOS=ETC&MobileApp=AppTest"

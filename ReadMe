@@ -19,3 +19,8 @@ request 디버깅을 위해 django-debug-toolbar와 silk 라이브 -러리 사�
 SELECT engine FROM information_schema.TABLES where table_name='main_user_activity' AND table_schema='daily_oasis';
 
 
+<장고 모델 쿼리셋과 오브젝트>
+model.objects.filter : 쿼리셋이 날아옴(.을 통해 sql문 가능)
+model.ovjects.get : 오브젝트가 날아옴(.을 통해 직접 속성에 접근가능) -> 단, 값변경후 save() 해줘야함 (커밋인듯)
+
+->장고 쿼리셋은 말그대로 쿼리셋 함수가 포함되고 데이터가 포함된 클래스인듯

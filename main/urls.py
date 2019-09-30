@@ -7,10 +7,9 @@ from . import views
 from .views import UserList
 
 urlpatterns = [
-
     path('silk', include('silk.urls', namespace='silk')),
-    path('test', views.test),
-
+    path('allQuestAllocation', views.AllQuestAllocation), #모든 유저에게 새로운 퀘스트 할당
+    path('questAllocation', views.QuestAllocation), #한 명의 유저에게 새로운 퀘스트 할당
     #[개발완료]
     #토큰 필요
     path('signup', UserList.as_view()), #검수완료/ 회원가입
@@ -18,16 +17,23 @@ urlpatterns = [
     path('currentQuest', views.CurrentQuest.as_view()),  # 검수완료 / 유저가 진행중인 퀘스트 데이터 제공(엑티비티 제공)
     path('doneQuest', views.DoneQuest.as_view()),  # 검수완료 / 유저가 완료한 퀘스트 제공(발자취)
     path('current_user', views.current_user), #검수완료 / 정보 데이터 제공
-    path('finishQuest', views.FinishQuest.as_view()), #검수미완료 /퀘스트 완료 로직 실행 후 갱신된 유저 정보와 새로얻은 칭호 정보제공 (두 개의 모델을 하나로 직렬화) /finishQuest?activity_num=1
-
+    path('finishQuest', views.FinishQuest.as_view()), #검수완료 /퀘스트 완료 로직 실행 후 갱신된 유저 정보와 새로얻은 칭호 정보제공 (두 개의 모델을 하나로 직렬화) /finishQuest?activity_num=1
+    path('activityReview', views.ActivityReview.as_view()), #검수완료/ 엑티비티와 엑티비티에 달려있는 댓글 데이터 제공 (두 개의 모델을 하나로 직렬화) /activityReview?activity_num=1
     #토큰 필요없음
     path('login', obtain_jwt_token), #검수완료 / 로그인
     path('activityList', views.ActivityList.as_view()), #검수완료 / 모든 엑티비티 데이터 제공
-    path('activityReview', views.ActivityReview.as_view()), #검수완료/ 엑티비티와 엑티비티에 달려있는 댓글 데이터 제공 (두 개의 모델을 하나로 직렬화) /activityReview?activity_num=1
 
-    #[개발예정]
-    # path('updateUser'), #유저 정보 수정
-    # path('updatePreference'), #태그 정보 수정
+    #개발중
+    path('updateUser', views.UpdateUserNickName.as_view()),
+    path('updatePreference', views.UpdateUserPreference.as_view()),
+    path('updateAddress', views.UpdateUserAddress.as_view()),
+    path('updateCharacter', views.UpdateUserCharacter.as_view()),
+]
+
+#API 자동화 문서 라이브러리 관련(django swagger)
+schema_view = get_swagger_view(title='Pastebin API')
+urlpatterns += [
+    path('apiDocument', schema_view)
 ]
 
 # #디버그 툴 관련
@@ -37,32 +43,29 @@ urlpatterns = [
 #         path('debug/', include(debug_toolbar.urls)),
 #     ]
 
-#API 자동화 문서 라이브러리 관련(django swagger)
-schema_view = get_swagger_view(title='Pastebin API')
-urlpatterns += [
-    path('api_doc', schema_view)
-]
-
-#2019-09-25 새벽 2시
 '''
-0. doneQuest 테스트 하자 
-
-1.activityReview : 엑티비티의 리뷰들 제공 -> 엑티비티 pk를 받아서 엑티비티 모델과 댓글 모델 이 두 개의 모델을 한 번에 json으로 보내는 거 되는지 테스트 해야함
-
-2.레벨업, 칭호 디비에 데이터 셋 넣어서 테스트
-
-3.관광 3개 추천 로직 잘 돌아가는지 다시 한 번 테스트
-
-4.utils.py에 시리얼라이져 등록 
-
-5.writeReview 작성 로직 구현 해야함
--user pk와 activity pk, 그리고 댓글 내용을 request로 받음
--review 테이블에 리뷰추가함
--user_activity 테이블에 review썻다고 표시해야함 
--리뷰작성 경험치 줘야함(level up Udapte 로직 돌려야함->기존꺼말고 하나 더 만들어야할 수도)
--유저 정보 보내줘야함
-
-6. tmap 지오코딩 사용해서 근거리 추천 기능 추가해야함
+<해야할 일(우선 순위순)>
+-crontab 잘 작동하는지 테스트 
+-퀘스트 완료시 '소외된' 태그가 있는 엑티비티일 경우 추가 경험치 부여 
+-유저 업데이트 기능 구현(승륜이랑 얘기하면서 구현)
+-tmap 지오코딩 활용하여 근거리 추천 기능 추가(핵심) 
+-중복 추천 허용 안하는 기능 추가 
+-utils.py에 시리얼라이져 등록 
+-회원가입시 이메일 인증 기능 구현 
+-모든 케릭터 정보 제공하는 api 구현
+'''
+'''
+<업데이트 사항(AWS반영 완료)>
+-디비 초기화->샘플 데이터 넣는 작업 필요
+-signup : 케릭터 이미지 정보 제공(엑티비티, 리뷰 제공 안되게 수정)
+-current_user : 케릭터 이미지 정보 제공
+-레벨에 따른 케릭터 변화 로직 추가
+-finishQuest, writeReview에서 UpdateUser,NewTitle,NewCharacterImage 데이터 제공 
+-writeReview시 고정 경험치 25 제공 
+-Activity 평점 계산로직 추가(writeReview로 테스트 바람)
+- /allQuestAllocation : 모든 유저의 퀘스트 업데이트 
+- /questAllocation : 유저 한명의 퀘스트 업데이트 api(회원가입시 활용 바람) request로 token 보내줘야함
+- UTC시간 한국시간으로 변경 / 리뷰작성 시간 속성명 변경 date -> doneTime(finishQeust와 통일)
 '''
 
 
