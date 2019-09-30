@@ -3,10 +3,13 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-import pandas, json, datetime
-from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, UserTitleSerializer, ActivityReviewSerializer, ReviewSerializer, TitleSerializer
-from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title,Review
+import pandas
+import datetime
+from datetime import timezone
+from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, ReviewSerializer, TitleSerializer, CharacterImageSerializer
+from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title, User_Character, Review, CharacterImage
 from django.db import transaction
+from django.db.models import Avg
 
 #현재 유저가 진행중인 퀘스트 목록(엑티비티) 리턴
 class CurrentQuest(APIView):
@@ -40,7 +43,6 @@ class DoneQuest(APIView):
 
         return Response({"DoneQuest": quest_serializer.data, "DoneActivity":activity_serializer.data})
 
-
 #모든 엑티비티 리스트 제공
 class ActivityList(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -48,7 +50,6 @@ class ActivityList(APIView):
         data = Activity.objects.all()
         serializer = ActivitySerializer(data, many=True)
         return Response({"ActivityList":serializer.data})
-
 
 #레벨 보상 관련 로직
 #레벨 1부터시작 / 3업마다 외형 변화 / 12랩이 만랩
@@ -66,7 +67,6 @@ def UpdateLevel(request, isReview):
         user.level += 1
         user.exp %= 100
         user.save()
-
 
     if user.character_num == 3:
         pass
@@ -90,7 +90,6 @@ def UpdateTitle(request):
     DoneQuestNum = DoneQuest.count()
 
     title_nums =[]
-    a=1
 
     if DoneQuestNum == 1:
         newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=1)
@@ -140,12 +139,35 @@ def UpdateTitle(request):
     if newUserlevelTitle != None:
         title_nums.append(newUserlevelTitle.title_num_id)
 
-    a=1
     newTitle = Title.objects.filter(pk__in=title_nums)
 
-    a=1
     #획득한 타이틀이 다수일 경우 쿼리셋 합쳐서 반환 https://wayhome25.github.io/django/2017/11/26/merge-queryset/
     return newTitle
+
+#레벨 보상 관련 로직
+#레벨 1부터시작 / 3업마다 외형 변화 / 12랩이 만랩
+def UpdateCharacter(request):
+    user = User.objects.get(id=request.user.id)
+    character_num = user.character_num_id
+
+    # 레벨 기반 칭호 부여
+    if user.level == 3:
+        newCharacterImage = CharacterImage.objects.get(character_num_id=user.character_num_id, level =2) #유저가 보유한 케릭터의 2단계 케릭터 이미지 객체를 가져옴
+        User_Character.objects.filter(user_num_id=request.user.id).update(characterImage_num_id=newCharacterImage.num)
+    elif user.level == 6:
+        newCharacterImage = CharacterImage.objects.get(character_num_id=user.character_num_id,level=3)  # 유저가 보유한 케릭터의 3단계 케릭터 이미지 객체를 가져옴
+        User_Character.objects.filter(user_num_id=request.user.id).update(characterImage_num_id=newCharacterImage.num)
+    elif user.level == 12:
+        newCharacterImage = CharacterImage.objects.get(character_num_id=user.character_num_id,level=4)  # 유저가 보유한 케릭터의 4단계 케릭터 이미지 객체를 가져옴
+        User_Character.objects.filter(user_num_id=request.user.id).update(characterImage_num_id=newCharacterImage.num)
+    elif user.level == 15:
+        newCharacterImage = CharacterImage.objects.get(character_num_id=user.character_num_id,level=5)  # 유저가 보유한 케릭터의 5단계 케릭터 이미지 객체를 가져옴
+        User_Character.objects.filter(user_num_id=request.user.id).update(characterImage_num_id=newCharacterImage.num)
+    else:
+        newCharacterImage = None
+
+    #케릭터 외형변화 로직추가하고 새롭게 변화된 외형 리턴해줘야함
+    return newCharacterImage
 
 #FinishQuest 기능
 #1.퀘스트 완료처리
@@ -164,17 +186,23 @@ class FinishQuest(APIView):
         if (quest.get().user_num_id == request.user.id and quest.get().questDone == False):
             print("Dfsfdf")
             quest.update(questDone=True)
-            date = datetime.datetime.now()
-            quest.update(doneTime=date)
+
+            now = datetime.datetime.now()
+            now_utc = now.replace(tzinfo=timezone.utc)
+            now_local = now_utc.astimezone()
+
+            quest.update(doneTime=now_local)
+
             #보상 업데이트(x테스트 해야함)
             newUser = UpdateLevel(request, False)
             newTitle= UpdateTitle(request)
-            #newTitle=Title.objects.all()
+            newCharacterImage = UpdateCharacter(request)
+
             user_serializer = UserSerializer(newUser)
             title_serializer = TitleSerializer(newTitle, many=True)
-            #return Response(status=status.HTTP_100_CONTINUE)
-            a=1
-            return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data})
+            newCharacterImage_serializer = CharacterImageSerializer(newCharacterImage)
+
+            return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data })
         return Response(status=status.HTTP_400_BAD_REQUEST) #유저가 보유한 퀘스트가 아니거나 이미 완료한 퀘스트면 400리턴
 
 #쿼리셋으로 activity_num 번호 받으면 해당하는 activity와 activity에 대한 review 데이터 제공(쿼리셋으로 activity_num 보내줘야함)
@@ -212,73 +240,92 @@ class WriteReview(APIView):
 
                 newUser = UpdateLevel(request, False)
                 newTitle = UpdateTitle(request)
+                newCharacterImage = UpdateCharacter(request)
+                newCharacterImage_serializer = CharacterImageSerializer(newCharacterImage)
+
                 user_serializer = UserSerializer(newUser)
                 title_serializer = TitleSerializer(newTitle, many=True)
 
-                return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data})
+                #엑티비티 평점 계산 로직
+                Review.objects.filter()
+                avg_grade=Review.objects.filter(activity_num_id = request.data.get('activity_num')).aggregate(Avg('grade'))
+                activity = Activity.objects.filter(pk=request.data.get('activity_num'))
+                activity.update(grade = avg_grade)
+
+                return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data })
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET'])
-def current_user(request):
-    """
-    Determine the current user by their token, and return their data
-    """
-    serializer = UserSerializer(request.user)
-    return Response({"User" :serializer.data})
-
+#회원가입
 class UserList(APIView):
     """
     Create a new user. It's called 'UserList' because normally we'd have a get
     method here too, for retrieving a list of all User objects.
     """
     permission_classes = (permissions.AllowAny,)
-
     def post(self, request, format=None):
-        serializer = UserSerializerWithToken(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        user_serializer = UserSerializerWithToken(data=request.data)
+        if user_serializer.is_valid():
+            user_serializer.save()
+            b=user_serializer.instance.character_num_id
+            characterImage = CharacterImage.objects.get(level=1, character_num_id=user_serializer.instance.character_num_id)
+            newUserCharacter = User_Character.objects.create(characterImage_num_id=characterImage.num, user_num_id=user_serializer.instance.id)
+            characterImage_serializer=CharacterImageSerializer(characterImage)
+            return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
+        return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#유저 기본 정보 업데이트
-#nickName, address, character_num, title_num, longitude, latitude, preference_num
-class UpdateUser(APIView):
-    permission_classes = (permissions.AllowAny,)
+#현재 유저 정보 확인
+@api_view(['GET'])
+def current_user(request):
+    """
+    Determine the current user by their token, and return their data
+    """
+    user_serializer = UserSerializer(request.user)
 
-    def post(self, request, format=None):
-        serializer = UserSerializerWithToken(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    user_character = User_Character.objects.get(user_num_id=request.user)#유저-케릭터 관계 테이블에서 유저의 현재 케릭터 이미지 pk 가져옴
+    characterImage = CharacterImage.objects.get(pk=user_character.num)#유저의 현재 케릭터 이미지 pk로 케릭터이미지 정보 가져옴
+    characterImage_serializer = CharacterImageSerializer(characterImage) #유저의 케릭터 이미지 정보 직렬화
+
+    return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
+
 
 #선호도(태그) 업데이트
-class UpdatePreference(APIView):
+class UpdateUserPreference(APIView):
     permission_classes = (permissions.AllowAny,)
-
     def post(self, request, format=None):
         serializer = UserSerializerWithToken(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#유저 nickName 업데이트
+class UpdateUserNickName(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def post(self, request, format=None):
+        serializer = UserSerializer(request.user)
+        serializer.instance.nickName = request.data.get('nickName')
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #주소 업데이트
-class UpdateAddress(APIView):
+class UpdateUserAddress(APIView):
     permission_classes = (permissions.AllowAny,)
-
     def post(self, request, format=None):
-        serializer = UserSerializerWithToken(data=request.data)
+        serializer = UserSerializer(request.user)
+        serializer.instance.address = request.data.get('address')
+        serializer.instance.longitude = request.data.get('longitude')
+        serializer.instance.latitude = request.data.get('latitude')
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #케릭터 업데이트
-class UpdateCharacter(APIView):
+class UpdateUserCharacter(APIView):
     permission_classes = (permissions.AllowAny,)
-
     def post(self, request, format=None):
         serializer = UserSerializerWithToken(data=request.data)
         if serializer.is_valid():
@@ -286,7 +333,7 @@ class UpdateCharacter(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def scheduler():
+def RecommendToAll(ListView):
     with transaction.atomic():
         print("로직 실행@@@@@@@@@@@@")
         User_Activity.objects.filter(questDone=0).delete()  #이전에 추천된 완료되지 않은 퀘스트 목록 삭제
@@ -337,11 +384,59 @@ def scheduler():
                 quest = User_Activity.objects.create(user_num_id=user_id, activity_num_id=activity_jacard_data_sorted_3.iloc[i]).save()
     return 0
 
-def test(request):
-    a=scheduler()
-    print("테스트 함수에서 실행")
-    print(a)
+def AllQuestAllocation(request):
+    RecommendToAll(request)
     return render(request, 'test.html', {})
+
+@api_view(['GET'])
+def QuestAllocation(request):
+    with transaction.atomic():
+        print("로직 실행@@@@@@@@@@@@")
+        activity_jacard_shema = {'activity_num': [], 'Jacard_similarity': []}
+        activity_jacard_data = pandas.DataFrame(activity_jacard_shema)  # activity, jacard 유사도 데이터 프레임 테이블
+
+        user_item = User.objects.get(pk=request.user.id)
+        i=0
+        user_id = user_item.id
+        User_Preference_items = User_Preference.objects.filter(user_num_id=user_id)  #각 user들이 가지고 있는 preference 목록
+        user_tags = []  #자카드 유사도를 구하기 위해 딕셔너리 형태로 preference를 정리해 놓음, 유저의 preference 목록임(preference의 name에 띄어쓰기가 있으면 안된다.)
+        #ex) ['분위기있는' '야외의' '실내의' '신나는']
+        for User_Preference_item in User_Preference_items:
+            tag = Preference.objects.get(pk=User_Preference_item.preference_num_id)#user_preference 튜플의(item) preference 키를 이용하여 prefernce 튜플을 추출한후 preference의 이름을 tag에 저장
+            user_tags.append(tag.name)  # 유저가 보유한 태그 딕셔너리에 preferene를 추가
+        activity_items = Activity.objects.all()  # 모든 엑티비티를 가져와서
+
+        for activity_item in activity_items:  # 하나씩 엑티비티의 태그와 유저의 태그에 대해 자카드 유사도를 계산한다.
+            activity_tags = []
+            items = Activity_Preference.objects.filter(activity_num_id=activity_item.num)  # 엑티비티가 가지고 있는 선호도 목록
+            for item in items:
+                tag = Preference.objects.get(pk=item.preference_num_id)
+                activity_tags.append(tag.name)  # 엑티비티가 보유한 태그 딕셔너리
+            union = set(user_tags).union(set(activity_tags))  # 합집합
+            intersection = set(user_tags).intersection(set(activity_tags))  # 교집합합
+            try:#태그가 없을 경우 len이 0이 되어 ZeroDivision 오류나서 예외처리해줌
+                Jacard_similarity = len(intersection) / len(union)  # 유저태그와 엑티비티태그의 자카드 유사도
+            except(ZeroDivisionError):
+                Jacard_similarity=0
+            # 엑티비티, 자카드 유사도
+            activity_jacard_data.loc[i] = [activity_item.num, Jacard_similarity]  # 엑티비티 번호, 자카드 유사도 insert
+            i += 1
+
+        # print("자카드 유사도")
+        # print(activity_jacard_data)
+        activity_jacard_data_sorted = activity_jacard_data.sort_values(by=['Jacard_similarity'],ascending=False)  # 유저태그와 엑티비티태그에 대한 자카드유사도 계산후 오름차순정렬
+        activity_jacard_data_sorted_10 = activity_jacard_data_sorted.head(10)  # 자카드 유사도순 상위 10개의 데이터프레임 추출
+        activity_jacard_data_sorted_3 = activity_jacard_data_sorted_10.sample(n=3)  # 자카드 유사도순 상위 10개의 데이터프레임중 랜덤으로 3개의 데이터프레임 추출
+        activity_jacard_data_sorted_3 = activity_jacard_data_sorted_3.reset_index(drop=True)  # 인덱스 0부터 시작하도록 초기화
+        activity_jacard_data_sorted_3 = activity_jacard_data_sorted_3['activity_num']  # 엑티비티 속성만 추출
+        print(user_id)
+        print("번 유저에 대한 추천 데이터 3개")
+        print(activity_jacard_data_sorted_3)
+        print("포문 시작")
+        for i in range(3):
+            print("User_activity 인스턴스 생성")
+            quest = User_Activity.objects.create(user_num_id=user_id, activity_num_id=activity_jacard_data_sorted_3.iloc[i]).save()
+    return Response(status=status.HTTP_201_CREATED)
 
 
 

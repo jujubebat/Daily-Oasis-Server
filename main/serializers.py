@@ -1,7 +1,16 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from .models import Activity, User, User_Preference, Preference, User_Activity, Title, Review
+from .models import Activity, User, User_Preference, Preference, User_Activity, Title, Review, CharacterImage
 import datetime
+from datetime import timezone
+
+
+class CharacterImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CharacterImage
+        fields = ('level', 'img', 'character_num_id')
+
 #엑티비티 데이터 직렬화
 class UserActivitySerializer(serializers.ModelSerializer):
 
@@ -18,6 +27,7 @@ class ActivitySerializer(serializers.ModelSerializer):
         # fields = '__all__'
 #유저 데이터를 직렬화
 class UserSerializer(serializers.ModelSerializer):
+
 
     class Meta:
         model = User
@@ -48,7 +58,12 @@ class ReviewSerializer(serializers.ModelSerializer):
         #user_num = validated_data.pop('user_num', None)
 
         instance = self.Meta.model(**validated_data) #Review 인스턴스 생성
-        instance.date = datetime.datetime.now()
+
+        now = datetime.datetime.now()
+        now_utc = now.replace(tzinfo=timezone.utc)
+        now_local = now_utc.astimezone()
+
+        instance.date = now_local
         instance.user_nickName = user_nickName
         instance.text = text
         instance.grade = grade
