@@ -25,6 +25,7 @@ class ActivitySerializer(serializers.ModelSerializer):
         model = Activity
         fields = ('num', 'name', 'eventStartDate', 'eventEndDate', 'eventTime', 'eventPlace', 'discription', 'mapx', 'mapy', 'tel', 'img', 'grade')
         # fields = '__all__'
+
 #유저 데이터를 직렬화
 class UserSerializer(serializers.ModelSerializer):
 

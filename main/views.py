@@ -7,7 +7,7 @@ import pandas
 import datetime
 from datetime import timezone
 from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, ReviewSerializer, TitleSerializer, CharacterImageSerializer
-from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title, User_Character, Review, CharacterImage
+from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title, User_Character, Review, CharacterImage, Character
 from django.db import transaction
 from django.db.models import Avg
 
@@ -51,10 +51,30 @@ class ActivityList(APIView):
         serializer = ActivitySerializer(data, many=True)
         return Response({"ActivityList":serializer.data})
 
+#모든 칭호 리스트 제공
+class TitleList(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def get(self, request):
+        data = Title.objects.all()
+        serializer = TitleSerializer(data, many=True)
+        return Response({"TitleList":serializer.data})
+
+#모든 케릭터 리스트 제공
+'''
+class CharacterList(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def get(self, request):
+        data = Character.objects.all()
+        character_serializer = ActivitySerializer(data, many=True)
+        return Response({"CharacterList": character_serializer.data, "CharacterImageList": activity_serializer.data})
+        return Response({"CharacterList":serializer.data})
+'''
 #레벨 보상 관련 로직
 #레벨 1부터시작 / 3업마다 외형 변화 / 12랩이 만랩
 def UpdateLevel(request, isReview):
     user = User.objects.get(id=request.user.id)
+
+    #'소외된'(발걸음이_적은) 태그 달려있는경우 추가 경험치 부여
 
     if(isReview == False):
         user.exp = user.exp + 100 / (user.level / 1.5)
@@ -68,16 +88,6 @@ def UpdateLevel(request, isReview):
         user.exp %= 100
         user.save()
 
-    if user.character_num == 3:
-        pass
-    elif user.character_num == 6:
-        pass
-    elif user.character_num == 9:
-        pass
-    elif user.character_num == 12:
-        pass
-
-    #케릭터 외형변화 로직추가하고 새롭게 변화된 외형 리턴해줘야함
     return user
 
 #칭호 보상 관련 로직
@@ -235,10 +245,8 @@ class WriteReview(APIView):
                 review = serializer.instance
                 review.date = datetime.datetime.now().date()
                 review.user_num_id = request.user.id
-                UpdateLevel(request, True)
-                UpdateTitle(request)
 
-                newUser = UpdateLevel(request, False)
+                newUser = UpdateLevel(request, True)
                 newTitle = UpdateTitle(request)
                 newCharacterImage = UpdateCharacter(request)
                 newCharacterImage_serializer = CharacterImageSerializer(newCharacterImage)
@@ -257,11 +265,7 @@ class WriteReview(APIView):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 #회원가입
-class UserList(APIView):
-    """
-    Create a new user. It's called 'UserList' because normally we'd have a get
-    method here too, for retrieving a list of all User objects.
-    """
+class Signup(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
         user_serializer = UserSerializerWithToken(data=request.data)
@@ -276,10 +280,7 @@ class UserList(APIView):
 
 #현재 유저 정보 확인
 @api_view(['GET'])
-def current_user(request):
-    """
-    Determine the current user by their token, and return their data
-    """
+def CurrentUser(request):
     user_serializer = UserSerializer(request.user)
 
     user_character = User_Character.objects.get(user_num_id=request.user)#유저-케릭터 관계 테이블에서 유저의 현재 케릭터 이미지 pk 가져옴
