@@ -170,7 +170,7 @@ CORS_ALLOW_CREDENTIALS = False
 
 #Crontab 설정(배치 프로그램)
 CRONJOBS = [
-    ('*/30 * * * *', 'main.views.RecommendToAll', '>> /tmp/scheduled_job.log'),
+    ('* * * * *', 'main.views.RecommendToAll', '>> /tmp/scheduled_job.log'),
 ]
 
 
