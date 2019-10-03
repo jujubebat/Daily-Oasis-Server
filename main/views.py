@@ -363,11 +363,11 @@ class UpdateUserAddress(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
         serializer = UserSerializer(request.user)
-        serializer.instance.address = request.data.get('address')
-        serializer.instance.longitude = request.data.get('longitude')
-        serializer.instance.latitude = request.data.get('latitude')
-        serializer.instance.postNum = request.data.get('postNum')
         if serializer.is_valid():
+            serializer.instance.address = request.data.get('address')
+            serializer.instance.longitude = request.data.get('longitude')
+            serializer.instance.latitude = request.data.get('latitude')
+            serializer.instance.postNum = request.data.get('postNum')
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
