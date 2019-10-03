@@ -29,7 +29,9 @@ urlpatterns = [
     path('updateCharacter', views.UpdateUserCharacter.as_view()),
     path('characterList',views.CharacterList.as_view()),
     path('titleList', views.TitleList.as_view()),
+    path('userTitleList', views.UserTitle.as_view()),
 ]
+
 
 #API 자동화 문서 라이브러리 관련(django swagger)
 schema_view = get_swagger_view(title='Pastebin API')

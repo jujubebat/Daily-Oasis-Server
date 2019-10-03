@@ -46,6 +46,21 @@ class DoneQuest(APIView):
 
         return Response({"DoneQuest": quest_serializer.data, "DoneActivity":activity_serializer.data})
 
+#유저가 보유한 타이틀 리턴
+class UserTitle(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def get(self, request):
+        user_title_items = User_Title.objects.filter(user_num_id = request.user.id)
+
+        list = []
+        for user_title_item in user_title_items:
+            list.append(user_title_item.title_num_id)
+        print(list)
+
+        data = Title.objects.filter(pk__in = list)
+        serializer = TitleSerializer(data, many=True)
+        return Response({"UserTitleList": serializer.data})
+
 #모든 엑티비티 리스트 제공
 class ActivityList(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -214,11 +229,6 @@ class FinishQuest(APIView):
         # 퀘스트 완료 처리
         quest_num = request.query_params['quest_num']  #쿼리셋으로 받은 퀘스트 번호
         quest = User_Activity.objects.filter(pk=quest_num)#get에서 filter로 바꿈
-
-        a=quest.get().user_num_id
-        b=request.user.id
-        c=quest.get().questDone
-        i=1
         # 유저가 보유한 퀘스트이면서 완료되지 않은 퀘스트일 경우만
         if (quest.get().user_num_id == request.user.id and quest.get().questDone == False):
             print("Dfsfdf")
@@ -231,10 +241,7 @@ class FinishQuest(APIView):
             quest.update(doneTime=now_local)
 
             activity = Activity.objects.get(pk = quest.get().activity_num_id)
-            #보상 업데이트(x테스트 해야함)
-            a=isAlienate(activity)
 
-            a=1
             newUser = UpdateLevel(request, False, isAlienate(activity))
             newTitle= UpdateTitle(request)
             newCharacterImage = UpdateCharacter(request)
@@ -251,9 +258,6 @@ class ActivityReview(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
         activity_num = request.query_params['activity_num']#엑티비티 번호
-
-
-
         activity = Activity.objects.get(pk=activity_num)
         activity_serializer = ActivitySerializer(activity)
 
@@ -320,6 +324,7 @@ def CurrentUser(request):
     user_character = User_Character.objects.get(user_num_id=request.user)#유저-케릭터 관계 테이블에서 유저의 현재 케릭터 이미지 pk 가져옴
     characterImage = CharacterImage.objects.get(pk=user_character.num)#유저의 현재 케릭터 이미지 pk로 케릭터이미지 정보 가져옴
     characterImage_serializer = CharacterImageSerializer(characterImage) #유저의 케릭터 이미지 정보 직렬화
+
 
     return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
 
