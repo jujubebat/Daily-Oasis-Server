@@ -27,6 +27,7 @@ class CurrentQuest(APIView):
         activity=Activity.objects.filter(pk__in=list)
         activity_serializer = ActivitySerializer(activity, many=True)
 
+
         return Response({"CurrentQuest":quest_serializer.data, "CurrentActivity":activity_serializer.data})
 
 #유저가 완료한 퀘스트 제공(발자취)
@@ -288,9 +289,9 @@ class WriteReview(APIView):
 
                 #엑티비티 평점 계산 로직
                 Review.objects.filter()
-                avg_grade=Review.objects.filter(activity_num_id = request.data.get('activity_num')).aggregate(Avg('grade'))
+                avg_grade = Review.objects.filter(activity_num_id = request.data.get('activity_num')).aggregate(Avg('grade'))
                 activity = Activity.objects.filter(pk=request.data.get('activity_num'))
-                activity.update(grade = avg_grade)
+                activity.update(grade=avg_grade['grade__avg'])
 
                 return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data })
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -303,7 +304,7 @@ class Signup(APIView):
         user_serializer = UserSerializerWithToken(data=request.data)
         if user_serializer.is_valid():
             user_serializer.save()
-            b=user_serializer.instance.character_num_id
+            #b=user_serializer.instance.character_num_id
             characterImage = CharacterImage.objects.get(level=1, character_num_id=user_serializer.instance.character_num_id)
             newUserCharacter = User_Character.objects.create(characterImage_num_id=characterImage.num, user_num_id=user_serializer.instance.id)
             characterImage_serializer=CharacterImageSerializer(characterImage)
