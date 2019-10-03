@@ -407,6 +407,7 @@ def RecommendToAll(ListView):
                     jacard_similarity=0
 
                 distanceFromUser = round(distance.euclidean((activity_item.longitude, activity_item.latitude),(user_item.longitude,user_item.latitude)),5)
+
                 #print("유저거리")
                 #print(distanceFromUser)
                 #print()
@@ -449,7 +450,7 @@ def RecommendToAll(ListView):
             print(activity_jacard_data_sorted_3)
             print("포문 시작")
             for i in range(3):
-                print("User_activity 인스턴스 생성")
+                #print("User_activity 인스턴스 생성")
                 quest = User_Activity.objects.create(user_num_id=user_id, activity_num_id=activity_jacard_data_sorted_3.iloc[i]).save()
     return 0
 
@@ -461,7 +462,7 @@ def AllQuestAllocation(request):
 def QuestAllocation(request):
     with transaction.atomic():
         print("로직 실행@@@@@@@@@@@@")
-        activity_jacard_shema = {'activity_num': [], 'Jacard_similarity': []}
+        activity_jacard_shema = {'activity_num': [], 'jacard_similarity': [], 'distance':[]}
         activity_jacard_data = pandas.DataFrame(activity_jacard_shema)  # activity, jacard 유사도 데이터 프레임 테이블
 
         user_item = User.objects.get(pk=request.user.id)
@@ -491,8 +492,9 @@ def QuestAllocation(request):
             activity_jacard_data.loc[i] = [activity_item.num, Jacard_similarity]  # 엑티비티 번호, 자카드 유사도 insert
             i += 1
 
-        # print("자카드 유사도")
-        # print(activity_jacard_data)
+        print("자카드 유사도")
+        print(activity_jacard_data)
+
         activity_jacard_data_sorted = activity_jacard_data.sort_values(by=['jacard_similarity', 'distance'], ascending=[False, True])  # 유저태그와 엑티비티태그에 대한 자카드유사도 계산후 오름차순정렬
         activity_jacard_data_sorted_10 = activity_jacard_data_sorted.head(15)  # 자카드 유사도순 상위 50개의 데이터프레임 추출
         activity_jacard_data_sorted_3 = activity_jacard_data_sorted_10.sample(n=3)  # 자카드 유사도순 상위 10개의 데이터프레임중 랜덤으로 3개의 데이터프레임 추출
