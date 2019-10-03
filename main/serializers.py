@@ -4,6 +4,18 @@ from .models import Activity, User, User_Preference, Preference, User_Activity, 
 import datetime
 from datetime import timezone
 
+class ActivityPreferenceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CharacterImage
+        fields = ('num', 'activity_num_id', 'preference_num_id')
+
+class PreferenceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CharacterImage
+        fields = ('num', 'name')
+
 
 class CharacterImageSerializer(serializers.ModelSerializer):
 

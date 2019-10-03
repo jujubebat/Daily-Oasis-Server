@@ -27,7 +27,6 @@ class CurrentQuest(APIView):
         activity=Activity.objects.filter(pk__in=list)
         activity_serializer = ActivitySerializer(activity, many=True)
 
-
         return Response({"CurrentQuest":quest_serializer.data, "CurrentActivity":activity_serializer.data})
 
 #유저가 완료한 퀘스트 제공(발자취)
@@ -88,7 +87,6 @@ class CharacterList(APIView):
         characterImangeList_serializer = CharacterImageSerializer(data, many=True)
 
         return Response({"CharacterList": character_serializer.data, "CharacterImageList": characterImangeList_serializer.data})
-
 
 #Activity에 '소외된'(발걸음이_적은) 태그가 있는 경우 판별
 def isAlienate(activity):
@@ -328,6 +326,16 @@ def CurrentUser(request):
 
     return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
 
+class SetUserTitle(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format=None):
+        serializer = UserSerializer(request.user)
+        serializer.instance.title_num_id = request.data.get('titleNum')
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #선호도(태그) 업데이트
 class UpdateUserPreference(APIView):
@@ -358,6 +366,7 @@ class UpdateUserAddress(APIView):
         serializer.instance.address = request.data.get('address')
         serializer.instance.longitude = request.data.get('longitude')
         serializer.instance.latitude = request.data.get('latitude')
+        serializer.instance.postNum = request.data.get('postNum')
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

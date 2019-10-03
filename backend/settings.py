@@ -170,7 +170,7 @@ CORS_ALLOW_CREDENTIALS = False
 
 #Crontab 설정(배치 프로그램)
 CRONJOBS = [
-    ('0 15 * * ? *', 'main.views.RecommendToAll', '>> /tmp/scheduled_job.log'),
+    ('0 1 * * ? *', 'main.views.RecommendToAll', '>> /tmp/scheduled_job.log'), #매일오전 10시
 ]
 
 #https://iseongho.github.io/posts/cron-expression/

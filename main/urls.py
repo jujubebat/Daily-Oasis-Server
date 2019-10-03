@@ -19,17 +19,19 @@ urlpatterns = [
     path('currentUser', views.CurrentUser), #검수완료 / 정보 데이터 제공
     path('finishQuest', views.FinishQuest.as_view()), #검수완료 /퀘스트 완료 로직 실행 후 갱신된 유저 정보와 새로얻은 칭호 정보제공 (두 개의 모델을 하나로 직렬화) /finishQuest?activity_num=1
     path('activityReview', views.ActivityReview.as_view()), #검수완료/ 엑티비티와 엑티비티에 달려있는 댓글 데이터 제공 (두 개의 모델을 하나로 직렬화) /activityReview?activity_num=1
+    path('userTitleList', views.UserTitle.as_view()), #유저의 칭호목록
     #토큰 필요없음
     path('login', obtain_jwt_token), #검수완료 / 로그인
     path('activityList', views.ActivityList.as_view()), #검수완료 / 모든 엑티비티 데이터 제공
-    #개발중
-    path('updateUser', views.UpdateUserNickName.as_view()),
-    path('updatePreference', views.UpdateUserPreference.as_view()),
-    path('updateAddress', views.UpdateUserAddress.as_view()),
-    path('updateCharacter', views.UpdateUserCharacter.as_view()),
     path('characterList',views.CharacterList.as_view()),
     path('titleList', views.TitleList.as_view()),
-    path('userTitleList', views.UserTitle.as_view()),
+
+    #개발중
+    path('updateUserNickname', views.UpdateUserNickName.as_view()),
+    path('updateUserPreference', views.UpdateUserPreference.as_view()),
+    path('updateUserAddress', views.UpdateUserAddress.as_view()),
+    path('updateUserCharacter', views.UpdateUserCharacter.as_view()),
+    path('updateUserTitle', views.SetUserTitle.as_view()),
 ]
 
 
@@ -49,9 +51,10 @@ urlpatterns += [
 '''
 <업데이트 예정(우선 순위순)>
 
--crontab 잘 작동하는지 테스트 
--WriteReview 오류 해결(승륜이랑 얘기하면서 구현)
+-crontab 잘 작동하는지 테스트 (오전 10시도 설정해둠)
 -유저 업데이트 기능 구현(승륜이랑 얘기하면서 구현)
+-currentQeust, DoneQuest, activityReview 시 태그목록 반환 -> currentQeust, DoneQuest일 경우 activity_preferences 랑 preference를 join serializer 해서 주기
+-SetUserTitle 구현 : title pk 보내주면 대표칭호로 설정해줌 그리고 title 데이터 리턴
 
 번외)
 -회원가입시 이메일 인증 기능 구현 
@@ -59,16 +62,17 @@ urlpatterns += [
 
 '''
 <업데이트 진행중(AWS반영 미완료)>
+
+'''
+
+'''
+<업데이트 완료 사항(AWS반영 완료)>
 - /current_user -> /currentUser
 - Activity mapx, mapy 속성 User와 통일
 - /allQuestAllocation, /questAllocation : 근거리순으로 추천하는 기능 추가 / 이전에 완료한 퀘스트 추천하지 않는 기능 추가
 - /finishQest : '발걸음이_적은' 태그가 달려있을 경우 exp +25 추가로 적용 
 - 새로운 api characterList/ : 모든 케릭터 정보 제공
 - 새로운 api titleList/ : 모든 칭호 정보제공
-'''
-
-'''
-<업데이트 완료 사항(AWS반영 완료)>
 -디비 초기화->샘플 데이터 넣는 작업 필요
 -signup : 케릭터 이미지 정보 제공(엑티비티, 리뷰 제공 안되게 수정)
 -current_user : 케릭터 이미지 정보 제공
