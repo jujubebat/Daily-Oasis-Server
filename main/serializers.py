@@ -23,7 +23,7 @@ class ActivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Activity
-        fields = ('num', 'name', 'eventStartDate', 'eventEndDate', 'eventTime', 'eventPlace', 'discription', 'mapx', 'mapy', 'tel', 'img', 'grade')
+        fields = ('num', 'name', 'eventStartDate', 'eventEndDate', 'eventTime', 'eventPlace', 'discription', 'longitude', 'latitude', 'tel', 'img', 'grade')
         # fields = '__all__'
 
 #유저 데이터를 직렬화

@@ -5,10 +5,10 @@ import sys
 import pprint
 
 conn = pymysql.connect(
-    #host='localhost',
-    host = 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
+    host='localhost',
+    #host = 'dailyoasisbackend.cbzjw5cm6v1b.ap-northeast-2.rds.amazonaws.com',
     user='root',
-    password='00000000',
+    password='0000',
     db='daily_oasis',
     charset='utf8'
 )
@@ -270,8 +270,10 @@ while 1:
                         # print("엑티비티 이미지 : "+img)
                         print("-----------------------------------------------")
 
-                        sql = "insert into daily_oasis.main_activity(name, discription, eventStartDate, eventEndDate, eventTime, eventPlace ,mapx ,mapy, tel, img) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                        cursor.execute(sql, (name, discription, eventStartDate, eventEndDate, eventTime, eventPlace, mapx, mapy, tel, img))
+                        longitude = mapx
+                        latitude =mapy
+                        sql = "insert into daily_oasis.main_activity(name, discription, eventStartDate, eventEndDate, eventTime, eventPlace ,longitude ,latitude, tel, img) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                        cursor.execute(sql, (name, discription, eventStartDate, eventEndDate, eventTime, eventPlace, longitude, latitude, tel, img))
                         conn.commit()
     pageNo += 1
 

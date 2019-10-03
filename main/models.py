@@ -51,8 +51,8 @@ class Activity(models.Model):
     eventTime = models.TextField(max_length=1000, blank=True, null=True) #엑티비티 시간
     eventPlace = models.TextField(max_length=1000, blank=True, null=True) #엑티비티 장소명
     discription = models.TextField(max_length=1000, blank=True, null=True)  # 엑티비티 설명
-    mapx = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True) #x좌표
-    mapy = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True) #y좌표
+    longitude = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True) #x좌표
+    latitude = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True) #y좌표
     tel = models.CharField(max_length=255, blank=True, null=True) #엑티비티 전화번호
     img = models.CharField(max_length=255, blank=True, null=True) #엑티비티 이미지
     grade = models.IntegerField(default=0,blank=True, null=True)

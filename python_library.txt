@@ -10,3 +10,4 @@ django-silk
 pandas
 django-crontab
 django-rest-swagger
+scipy

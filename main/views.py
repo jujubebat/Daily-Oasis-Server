@@ -10,6 +10,8 @@ from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerial
 from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title, User_Character, Review, CharacterImage, Character
 from django.db import transaction
 from django.db.models import Avg
+from scipy.spatial import distance
+import pprint
 
 #현재 유저가 진행중인 퀘스트 목록(엑티비티) 리턴
 class CurrentQuest(APIView):
@@ -60,28 +62,47 @@ class TitleList(APIView):
         return Response({"TitleList":serializer.data})
 
 #모든 케릭터 리스트 제공
-'''
 class CharacterList(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
         data = Character.objects.all()
         character_serializer = ActivitySerializer(data, many=True)
-        return Response({"CharacterList": character_serializer.data, "CharacterImageList": activity_serializer.data})
-        return Response({"CharacterList":serializer.data})
-'''
+
+        data = CharacterImage.objects.all()
+        characterImangeList_serializer = CharacterImageSerializer(data, many=True)
+
+        return Response({"CharacterList": character_serializer.data, "CharacterImageList": characterImangeList_serializer.data})
+
+
+#Activity에 '소외된'(발걸음이_적은) 태그가 있는 경우 판별
+def isAlienate(activity):
+    activity_tags = Activity_Preference.objects.filter(activity_num_id=activity.pk)
+    a=1
+    for activity_tag in activity_tags :
+        a=1
+        tag = Preference.objects.get(pk=activity_tag.preference_num_id)
+        if tag.name == '발걸음이_적은':
+            return True
+    return False
+
 #레벨 보상 관련 로직
 #레벨 1부터시작 / 3업마다 외형 변화 / 12랩이 만랩
-def UpdateLevel(request, isReview):
+def UpdateLevel(request, isReview, isAlienate):
     user = User.objects.get(id=request.user.id)
 
-    #'소외된'(발걸음이_적은) 태그 달려있는경우 추가 경험치 부여
-
-    if(isReview == False):
-        user.exp = user.exp + 100 / (user.level / 1.5)
-        user.save()
-    elif(isReview == True):
+    if (isReview == True):
         user.exp = user.exp + 25
         user.save()
+    elif(isReview == False):
+        user.exp = user.exp + 100 / (user.level / 1.5)
+        user.save()
+
+    if (isAlienate == True):
+        user.exp = user.exp + 25
+        user.save()
+
+    elif (isAlienate == False):
+        pass
 
     if(user.exp >= 100):
         user.level += 1
@@ -191,7 +212,12 @@ class FinishQuest(APIView):
     def get(self, request):
         # 퀘스트 완료 처리
         quest_num = request.query_params['quest_num']  #쿼리셋으로 받은 퀘스트 번호
-        quest = User_Activity.objects.filter(pk=quest_num)
+        quest = User_Activity.objects.filter(pk=quest_num)#get에서 filter로 바꿈
+
+        a=quest.get().user_num_id
+        b=request.user.id
+        c=quest.get().questDone
+        i=1
         # 유저가 보유한 퀘스트이면서 완료되지 않은 퀘스트일 경우만
         if (quest.get().user_num_id == request.user.id and quest.get().questDone == False):
             print("Dfsfdf")
@@ -203,8 +229,12 @@ class FinishQuest(APIView):
 
             quest.update(doneTime=now_local)
 
+            activity = Activity.objects.get(pk = quest.get().activity_num_id)
             #보상 업데이트(x테스트 해야함)
-            newUser = UpdateLevel(request, False)
+            a=isAlienate(activity)
+
+            a=1
+            newUser = UpdateLevel(request, False, isAlienate(activity))
             newTitle= UpdateTitle(request)
             newCharacterImage = UpdateCharacter(request)
 
@@ -220,6 +250,8 @@ class ActivityReview(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
         activity_num = request.query_params['activity_num']#엑티비티 번호
+
+
 
         activity = Activity.objects.get(pk=activity_num)
         activity_serializer = ActivitySerializer(activity)
@@ -246,7 +278,7 @@ class WriteReview(APIView):
                 review.date = datetime.datetime.now().date()
                 review.user_num_id = request.user.id
 
-                newUser = UpdateLevel(request, True)
+                newUser = UpdateLevel(request, True, False)#isReview = True, isAlienate = Fase, '발걸음이_적은' 태그 추가 경험치는 findQuest일 경우에만
                 newTitle = UpdateTitle(request)
                 newCharacterImage = UpdateCharacter(request)
                 newCharacterImage_serializer = CharacterImageSerializer(newCharacterImage)
@@ -275,6 +307,7 @@ class Signup(APIView):
             characterImage = CharacterImage.objects.get(level=1, character_num_id=user_serializer.instance.character_num_id)
             newUserCharacter = User_Character.objects.create(characterImage_num_id=characterImage.num, user_num_id=user_serializer.instance.id)
             characterImage_serializer=CharacterImageSerializer(characterImage)
+
             return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -334,13 +367,18 @@ class UpdateUserCharacter(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+def SortByDistance(user):
+    activity_items =Activity.objects.all()
+    activity_distance = round(distance.euclidean(()))
+    return activity_items
+
 def RecommendToAll(ListView):
     with transaction.atomic():
         print("로직 실행@@@@@@@@@@@@")
         User_Activity.objects.filter(questDone=0).delete()  #이전에 추천된 완료되지 않은 퀘스트 목록 삭제
 
         # 모든 유저에 대하여 모든 엑티비티의 자코드 유사도를 구하고 그중 상위 10개중에 3개를 추출하여 user_activity(quest)테이블에 넣어야한다.
-        activity_jacard_shema = {'activity_num': [], 'Jacard_similarity': []}
+        activity_jacard_shema = {'activity_num': [], 'jacard_similarity': [], 'distance':[]}
         activity_jacard_data = pandas.DataFrame(activity_jacard_shema)  # activity, jacard 유사도 데이터 프레임 테이블
 
         user_items = User.objects.all()
@@ -353,6 +391,7 @@ def RecommendToAll(ListView):
             for User_Preference_item in User_Preference_items:
                 tag = Preference.objects.get(pk=User_Preference_item.preference_num_id)#user_preference 튜플의(item) preference 키를 이용하여 prefernce 튜플을 추출한후 preference의 이름을 tag에 저장
                 user_tags.append(tag.name)  # 유저가 보유한 태그 딕셔너리에 preferene를 추가
+
             activity_items = Activity.objects.all()  # 모든 엑티비티를 가져와서
             for activity_item in activity_items:  # 하나씩 엑티비티의 태그와 유저의 태그에 대해 자카드 유사도를 계산한다.
                 activity_tags = []
@@ -363,19 +402,48 @@ def RecommendToAll(ListView):
                 union = set(user_tags).union(set(activity_tags))  # 합집합
                 intersection = set(user_tags).intersection(set(activity_tags))  # 교집합합
                 try:#태그가 없을 경우 len이 0이 되어 ZeroDivision 오류나서 예외처리해줌
-                    Jacard_similarity = len(intersection) / len(union)  # 유저태그와 엑티비티태그의 자카드 유사도
+                    jacard_similarity = len(intersection) / len(union)  # 유저태그와 엑티비티태그의 자카드 유사도
                 except(ZeroDivisionError):
-                    Jacard_similarity=0
+                    jacard_similarity=0
+
+                distanceFromUser = round(distance.euclidean((activity_item.longitude, activity_item.latitude),(user_item.longitude,user_item.latitude)),5)
+                #print("유저거리")
+                #print(distanceFromUser)
+                #print()
                 # 엑티비티, 자카드 유사도
-                activity_jacard_data.loc[i] = [activity_item.num, Jacard_similarity]  # 엑티비티 번호, 자카드 유사도 insert
+                activity_jacard_data.loc[i] = [activity_item.num, jacard_similarity, distanceFromUser]  # 엑티비티 번호, 자카드 유사도 insert
                 i += 1
-            # print("자카드 유사도")
-            # print(activity_jacard_data)
-            activity_jacard_data_sorted = activity_jacard_data.sort_values(by=['Jacard_similarity'],ascending=False)  # 유저태그와 엑티비티태그에 대한 자카드유사도 계산후 오름차순정렬
-            activity_jacard_data_sorted_10 = activity_jacard_data_sorted.head(10)  # 자카드 유사도순 상위 10개의 데이터프레임 추출
+            print("자카드 유사도")
+            print(activity_jacard_data)
+            print()
+
+            # 이미 유저가 완료한 퀘스트에 해당하는 엑티비티 제거 로직
+            quest_items = User_Activity.objects.filter(user_num_id = user_id)
+            print(user_id)
+            print("번 유저의 퀘스트")
+            for item in quest_items:
+                print(item.questDone)
+                if(item.questDone == True):
+                    print(item.questDone)
+                    print(item.activity_num_id)
+                    print("깡ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ")
+                    print("삭제이후")
+                    activity_jacard_data = activity_jacard_data[activity_jacard_data.activity_num != item.activity_num_id]
+                    print(activity_jacard_data)
+                    print()
+
+
+            activity_jacard_data_sorted = activity_jacard_data.sort_values(by=['jacard_similarity', 'distance'], ascending=[False, True])  # 유저태그와 엑티비티태그에 대한 자카드유사도 계산후 오름차순정렬
+            activity_jacard_data_sorted_10 = activity_jacard_data_sorted.head(15)  # 자카드 유사도순 상위 50개의 데이터프레임 추출
             activity_jacard_data_sorted_3 = activity_jacard_data_sorted_10.sample(n=3)  # 자카드 유사도순 상위 10개의 데이터프레임중 랜덤으로 3개의 데이터프레임 추출
             activity_jacard_data_sorted_3 = activity_jacard_data_sorted_3.reset_index(drop=True)  # 인덱스 0부터 시작하도록 초기화
             activity_jacard_data_sorted_3 = activity_jacard_data_sorted_3['activity_num']  # 엑티비티 속성만 추출
+
+            print(user_id)
+            print("번 유저에 대한 추천 데이터 10개")
+            pprint.pprint(activity_jacard_data_sorted_10)
+            print()
+
             print(user_id)
             print("번 유저에 대한 추천 데이터 3개")
             print(activity_jacard_data_sorted_3)
@@ -425,8 +493,8 @@ def QuestAllocation(request):
 
         # print("자카드 유사도")
         # print(activity_jacard_data)
-        activity_jacard_data_sorted = activity_jacard_data.sort_values(by=['Jacard_similarity'],ascending=False)  # 유저태그와 엑티비티태그에 대한 자카드유사도 계산후 오름차순정렬
-        activity_jacard_data_sorted_10 = activity_jacard_data_sorted.head(10)  # 자카드 유사도순 상위 10개의 데이터프레임 추출
+        activity_jacard_data_sorted = activity_jacard_data.sort_values(by=['jacard_similarity', 'distance'], ascending=[False, True])  # 유저태그와 엑티비티태그에 대한 자카드유사도 계산후 오름차순정렬
+        activity_jacard_data_sorted_10 = activity_jacard_data_sorted.head(15)  # 자카드 유사도순 상위 50개의 데이터프레임 추출
         activity_jacard_data_sorted_3 = activity_jacard_data_sorted_10.sample(n=3)  # 자카드 유사도순 상위 10개의 데이터프레임중 랜덤으로 3개의 데이터프레임 추출
         activity_jacard_data_sorted_3 = activity_jacard_data_sorted_3.reset_index(drop=True)  # 인덱스 0부터 시작하도록 초기화
         activity_jacard_data_sorted_3 = activity_jacard_data_sorted_3['activity_num']  # 엑티비티 속성만 추출

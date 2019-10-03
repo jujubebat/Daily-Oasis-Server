@@ -27,8 +27,8 @@ urlpatterns = [
     path('updatePreference', views.UpdateUserPreference.as_view()),
     path('updateAddress', views.UpdateUserAddress.as_view()),
     path('updateCharacter', views.UpdateUserCharacter.as_view()),
-    #path('characterList',views.CharacterList.as_view()),
-    #path('titleList', views.TitleList.as_view()),
+    path('characterList',views.CharacterList.as_view()),
+    path('titleList', views.TitleList.as_view()),
 ]
 
 #API 자동화 문서 라이브러리 관련(django swagger)
@@ -46,19 +46,23 @@ urlpatterns += [
 
 '''
 <업데이트 예정(우선 순위순)>
--tmap 지오코딩 활용하여 근거리 추천 기능 추가(핵심) 
+
 -crontab 잘 작동하는지 테스트 
--퀘스트 완료시 '소외된' 태그가 있는 엑티비티일 경우 추가 경험치 부여 
+-WriteReview 오류 해결(승륜이랑 얘기하면서 구현)
 -유저 업데이트 기능 구현(승륜이랑 얘기하면서 구현)
--중복 추천 허용 안하는 기능 추가 
--utils.py에 시리얼라이져 등록 
+
+번외)
 -회원가입시 이메일 인증 기능 구현 
--모든 케릭터 정보 제공하는 api 구현
 '''
 
 '''
-<업데이트 진행중>
-/current_user -> /currentUser
+<업데이트 진행중(AWS반영 미완료)>
+- /current_user -> /currentUser
+- Activity mapx, mapy 속성 User와 통일
+- /allQuestAllocation, /questAllocation : 근거리순으로 추천하는 기능 추가 / 이전에 완료한 퀘스트 추천하지 않는 기능 추가
+- /finishQest : '발걸음이_적은' 태그가 달려있을 경우 exp +25 추가로 적용 
+- 새로운 api characterList/ : 모든 케릭터 정보 제공
+- 새로운 api titleList/ : 모든 칭호 정보제공
 '''
 
 '''
@@ -77,7 +81,7 @@ urlpatterns += [
 '''
 
 '''
-프로젝트가 끝난후
+<프로젝트가 끝난후 할것들>
 포트폴리오를 위한 장고, 파이썬, 웹에 대해 공부하고 정리해야할것들
 -프로젝트 명세서 간략하게 작성(기술적으로, 서비스적으로 나눠서 작성)
 -JWT 어떤식으로 구현되는지 공부

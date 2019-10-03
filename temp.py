@@ -82,3 +82,34 @@ class UserList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 '''
+
+class FinishQuest(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def get(self, request):
+        # 퀘스트 완료 처리
+        quest_num = request.query_params['quest_num']  #쿼리셋으로 받은 퀘스트 번호
+        quest = User_Activity.objects.filter(pk=quest_num)#get에서 filter로 바꿈
+        i=1
+        # 유저가 보유한 퀘스트이면서 완료되지 않은 퀘스트일 경우만
+        if (quest.get().user_num_id == request.user.id and quest.get().questDone == False):
+            print("Dfsfdf")
+            quest.update(questDone=True)
+
+            now = datetime.datetime.now()
+            now_utc = now.replace(tzinfo=timezone.utc)
+            now_local = now_utc.astimezone()
+
+            quest.update(doneTime=now_local)
+
+            activity = Activity.objects.get(pk = quest.get().activity_num_id)
+            #보상 업데이트(x테스트 해야함)
+            newUser = UpdateLevel(request, False, isAlienate(activity))
+            newTitle= UpdateTitle(request)
+            newCharacterImage = UpdateCharacter(request)
+
+            user_serializer = UserSerializer(newUser)
+            title_serializer = TitleSerializer(newTitle, many=True)
+            newCharacterImage_serializer = CharacterImageSerializer(newCharacterImage)
+
+            return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data })
+        return Response(status=status.HTTP_400_BAD_REQUEST) #유저가 보유한 퀘스트가 아니거나 이미 완료한 퀘스트면 400리턴
