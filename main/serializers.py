@@ -41,10 +41,17 @@ class ActivitySerializer(serializers.ModelSerializer):
 #유저 데이터를 직렬화
 class UserSerializer(serializers.ModelSerializer):
 
+    def update(self, instance, validated_data):
+        instance.address = validated_data.get('address', instance.address)
+        instance.longitude = validated_data.get('longitude', instance.longitude)
+        instance.latitude = validated_data.get('latitude', instance.latitude)
+        instance.postNum = validated_data.get('postNum', instance.postNum)
+        instance.save()
+        return instance
 
     class Meta:
         model = User
-        fields = ('id','username','nickName','address','postNum', 'level', 'exp', 'character_num', 'title_num','longitude','latitude')
+        fields = ('id','username','nickName','address','postNum', 'level', 'exp', 'character_num', 'title_num', 'longitude', 'latitude')
 
 #칭호 데이터를 직렬화
 class TitleSerializer(serializers.ModelSerializer):
