@@ -97,7 +97,7 @@ def UpdateLevel(request, isReview, isAlienate):
         user.exp = user.exp + 100 / (user.level / 1.5)
         user.save()
 
-    if (isAlienate == True):
+    if (isAlienate == True): #소외된 관광지인경우
         user.exp = user.exp + 25
         user.save()
 
@@ -489,8 +489,24 @@ def QuestAllocation(request):
             except(ZeroDivisionError):
                 Jacard_similarity=0
             # 엑티비티, 자카드 유사도
-            activity_jacard_data.loc[i] = [activity_item.num, Jacard_similarity]  # 엑티비티 번호, 자카드 유사도 insert
+
+            distanceFromUser = round(distance.euclidean((activity_item.longitude, activity_item.latitude),(user_item.longitude, user_item.latitude)), 5)
+            activity_jacard_data.loc[i] = [activity_item.num, jacard_similarity,distanceFromUser]  # 엑티비티 번호, 자카드 유사도 insert
             i += 1
+
+        # 이미 유저가 완료한 퀘스트에 해당하는 엑티비티 제거 로직
+        quest_items = User_Activity.objects.filter(user_num_id=request.user.id)
+        print("번 유저의 퀘스트")
+        for item in quest_items:
+            print(item.questDone)
+            if (item.questDone == True):
+                print(item.questDone)
+                print(item.activity_num_id)
+                print("깡ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ")
+                print("삭제이후")
+                activity_jacard_data = activity_jacard_data[activity_jacard_data.activity_num != item.activity_num_id]
+                print(activity_jacard_data)
+                print()
 
         print("자카드 유사도")
         print(activity_jacard_data)
