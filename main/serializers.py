@@ -64,7 +64,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         now_utc = now.replace(tzinfo=timezone.utc)
         now_local = now_utc.astimezone()
 
-        instance.date = now_local
+        instance.doneTime = now_local
         instance.user_nickName = user_nickName
         instance.text = text
         instance.grade = grade
@@ -76,7 +76,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ('num', 'date', 'user_nickName', 'text', 'grade', 'activity_num', 'user_num')
+        fields = ('num', 'doneTime', 'user_nickName', 'text', 'grade', 'activity_num', 'user_num')
 
 #엑티비티 리뷰 직렬화
 class ActivityReviewSerializer(serializers.ModelSerializer):
