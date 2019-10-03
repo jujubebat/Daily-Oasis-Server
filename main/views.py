@@ -485,9 +485,9 @@ def QuestAllocation(request):
             union = set(user_tags).union(set(activity_tags))  # 합집합
             intersection = set(user_tags).intersection(set(activity_tags))  # 교집합합
             try:#태그가 없을 경우 len이 0이 되어 ZeroDivision 오류나서 예외처리해줌
-                Jacard_similarity = len(intersection) / len(union)  # 유저태그와 엑티비티태그의 자카드 유사도
+                jacard_similarity = len(intersection) / len(union)  # 유저태그와 엑티비티태그의 자카드 유사도
             except(ZeroDivisionError):
-                Jacard_similarity=0
+                jacard_similarity=0
             # 엑티비티, 자카드 유사도
 
             distanceFromUser = round(distance.euclidean((activity_item.longitude, activity_item.latitude),(user_item.longitude, user_item.latitude)), 5)
