@@ -61,11 +61,24 @@ class UserTitle(APIView):
         list = []
         for user_title_item in user_title_items:
             list.append(user_title_item.title_num_id)
-        print(list)
 
         data = Title.objects.filter(pk__in = list)
         serializer = TitleSerializer(data, many=True)
         return Response({"UserTitleList": serializer.data})
+
+#유저가 보유한 선호도(태그)리턴
+class UserPreference(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def get(self, request):
+        user_preference_items = User_Preference.objects.filter(user_num_id = request.user.id)
+
+        list = []
+        for user_preference_item in user_preference_items:
+            list.append(user_preference_item.preference_num_id)
+
+        data = Preference.objects.filter(pk__in = list)
+        serializer = PreferenceSerializer(data, many=True)
+        return Response({"UserTagList": serializer.data})
 
 #모든 엑티비티 리스트 제공
 class ActivityList(APIView):
@@ -357,6 +370,8 @@ class UpdateUserTitle(APIView):
         title = Title.objects.get(pk=request.data.get('title'))
         title_serializer = TitleSerializer(title)
         return Response({"UpdatedTitle": title_serializer.data})
+
+
 
 #선호도(태그) 업데이트
 class UpdateUserPreference(APIView):

@@ -20,6 +20,7 @@ urlpatterns = [
     path('finishQuest', views.FinishQuest.as_view()), #검수완료 /퀘스트 완료 로직 실행 후 갱신된 유저 정보와 새로얻은 칭호 정보제공 /finishQuest?activity_num=1
     path('activityReview', views.ActivityReview.as_view()), #검수완료/ 엑티비티와 엑티비티에 달려있는 댓글 데이터 제공 (두 개의 모델을 하나로 직렬화) /activityReview?activity_num=1
     path('userTitleList', views.UserTitle.as_view()), #검수완료 유저의 칭호목록
+    path('userPreferenceList', views.UserPreference.as_view()), #검수완료 유저의 칭호목록
     #토큰 필요없음
     path('login', obtain_jwt_token), #검수완료 / 로그인
     path('activityList', views.ActivityList.as_view()), #검수완료 / 모든 엑티비티 데이터 제공
@@ -30,6 +31,7 @@ urlpatterns = [
     path('updateUserAddress', views.UpdateUserAddress.as_view()), #유저의 주소 업데이트
     path('updateUserTitle', views.UpdateUserTitle.as_view()), #유저의 대표칭호 업데이트
     path('updateUserPreference', views.UpdateUserPreference.as_view()), #유저의 태그 업데이트
+
 
 ]
 
