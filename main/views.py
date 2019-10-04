@@ -353,10 +353,10 @@ class UpdateUserPreference(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
 
-        tags = request.data.get('tag')  # initial_data는 post로 받은 raw 데이터(헷갈리면 디버깅해보자)
-        User_Preference.objects.filter(user_num_id=2).delete()
+        tags = request.data.get('tag')
+        User_Preference.objects.filter(user_num_id=request.user.id).delete()
         for tag in tags:  # 배열로 받은 태그 데이터를 하나하나 뽑음
-            User_Preference.objects.create(user_num_id=2, preference_num_id=tag)
+            User_Preference.objects.create(user_num_id=request.user.id, preference_num_id=tag)
 
         user_tags = Preference.objects.filter(pk__in=tags)
         preference_serializer = PreferenceSerializer(user_tags, many=True)
