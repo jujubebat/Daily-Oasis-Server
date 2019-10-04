@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="">
+    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="코드 오타 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,26 +12,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Crawiling.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
-              <caret line="98" column="34" selection-start-line="98" selection-start-column="34" selection-end-line="98" selection-end-column="34" />
+            <state relative-caret-position="257">
+              <caret line="235" column="75" lean-forward="true" selection-start-line="235" selection-start-column="75" selection-end-line="235" selection-end-column="75" />
               <folding>
-                <element signature="e#0#27#0" expanded="true" />
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/views.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2431">
-              <caret line="373" column="36" selection-start-line="373" selection-start-column="26" selection-end-line="373" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="238">
+              <caret line="110" column="4" selection-start-line="110" selection-start-column="4" selection-end-line="110" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -74,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="9" column="74" selection-start-line="9" selection-start-column="74" selection-end-line="9" selection-end-column="74" />
+            <state relative-caret-position="95">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -316,13 +311,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565614495831</updated>
-    </task>
-    <task id="LOCAL-00049" summary="-view import 오류 수정">
-      <created>1569341937004</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1569341937004</updated>
     </task>
     <task id="LOCAL-00050" summary="-view import 오류 수정2">
       <created>1569341994716</created>
@@ -660,7 +648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570200891204</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="업데이트 관련 리턴 데이터명 다음과 같이 수정 : UpdatedUser, UpdatedTitle,UpdatedTag">
+      <created>1570202255293</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1570202255293</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TodoView">
@@ -676,12 +671,12 @@
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.14225501" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.14225501" />
       <window_info id="Structure" order="1" sideWeight="0.5016251" side_tool="true" weight="0.19072708" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.16052061" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3177874" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.415115" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -715,7 +710,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="-WrtieReview수정" />
     <MESSAGE value="-날짜 수정" />
     <MESSAGE value="-WriteReview 완료시 UpdateUser와 NewTitle 반환함" />
     <MESSAGE value="&lt;업데이트 사항(AWS반영 완료)&gt;&#10;-디비 초기화-&gt;샘플 데이터 넣는 작업 필요&#10;-signup : 케릭터 이미지 정보 제공(엑티비티, 리뷰 제공 안되게 수정)&#10;-current_user : 케릭터 이미지 정보 제공&#10;-레벨에 따른 케릭터 변화 로직 추가&#10;-finishQuest, writeReview에서 UpdateUser,NewTitle,NewCharacterImage 데이터 제공 &#10;-writeReview시 고정 경험치 25 제공 &#10;-Activity 평점 계산로직 추가(writeReview로 테스트 바람)&#10;- /allQuestAllocation : 모든 유저의 퀘스트 업데이트 &#10;- /questAllocation : 유저 한명의 퀘스트 업데이트 api(회원가입시 활용 바람) request로 token 보내줘야함&#10;- UTC시간 한국시간으로 변경 / 리뷰작성 시간 속성명 변경 date -&gt; doneTime(finishQeust와 통일)" />
@@ -740,7 +734,8 @@
     <MESSAGE value="updateUserTitle,&#10;updateUserPreference&#10;구현" />
     <MESSAGE value="updateUserTitle,&#10;updateUserPreference&#10;수정" />
     <MESSAGE value="currentQeust, DoneQuest, activityReview 시 태그목록 반환" />
-    <option name="LAST_COMMIT_MESSAGE" value="currentQeust, DoneQuest, activityReview 시 태그목록 반환" />
+    <MESSAGE value="업데이트 관련 리턴 데이터명 다음과 같이 수정 : UpdatedUser, UpdatedTitle,UpdatedTag" />
+    <option name="LAST_COMMIT_MESSAGE" value="업데이트 관련 리턴 데이터명 다음과 같이 수정 : UpdatedUser, UpdatedTitle,UpdatedTag" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -867,13 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="493" selection-start-line="493" selection-end-line="493" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/views/generic/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
@@ -963,16 +951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="74" selection-start-line="9" selection-start-column="74" selection-end-line="9" selection-end-column="74" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1023,10 +1001,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="110" column="4" selection-start-line="110" selection-start-column="4" selection-end-line="110" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2431">
-          <caret line="373" column="36" selection-start-line="373" selection-start-column="26" selection-end-line="373" selection-end-column="36" />
+        <state relative-caret-position="257">
+          <caret line="235" column="75" lean-forward="true" selection-start-line="235" selection-start-column="75" selection-end-line="235" selection-end-column="75" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
