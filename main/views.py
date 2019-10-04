@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 import pandas
 import datetime
 from datetime import timezone
-from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, ReviewSerializer, TitleSerializer, CharacterImageSerializer,PreferenceSerializer
+from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, ReviewSerializer, TitleSerializer, CharacterImageSerializer,PreferenceSerializer,ActivityPreferenceSerializer
 from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title, User_Character, Review, CharacterImage, Character
 from django.db import transaction
 from django.db.models import Avg
@@ -27,7 +27,10 @@ class CurrentQuest(APIView):
         activity=Activity.objects.filter(pk__in=list)
         activity_serializer = ActivitySerializer(activity, many=True)
 
-        return Response({"CurrentQuest":quest_serializer.data, "CurrentActivity":activity_serializer.data})
+        activity_preference = Activity_Preference.objects.filter(activity_num_id__in=list)
+        activity_preference_serializer= ActivityPreferenceSerializer(activity_preference, many=True)
+
+        return Response({"CurrentQuest":quest_serializer.data, "CurrentActivity":activity_serializer.data , "ActivityPreference":activity_preference_serializer.data })
 
 #유저가 완료한 퀘스트 제공(발자취)
 class DoneQuest(APIView):
@@ -43,7 +46,11 @@ class DoneQuest(APIView):
         activity = Activity.objects.filter(pk__in=list)
         activity_serializer = ActivitySerializer(activity, many=True)
 
-        return Response({"DoneQuest": quest_serializer.data, "DoneActivity":activity_serializer.data})
+        activity_preference = Activity_Preference.objects.filter(activity_num_id__in=list)
+        activity_preference_serializer = ActivityPreferenceSerializer(activity_preference, many=True)
+
+        return Response({"CurrentQuest": quest_serializer.data, "CurrentActivity": activity_serializer.data, "ActivityPreference": activity_preference_serializer.data})
+
 
 #유저가 보유한 타이틀 리턴
 class UserTitle(APIView):
@@ -295,7 +302,10 @@ class WriteReview(APIView):
                 activity = Activity.objects.filter(pk=request.data.get('activity_num'))
                 activity.update(grade=avg_grade['grade__avg'])
 
-                return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data })
+                activity_preference = Activity_Preference.objects.filter(activity_num_id=request.data.get('activity_num'))
+                activity_preference_serializer = ActivityPreferenceSerializer(activity_preference, many=True)
+
+                return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data,"ActivityPreference": activity_preference_serializer.data})
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -337,7 +347,7 @@ class UpdateUserAddress(APIView):
         User.objects.filter(pk=request.user.id).update(longitude=request.data.get('longitude'))
         User.objects.filter(pk=request.user.id).update(latitude=request.data.get('latitude'))
         user_serializer = UserSerializer(request.user)
-        return Response({"User": user_serializer.data})
+        return Response({"UpdateUser": user_serializer.data})
 
 #칭호 업데이트
 class UpdateUserTitle(APIView):
@@ -361,11 +371,7 @@ class UpdateUserPreference(APIView):
         user_tags = Preference.objects.filter(pk__in=tags)
         preference_serializer = PreferenceSerializer(user_tags, many=True)
 
-        return Response({"invokedTitle": preference_serializer.data})
-
-
-
-
+        return Response({"invokedTag": preference_serializer.data})
 
 
 

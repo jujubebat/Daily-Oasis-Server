@@ -96,7 +96,7 @@ class User_Activity(models.Model):
 class Activity_Preference(models.Model):
     num = models.AutoField(primary_key=True) #번호
     activity_num = models.ForeignKey(Activity, on_delete=models.SET_NULL, null=True)
-    preference_num = models.ForeignKey(Preference, on_delete=models.SET_NULL, null=True, related_name='preferences' )
+    preference_num = models.ForeignKey(Preference, on_delete=models.SET_NULL, null=True)
 
 #Review(관광리뷰)
 class Review(models.Model):

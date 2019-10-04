@@ -4,18 +4,21 @@ from .models import Activity, User, User_Preference, Preference, User_Activity, 
 import datetime
 from datetime import timezone
 
-class ActivityPreferenceSerializer(serializers.ModelSerializer):
-   #preferences = serializers.RelatedField(many=True, read_only=True)
-
-    class Meta:
-        model = Activity_Preference
-        fields = ('num', 'activity_num_id' , 'preferences')
 
 class PreferenceSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Preference
         fields = ('num', 'name')
+
+
+class ActivityPreferenceSerializer(serializers.ModelSerializer):
+    preferences = PreferenceSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Activity_Preference
+        fields = '__all__'
+        depth = 1
+
 
 
 class CharacterImageSerializer(serializers.ModelSerializer):

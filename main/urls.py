@@ -50,10 +50,11 @@ urlpatterns += [
 
 '''
 <업데이트 예정(우선 순위순)>
--유저 업데이트 기능 구현(승륜이랑 얘기하면서 구현) / updateUserTitle 구현 : title pk 보내주면 대표칭호로 설정해주는 api 그리고 title 데이터 리턴
--업데이트시 굳이 serializer 안쓰고 그냥 쿼리셋 쓰면 될거같음
+
 -crontab 잘 작동하는지 테스트 (오전 10시도 설정해둠)
--currentQeust, DoneQuest, activityReview 시 태그목록 반환 -> currentQeust, DoneQuest일 경우 activity_preferences 랑 preference를 join serializer 해서 주기(https://www.django-rest-framework.org/api-guide/relations/)
+
+-currentQeust, DoneQuest, activityReview 시 태그목록 반환 -> currentQeust, DoneQuest일 경우 activity_preferences 랑 
+preference를 join serializer 해서 주기(https://www.django-rest-framework.org/api-guide/relations/)
 
 
 번외)
