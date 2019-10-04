@@ -49,7 +49,7 @@ class DoneQuest(APIView):
         activity_preference = Activity_Preference.objects.filter(activity_num_id__in=list)
         activity_preference_serializer = ActivityPreferenceSerializer(activity_preference, many=True)
 
-        return Response({"CurrentQuest": quest_serializer.data, "CurrentActivity": activity_serializer.data, "ActivityPreference": activity_preference_serializer.data})
+        return Response({"DoneQuest": quest_serializer.data, "DoneActivity": activity_serializer.data, "ActivityPreference": activity_preference_serializer.data})
 
 
 #유저가 보유한 타이틀 리턴
@@ -347,7 +347,7 @@ class UpdateUserAddress(APIView):
         User.objects.filter(pk=request.user.id).update(longitude=request.data.get('longitude'))
         User.objects.filter(pk=request.user.id).update(latitude=request.data.get('latitude'))
         user_serializer = UserSerializer(request.user)
-        return Response({"UpdateUser": user_serializer.data})
+        return Response({"UpdatedUser": user_serializer.data})
 
 #칭호 업데이트
 class UpdateUserTitle(APIView):
@@ -356,7 +356,7 @@ class UpdateUserTitle(APIView):
         User.objects.filter(pk=request.user.id).update(title_num_id=request.data.get('title'))
         title = Title.objects.get(pk=request.data.get('title'))
         title_serializer = TitleSerializer(title)
-        return Response({"invokedTitle": title_serializer.data})
+        return Response({"UpdatedTitle": title_serializer.data})
 
 #선호도(태그) 업데이트
 class UpdateUserPreference(APIView):
@@ -371,7 +371,7 @@ class UpdateUserPreference(APIView):
         user_tags = Preference.objects.filter(pk__in=tags)
         preference_serializer = PreferenceSerializer(user_tags, many=True)
 
-        return Response({"invokedTag": preference_serializer.data})
+        return Response({"UpdatedTag": preference_serializer.data})
 
 
 

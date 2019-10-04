@@ -50,12 +50,7 @@ urlpatterns += [
 
 '''
 <업데이트 예정(우선 순위순)>
-
 -crontab 잘 작동하는지 테스트 (오전 10시도 설정해둠)
-
--currentQeust, DoneQuest, activityReview 시 태그목록 반환 -> currentQeust, DoneQuest일 경우 activity_preferences 랑 
-preference를 join serializer 해서 주기(https://www.django-rest-framework.org/api-guide/relations/)
-
 
 번외)
 -회원가입시 이메일 인증 기능 구현 
@@ -63,11 +58,12 @@ preference를 join serializer 해서 주기(https://www.django-rest-framework.or
 
 '''
 <업데이트 진행중(AWS반영 미완료)>
-
 '''
 
 '''
 <업데이트 완료 사항(AWS반영 완료)>
+-유저 업데이트 기능 구현 / updateUserTitle 구현 : title pk 보내주면 대표칭호로 설정해주는 api 그리고 title 데이터 리턴
+-currentQeust, DoneQuest, activityReview api에서 엑티비티 태그목록 반환(https://stackoverflow.com/questions/52295480/serializing-many-to-many-intermediate-table-in-django-rest-framework)
 - /current_user -> /currentUser
 - Activity mapx, mapy 속성 User와 통일
 - /allQuestAllocation, /questAllocation : 근거리순으로 추천하는 기능 추가 / 이전에 완료한 퀘스트 추천하지 않는 기능 추가
