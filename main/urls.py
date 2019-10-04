@@ -26,13 +26,9 @@ urlpatterns = [
     path('activityList', views.ActivityList.as_view()), #검수완료 / 모든 엑티비티 데이터 제공
     path('characterList',views.CharacterList.as_view()), #전체 케릭터정보(케릭터이미지정보포함)제공
     path('titleList', views.TitleList.as_view()), #전체 칭호 데이터 제공
-
-    #개발중
     path('updateUserAddress', views.UpdateUserAddress.as_view()), #유저의 주소 업데이트
     path('updateUserTitle', views.UpdateUserTitle.as_view()), #유저의 대표칭호 업데이트
     path('updateUserPreference', views.UpdateUserPreference.as_view()), #유저의 태그 업데이트
-
-
 ]
 
 # Activity.objects.filter(pk=1).update(name='업데이트 되라 ')

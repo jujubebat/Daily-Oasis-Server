@@ -13,6 +13,8 @@ from django.db.models import Avg
 from scipy.spatial import distance
 import pprint
 
+#api.dailyoasis.shop
+
 #현재 유저가 진행중인 퀘스트 목록(엑티비티) 리턴
 class CurrentQuest(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -282,7 +284,10 @@ class ActivityReview(APIView):
         review = Review.objects.filter(activity_num_id=activity_num)
         review_serializer = ReviewSerializer(review, many=True)
 
-        return Response({"Activity" : activity_serializer.data, "Reviews" : review_serializer.data})
+        activity_preference = Activity_Preference.objects.filter(activity_num_id__in=activity_num)
+        activity_preference_serializer = ActivityPreferenceSerializer(activity_preference, many=True)
+
+        return Response({"Activity" : activity_serializer.data, "Reviews" : review_serializer.data,"ActivityPreference": activity_preference_serializer.data})
 
 #리뷰를 작성하게 해줌
 
@@ -473,7 +478,7 @@ def RecommendToAll(ListView):
             print(activity_jacard_data_sorted_3)
             print("포문 시작")
             for i in range(3):
-                #print("User_activity 인스턴스 생성")
+                print("User_activity 인스턴스 생성")
                 quest = User_Activity.objects.create(user_num_id=user_id, activity_num_id=activity_jacard_data_sorted_3.iloc[i]).save()
     return 0
 
