@@ -1,14 +1,15 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
-from .models import Activity, User, User_Preference, Preference, User_Activity, Title, Review, CharacterImage
+from .models import Activity, User, User_Preference, Preference, User_Activity, Title, Review, CharacterImage,Activity_Preference
 import datetime
 from datetime import timezone
 
 class ActivityPreferenceSerializer(serializers.ModelSerializer):
+   #preferences = serializers.RelatedField(many=True, read_only=True)
 
     class Meta:
-        model = CharacterImage
-        fields = ('num', 'activity_num_id', 'preference_num_id')
+        model = Activity_Preference
+        fields = ('num', 'activity_num_id' , 'preferences')
 
 class PreferenceSerializer(serializers.ModelSerializer):
 
@@ -48,6 +49,8 @@ class UserSerializer(serializers.ModelSerializer):
         instance.postNum = validated_data.get('postNum', instance.postNum)
         instance.save()
         return instance
+
+    # https://seulcode.tistory.com/199
 
     class Meta:
         model = User

@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 import pandas
 import datetime
 from datetime import timezone
-from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, ReviewSerializer, TitleSerializer, CharacterImageSerializer
+from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, ReviewSerializer, TitleSerializer, CharacterImageSerializer,ActivityPreferenceSerializer
 from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title, User_Character, Review, CharacterImage, Character
 from django.db import transaction
 from django.db.models import Avg
@@ -66,7 +66,7 @@ class ActivityList(APIView):
     def get(self, request):
         data = Activity.objects.all()
         serializer = ActivitySerializer(data, many=True)
-        return Response({"ActivityList":serializer.data})
+        return Response({"ActivityList" : serializer.data})
 
 #모든 칭호 리스트 제공
 class TitleList(APIView):
@@ -323,52 +323,35 @@ def CurrentUser(request):
     characterImage = CharacterImage.objects.get(pk=user_character.num)#유저의 현재 케릭터 이미지 pk로 케릭터이미지 정보 가져옴
     characterImage_serializer = CharacterImageSerializer(characterImage) #유저의 케릭터 이미지 정보 직렬화
 
-
     return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
 
-class SetUserTitle(APIView):
-    permission_classes = (permissions.AllowAny,)
 
+
+#주소 업데이트
+class UpdateUserAddress(APIView):
+    permission_classes = (permissions.AllowAny,)
+    #def post(self, request, format=None):
     def post(self, request, format=None):
-        serializer = UserSerializer(request.user)
-        serializer.instance.title_num_id = request.data.get('titleNum')
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        User.objects.filter(pk=request.user.id).update(address=request.data.get('address'))
+        User.objects.filter(pk=request.user.id).update(postNum=request.data.get('postNum'))
+        User.objects.filter(pk=request.user.id).update(longitude=request.data.get('longitude'))
+        User.objects.filter(pk=request.user.id).update(latitude=request.data.get('latitude'))
+        user_serializer = UserSerializer(request.user)
+        return Response({"User": user_serializer.data})
 
 #선호도(태그) 업데이트
 class UpdateUserPreference(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
+
         serializer = UserSerializerWithToken(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#유저 nickName 업데이트
-class UpdateUserNickName(APIView):
-    permission_classes = (permissions.AllowAny,)
-    def post(self, request, format=None):
-        serializer = UserSerializer(request.user)
-        serializer.instance.nickName = request.data.get('nickName')
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#주소 업데이트
-class UpdateUserAddress(APIView):
-    permission_classes = (permissions.AllowAny,)
-    def post(self, request, format=None):
-        serializer = UserSerializer(request.user)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#케릭터 업데이트
+#칭호 업데이트
 class UpdateUserCharacter(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
@@ -377,6 +360,8 @@ class UpdateUserCharacter(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 def SortByDistance(user):
     activity_items =Activity.objects.all()

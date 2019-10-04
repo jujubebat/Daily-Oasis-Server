@@ -17,23 +17,22 @@ urlpatterns = [
     path('currentQuest', views.CurrentQuest.as_view()),  # 검수완료 / 유저가 진행중인 퀘스트 데이터 제공(엑티비티 제공)
     path('doneQuest', views.DoneQuest.as_view()),  # 검수완료 / 유저가 완료한 퀘스트 제공(발자취)
     path('currentUser', views.CurrentUser), #검수완료 / 정보 데이터 제공
-    path('finishQuest', views.FinishQuest.as_view()), #검수완료 /퀘스트 완료 로직 실행 후 갱신된 유저 정보와 새로얻은 칭호 정보제공 (두 개의 모델을 하나로 직렬화) /finishQuest?activity_num=1
+    path('finishQuest', views.FinishQuest.as_view()), #검수완료 /퀘스트 완료 로직 실행 후 갱신된 유저 정보와 새로얻은 칭호 정보제공 /finishQuest?activity_num=1
     path('activityReview', views.ActivityReview.as_view()), #검수완료/ 엑티비티와 엑티비티에 달려있는 댓글 데이터 제공 (두 개의 모델을 하나로 직렬화) /activityReview?activity_num=1
-    path('userTitleList', views.UserTitle.as_view()), #유저의 칭호목록
+    path('userTitleList', views.UserTitle.as_view()), #검수완료 유저의 칭호목록
     #토큰 필요없음
     path('login', obtain_jwt_token), #검수완료 / 로그인
     path('activityList', views.ActivityList.as_view()), #검수완료 / 모든 엑티비티 데이터 제공
-    path('characterList',views.CharacterList.as_view()),
-    path('titleList', views.TitleList.as_view()),
+    path('characterList',views.CharacterList.as_view()), #전체 케릭터정보(케릭터이미지정보포함)제공
+    path('titleList', views.TitleList.as_view()), #전체 칭호 데이터 제공
 
     #개발중
-    path('updateUserNickname', views.UpdateUserNickName.as_view()),
-    path('updateUserPreference', views.UpdateUserPreference.as_view()),
-    path('updateUserAddress', views.UpdateUserAddress.as_view()),
-    path('updateUserCharacter', views.UpdateUserCharacter.as_view()),
-    path('updateUserTitle', views.SetUserTitle.as_view()),
+    path('updateUserAddress', views.UpdateUserAddress.as_view()), #유저의 주소 업데이트
+    #path('updateUserPreference', views.UpdateUserPreference.as_view()), #유저의 태그 업데이트
+    #path('updateUserTitle', views.SetUserTitle.as_view()), #유저의 대표칭호 업데이트
 ]
 
+# Activity.objects.filter(pk=1).update(name='업데이트 되라 ')
 
 #API 자동화 문서 라이브러리 관련(django swagger)
 schema_view = get_swagger_view(title='Pastebin API')
@@ -50,11 +49,11 @@ urlpatterns += [
 
 '''
 <업데이트 예정(우선 순위순)>
-
+-유저 업데이트 기능 구현(승륜이랑 얘기하면서 구현) / updateUserTitle 구현 : title pk 보내주면 대표칭호로 설정해주는 api 그리고 title 데이터 리턴
+-업데이트시 굳이 serializer 안쓰고 그냥 쿼리셋 쓰면 될거같음
 -crontab 잘 작동하는지 테스트 (오전 10시도 설정해둠)
--유저 업데이트 기능 구현(승륜이랑 얘기하면서 구현)
 -currentQeust, DoneQuest, activityReview 시 태그목록 반환 -> currentQeust, DoneQuest일 경우 activity_preferences 랑 preference를 join serializer 해서 주기(https://www.django-rest-framework.org/api-guide/relations/)
--SetUserTitle 구현 : title pk 보내주면 대표칭호로 설정해주는 api 그리고 title 데이터 리턴
+
 
 번외)
 -회원가입시 이메일 인증 기능 구현 
