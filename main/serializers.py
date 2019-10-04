@@ -14,7 +14,7 @@ class ActivityPreferenceSerializer(serializers.ModelSerializer):
 class PreferenceSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = CharacterImage
+        model = Preference
         fields = ('num', 'name')
 
 

@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 import pandas
 import datetime
 from datetime import timezone
-from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, ReviewSerializer, TitleSerializer, CharacterImageSerializer,ActivityPreferenceSerializer
+from .serializers import UserSerializer, UserSerializerWithToken, ActivitySerializer, UserActivitySerializer, ReviewSerializer, TitleSerializer, CharacterImageSerializer,PreferenceSerializer
 from .models import Activity, User_Preference, Preference, Activity_Preference, User_Activity, Title, User, User_Title, User_Character, Review, CharacterImage, Character
 from django.db import transaction
 from django.db.models import Avg
@@ -339,27 +339,33 @@ class UpdateUserAddress(APIView):
         user_serializer = UserSerializer(request.user)
         return Response({"User": user_serializer.data})
 
+#칭호 업데이트
+class UpdateUserTitle(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def post(self, request, format=None):
+        User.objects.filter(pk=request.user.id).update(title_num_id=request.data.get('title'))
+        title = Title.objects.get(pk=request.data.get('title'))
+        title_serializer = TitleSerializer(title)
+        return Response({"invokedTitle": title_serializer.data})
+
 #선호도(태그) 업데이트
 class UpdateUserPreference(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
 
-        serializer = UserSerializerWithToken(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        tags = request.data.get('tag')  # initial_data는 post로 받은 raw 데이터(헷갈리면 디버깅해보자)
+        User_Preference.objects.filter(user_num_id=2).delete()
+        for tag in tags:  # 배열로 받은 태그 데이터를 하나하나 뽑음
+            User_Preference.objects.create(user_num_id=2, preference_num_id=tag)
+
+        user_tags = Preference.objects.filter(pk__in=tags)
+        preference_serializer = PreferenceSerializer(user_tags, many=True)
+
+        return Response({"invokedTitle": preference_serializer.data})
 
 
-#칭호 업데이트
-class UpdateUserCharacter(APIView):
-    permission_classes = (permissions.AllowAny,)
-    def post(self, request, format=None):
-        serializer = UserSerializerWithToken(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 

@@ -28,8 +28,9 @@ urlpatterns = [
 
     #개발중
     path('updateUserAddress', views.UpdateUserAddress.as_view()), #유저의 주소 업데이트
-    #path('updateUserPreference', views.UpdateUserPreference.as_view()), #유저의 태그 업데이트
-    #path('updateUserTitle', views.SetUserTitle.as_view()), #유저의 대표칭호 업데이트
+    path('updateUserTitle', views.UpdateUserTitle.as_view()), #유저의 대표칭호 업데이트
+    path('updateUserPreference', views.UpdateUserPreference.as_view()), #유저의 태그 업데이트
+
 ]
 
 # Activity.objects.filter(pk=1).update(name='업데이트 되라 ')
