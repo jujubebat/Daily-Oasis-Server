@@ -250,6 +250,11 @@ class FinishQuest(APIView):
         quest_num = request.query_params['quest_num']  #쿼리셋으로 받은 퀘스트 번호
         quest = User_Activity.objects.filter(pk=quest_num)#get에서 filter로 바꿈
         # 유저가 보유한 퀘스트이면서 완료되지 않은 퀘스트일 경우만
+        e=1
+        a=quest.get().user_num_id
+        b=request.user.id
+        c=quest.get().questDone
+        d=1
         if (quest.get().user_num_id == request.user.id and quest.get().questDone == False):
             print("Dfsfdf")
             quest.update(questDone=True)
@@ -284,9 +289,9 @@ class ActivityReview(APIView):
         review = Review.objects.filter(activity_num_id=activity_num)
         review_serializer = ReviewSerializer(review, many=True)
 
-        activity_preference = Activity_Preference.objects.filter(activity_num_id__in=activity_num)
+        activity_preference = Activity_Preference.objects.filter(activity_num_id=activity_num)
         activity_preference_serializer = ActivityPreferenceSerializer(activity_preference, many=True)
-
+        i=1
         return Response({"Activity" : activity_serializer.data, "Reviews" : review_serializer.data,"ActivityPreference": activity_preference_serializer.data})
 
 #리뷰를 작성하게 해줌
@@ -359,7 +364,6 @@ def CurrentUser(request):
 #주소 업데이트
 class UpdateUserAddress(APIView):
     permission_classes = (permissions.AllowAny,)
-    #def post(self, request, format=None):
     def post(self, request, format=None):
         User.objects.filter(pk=request.user.id).update(address=request.data.get('address'))
         User.objects.filter(pk=request.user.id).update(postNum=request.data.get('postNum'))
