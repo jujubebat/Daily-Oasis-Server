@@ -31,8 +31,6 @@ urlpatterns = [
     path('updateUserPreference', views.UpdateUserPreference.as_view()), #유저의 태그 업데이트
 ]
 
-# Activity.objects.filter(pk=1).update(name='업데이트 되라 ')
-
 #API 자동화 문서 라이브러리 관련(django swagger)
 schema_view = get_swagger_view(title='Pastebin API')
 urlpatterns += [

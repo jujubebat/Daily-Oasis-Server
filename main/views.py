@@ -348,7 +348,8 @@ def CurrentUser(request):
     user_serializer = UserSerializer(request.user)
 
     user_character = User_Character.objects.get(user_num_id=request.user)#유저-케릭터 관계 테이블에서 유저의 현재 케릭터 이미지 pk 가져옴
-    characterImage = CharacterImage.objects.get(pk=user_character.num)#유저의 현재 케릭터 이미지 pk로 케릭터이미지 정보 가져옴
+
+    characterImage = User_Character.objects.get(user_num_id=request.user.id)
     characterImage_serializer = CharacterImageSerializer(characterImage) #유저의 케릭터 이미지 정보 직렬화
 
     return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})

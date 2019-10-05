@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="userPreferenceList api 추가">
+    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Crawiling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Crawiling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
@@ -14,32 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="284" column="63" lean-forward="true" selection-start-line="284" selection-start-column="63" selection-end-line="284" selection-end-column="63" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="110" column="4" selection-start-line="110" selection-start-column="4" selection-end-line="110" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="26" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="26" />
+            <state relative-caret-position="17">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -50,10 +31,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-781">
-              <caret line="30" column="84" selection-start-line="30" selection-start-column="84" selection-end-line="30" selection-end-column="84" />
+            <state relative-caret-position="255">
+              <caret line="21" column="56" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="73">
+              <caret line="351" column="64" selection-start-line="351" selection-start-column="64" selection-end-line="351" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Crawiling.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4590">
+              <caret line="274" column="68" selection-start-line="274" selection-start-column="68" selection-end-line="274" selection-end-column="68" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,7 +76,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
+            <state relative-caret-position="85">
               <caret line="5" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
@@ -88,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1045">
-              <caret line="20" column="16" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+            <state>
+              <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -109,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="91" column="60" lean-forward="true" selection-start-line="91" selection-start-column="60" selection-end-line="91" selection-end-column="60" />
+            <state relative-caret-position="102">
+              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -130,7 +135,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>user_item</find>
       <find>activity_jacard_data</find>
       <find>datetime</find>
       <find>grade</find>
@@ -160,6 +164,7 @@
       <find>ActivityPreference</find>
       <find>UserTitle</find>
       <find>PreferenceSerializer</find>
+      <find>ActivityList</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -177,19 +182,19 @@
         <option value="$PROJECT_DIR$/backend/utils.py" />
         <option value="$PROJECT_DIR$/python_library.txt" />
         <option value="$PROJECT_DIR$/temp.py" />
-        <option value="$PROJECT_DIR$/backend/settings.py" />
-        <option value="$PROJECT_DIR$/Crawiling.py" />
         <option value="$PROJECT_DIR$/main/serializers.py" />
-        <option value="$PROJECT_DIR$/main/models.py" />
         <option value="$PROJECT_DIR$/main/urls.py" />
+        <option value="$PROJECT_DIR$/Crawiling.py" />
+        <option value="$PROJECT_DIR$/main/models.py" />
+        <option value="$PROJECT_DIR$/backend/settings.py" />
         <option value="$PROJECT_DIR$/main/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1927" />
-    <option name="width" value="1748" />
-    <option name="height" value="1047" />
+    <option name="x" value="-8" />
+    <option name="width" value="1338" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -213,11 +218,6 @@
               <item name="DailyOaisBackEnd" type="b2602c69:ProjectViewProjectNode" />
               <item name="DailyOaisBackEnd" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DailyOaisBackEnd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DailyOaisBackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -311,13 +311,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565614495831</updated>
-    </task>
-    <task id="LOCAL-00052" summary="-누락파일 추가">
-      <created>1569342255126</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1569342255126</updated>
     </task>
     <task id="LOCAL-00053" summary="-파일생성">
       <created>1569342701338</created>
@@ -655,7 +648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570202876427</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="ActivityReview에 태그정보 리턴 추가">
+      <created>1570205980251</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1570205980251</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TodoView">
@@ -668,23 +668,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1927" y="0" width="1748" height="1047" extended-state="0" />
+    <frame x="-6" y="0" width="1070" height="830" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.15789473" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.2303969" />
       <window_info id="Structure" order="1" sideWeight="0.5016251" side_tool="true" weight="0.19072708" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.16757941" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.415115" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.6140603" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.35744682" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32858709" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.33406353" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32858709" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32858709" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.40746054" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32765958" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -710,7 +710,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="&lt;업데이트 사항(AWS반영 완료)&gt;&#10;-디비 초기화-&gt;샘플 데이터 넣는 작업 필요&#10;-signup : 케릭터 이미지 정보 제공(엑티비티, 리뷰 제공 안되게 수정)&#10;-current_user : 케릭터 이미지 정보 제공&#10;-레벨에 따른 케릭터 변화 로직 추가&#10;-finishQuest, writeReview에서 UpdateUser,NewTitle,NewCharacterImage 데이터 제공 &#10;-writeReview시 고정 경험치 25 제공 &#10;-Activity 평점 계산로직 추가(writeReview로 테스트 바람)&#10;- /allQuestAllocation : 모든 유저의 퀘스트 업데이트 &#10;- /questAllocation : 유저 한명의 퀘스트 업데이트 api(회원가입시 활용 바람) request로 token 보내줘야함&#10;- UTC시간 한국시간으로 변경 / 리뷰작성 시간 속성명 변경 date -&gt; doneTime(finishQeust와 통일)" />
     <MESSAGE value="-" />
     <MESSAGE value="-url 수정" />
     <MESSAGE value="-WriteReview 수정" />
@@ -735,7 +734,8 @@
     <MESSAGE value="업데이트 관련 리턴 데이터명 다음과 같이 수정 : UpdatedUser, UpdatedTitle,UpdatedTag" />
     <MESSAGE value="코드 오타 수정" />
     <MESSAGE value="userPreferenceList api 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="userPreferenceList api 추가" />
+    <MESSAGE value="ActivityReview에 태그정보 리턴 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="ActivityReview에 태그정보 리턴 추가" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -934,10 +934,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="110" column="4" selection-start-line="110" selection-start-column="4" selection-end-line="110" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="56" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Crawiling.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="98" column="34" selection-start-line="98" selection-start-column="34" selection-end-line="98" selection-end-column="34" />
+        <state relative-caret-position="4590">
+          <caret line="274" column="68" selection-start-line="274" selection-start-column="68" selection-end-line="274" selection-end-column="68" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
@@ -961,19 +988,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="91" column="60" lean-forward="true" selection-start-line="91" selection-start-column="60" selection-end-line="91" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
+        <state relative-caret-position="85">
           <caret line="5" selection-start-line="5" selection-end-line="5" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
@@ -981,47 +998,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py">
+    <entry file="file://$PROJECT_DIR$/main/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="110" column="4" selection-start-line="110" selection-start-column="4" selection-end-line="110" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="26" />
+        <state relative-caret-position="102">
+          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1045">
-          <caret line="20" column="16" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+        <state>
+          <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-781">
-          <caret line="30" column="84" selection-start-line="30" selection-start-column="84" selection-end-line="30" selection-end-column="84" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="284" column="63" lean-forward="true" selection-start-line="284" selection-start-column="63" selection-end-line="284" selection-end-column="63" />
+        <state relative-caret-position="73">
+          <caret line="351" column="64" selection-start-line="351" selection-start-column="64" selection-end-line="351" selection-end-column="64" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
