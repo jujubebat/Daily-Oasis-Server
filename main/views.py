@@ -118,28 +118,38 @@ def isAlienate(activity):
         a=1
         tag = Preference.objects.get(pk=activity_tag.preference_num_id)
         if tag.name == '발걸음이_적은':
+            a=1
             return True
     return False
 
+
+#[0]Total exp, [1]questFinishExp, [2]reviewExp, [3]alienateActivityExp
+
 #레벨 보상 관련 로직
 #레벨 1부터시작 / 3업마다 외형 변화 / 12랩이 만랩
-def UpdateLevel(request, isReview, isAlienate):
+def UpdateLevel(request, isReview, isAlienate, expInfoList):
     user = User.objects.get(id=request.user.id)
+    origin_exp = user.exp
 
-    if (isReview == True):
-        user.exp = user.exp + 25
+    if (isReview == True): #리뷰작성시
+        user.exp = user.exp + 35
         user.save()
-    elif(isReview == False):
-        user.exp = user.exp + 100 / (user.level / 1.5)
+        expInfoList[2] += 35
+    elif(isReview == False): #그냥 퀘스트완료시
+        user.exp = user.exp + int(100 / (user.level / 1.5))
         user.save()
+        expInfoList[1] += int(100 / (user.level / 1.5))
 
     if (isAlienate == True): #소외된 관광지인경우
-        user.exp = user.exp + 25
+        user.exp = user.exp + 35
         user.save()
+        expInfoList[3] += 35
 
     elif (isAlienate == False):
         pass
 
+    expInfoList[0] += int(expInfoList[1]+expInfoList[2]+expInfoList[3])
+    a=1
     if(user.exp >= 100):
         user.level += 1
         user.exp %= 100
@@ -198,7 +208,7 @@ def UpdateTitle(request):
         newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=11)
     elif user.level == 7:
         newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=12)
-    elif user.level == 12:
+    elif user.level == 15:
         newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=13)
     else:
         newUserlevelTitle = None
@@ -210,6 +220,7 @@ def UpdateTitle(request):
 
     #획득한 타이틀이 다수일 경우 쿼리셋 합쳐서 반환 https://wayhome25.github.io/django/2017/11/26/merge-queryset/
     return newTitle
+
 
 #레벨 보상 관련 로직
 #레벨 1부터시작 / 3업마다 외형 변화 / 12랩이 만랩
@@ -242,6 +253,8 @@ def UpdateCharacter(request):
 #3.칭호처리 -> 완료퀘스트수, 작성한 댓글수, 레벨 기반 칭호 부여
 #4.최종적으로 UdpateUser, UdpateTitle, UdpateCharacter 3개 데이터 반환
 
+
+
 #퀘스트 완료 처리를 해줌. 퀘스트 완료후 보상 적용이 된 유저의 정보와 새로 받은 칭호 정보 리턴(쿼리셋으로 quest_num 보내줘야함)
 class FinishQuest(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -250,11 +263,7 @@ class FinishQuest(APIView):
         quest_num = request.query_params['quest_num']  #쿼리셋으로 받은 퀘스트 번호
         quest = User_Activity.objects.filter(pk=quest_num)#get에서 filter로 바꿈
         # 유저가 보유한 퀘스트이면서 완료되지 않은 퀘스트일 경우만
-        e=1
-        a=quest.get().user_num_id
-        b=request.user.id
-        c=quest.get().questDone
-        d=1
+
         if (quest.get().user_num_id == request.user.id and quest.get().questDone == False):
             print("Dfsfdf")
             quest.update(questDone=True)
@@ -267,15 +276,22 @@ class FinishQuest(APIView):
 
             activity = Activity.objects.get(pk = quest.get().activity_num_id)
 
-            newUser = UpdateLevel(request, False, isAlienate(activity))
+            alienateActivityExp = 0
+            questFinishExp = 0
+            reviewExp = 0
+
+            expInfoList = [0, 0, 0, 0] # [0]Total exp, [1]questFinishExp, [2]reviewExp, [3]alienateActivityExp
+
+            newUser = UpdateLevel(request, False, isAlienate(activity),expInfoList)
             newTitle= UpdateTitle(request)
             newCharacterImage = UpdateCharacter(request)
+
 
             user_serializer = UserSerializer(newUser)
             title_serializer = TitleSerializer(newTitle, many=True)
             newCharacterImage_serializer = CharacterImageSerializer(newCharacterImage)
 
-            return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data })
+            return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data ,"TotalExp" : expInfoList[0], "QuestFinishExp":expInfoList[1], "ReviewExp":expInfoList[2],"AlienateActivityExp":expInfoList[3]})
         return Response(status=status.HTTP_400_BAD_REQUEST) #유저가 보유한 퀘스트가 아니거나 이미 완료한 퀘스트면 400리턴
 
 #쿼리셋으로 activity_num 번호 받으면 해당하는 activity와 activity에 대한 review 데이터 제공(쿼리셋으로 activity_num 보내줘야함)
@@ -311,7 +327,9 @@ class WriteReview(APIView):
                 review.date = datetime.datetime.now().date()
                 review.user_num_id = request.user.id
 
-                newUser = UpdateLevel(request, True, False)#isReview = True, isAlienate = Fase, '발걸음이_적은' 태그 추가 경험치는 findQuest일 경우에만
+                expInfoList = [0, 0, 0, 0]
+
+                newUser = UpdateLevel(request, True, False, expInfoList)#isReview = True, isAlienate = Fase, '발걸음이_적은' 태그 추가 경험치는 findQuest일 경우에만
                 newTitle = UpdateTitle(request)
                 newCharacterImage = UpdateCharacter(request)
                 newCharacterImage_serializer = CharacterImageSerializer(newCharacterImage)
@@ -328,7 +346,8 @@ class WriteReview(APIView):
                 activity_preference = Activity_Preference.objects.filter(activity_num_id=request.data.get('activity_num'))
                 activity_preference_serializer = ActivityPreferenceSerializer(activity_preference, many=True)
 
-                return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data,"ActivityPreference": activity_preference_serializer.data})
+                return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data,"ActivityPreference": activity_preference_serializer.data,
+                                 "TotalExp":expInfoList[0],"QuestFinishExp":expInfoList[1],"ReviewExp":expInfoList[2],"AlienateActivityExp":expInfoList[3]})
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -346,6 +365,8 @@ class Signup(APIView):
 
             return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 #현재 유저 정보 확인
 @api_view(['GET'])

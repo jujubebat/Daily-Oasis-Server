@@ -54,6 +54,8 @@ urlpatterns += [
 
 '''
 <업데이트 진행중(AWS반영 미완료)>
+-/finishQuest, /writeReview 시 획득 exp 정보 반환 : Total exp(총획득량), questFinishExp(퀘스트완료 경험치), reviewExp(리뷰작성경험치), alienateActivityExp(소외관광지 추가 경험치)
+-만렙 15로 조정 그에따른 경험치 부여 조정 : 소외된 관광지 방문시 exp 25 -> 35 상향, 리뷰 ex24->35 상향 / 15렙 달성시 만렙칭호 부여
 '''
 
 '''
