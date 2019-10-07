@@ -10,7 +10,7 @@ urlpatterns = [
     path('silk', include('silk.urls', namespace='silk')),
     path('allQuestAllocation', views.AllQuestAllocation), #모든 유저에게 새로운 퀘스트 할당
     path('questAllocation', views.QuestAllocation), #한 명의 유저에게 새로운 퀘스트 할당
-    #[개발완료]
+
     #토큰 필요
     path('signup', Signup.as_view()), #검수완료/ 회원가입
     path('writeReview', views.WriteReview.as_view()),  # 검수완료/ 리뷰작성로직 실행
@@ -21,14 +21,14 @@ urlpatterns = [
     path('activityReview', views.ActivityReview.as_view()), #검수완료/ 엑티비티와 엑티비티에 달려있는 댓글 데이터 제공 (두 개의 모델을 하나로 직렬화) /activityReview?activity_num=1
     path('userTitleList', views.UserTitle.as_view()), #검수완료 유저의 칭호목록
     path('userPreferenceList', views.UserPreference.as_view()), #검수완료 유저의 칭호목록
+    path('updateUserAddress', views.UpdateUserAddress.as_view()), #유저의 주소 업데이트
+    path('updateUserTitle', views.UpdateUserTitle.as_view()), #유저의 대표칭호 업데이트
+    path('updateUserPreference', views.UpdateUserPreference.as_view()), #유저의 태그 업데이트
     #토큰 필요없음
     path('login', obtain_jwt_token), #검수완료 / 로그인
     path('activityList', views.ActivityList.as_view()), #검수완료 / 모든 엑티비티 데이터 제공
     path('characterList',views.CharacterList.as_view()), #전체 케릭터정보(케릭터이미지정보포함)제공
     path('titleList', views.TitleList.as_view()), #전체 칭호 데이터 제공
-    path('updateUserAddress', views.UpdateUserAddress.as_view()), #유저의 주소 업데이트
-    path('updateUserTitle', views.UpdateUserTitle.as_view()), #유저의 대표칭호 업데이트
-    path('updateUserPreference', views.UpdateUserPreference.as_view()), #유저의 태그 업데이트
 ]
 
 #API 자동화 문서 라이브러리 관련(django swagger)
@@ -54,8 +54,7 @@ urlpatterns += [
 
 '''
 <업데이트 진행중(AWS반영 미완료)>
--/finishQuest, /writeReview 시 획득 exp 정보 반환 : Total exp(총획득량), questFinishExp(퀘스트완료 경험치), reviewExp(리뷰작성경험치), alienateActivityExp(소외관광지 추가 경험치)
--만렙 15로 조정 그에따른 경험치 부여 조정 : 소외된 관광지 방문시 exp 25 -> 35 상향, 리뷰 ex24->35 상향 / 15렙 달성시 만렙칭호 부여
+
 '''
 
 '''
@@ -79,6 +78,8 @@ urlpatterns += [
 - /questAllocation : 유저 한명의 퀘스트 업데이트 api(회원가입시 활용 바람) request로 token 보내줘야함
 - UTC시간 한국시간으로 변경 / 리뷰작성 시간 속성명 변경 date -> doneTime(finishQeust와 통일)
 - /api_doc 이름수정 -> /apiDocument
+-/finishQuest, /writeReview 시 획득 exp 정보 반환 : Total exp(총획득량), questFinishExp(퀘스트완료 경험치), reviewExp(리뷰작성경험치), alienateActivityExp(소외관광지 추가 경험치)
+-만렙 15로 조정 그에따른 경험치 부여 조정 : 소외된 관광지 방문시 exp 25 -> 35 상향, 리뷰 ex24->35 상향 / 15렙 달성시 만렙칭호 부여
 '''
 
 '''
