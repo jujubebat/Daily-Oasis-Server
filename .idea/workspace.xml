@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="-/finishQuest, /writeReview 시 획득 exp 정보 반환 : Total exp(총획득량), questFinishExp(퀘스트완료 경험치), reviewExp(리뷰작성경험치), alienateActivityExp(소외관광지 추가 경험치)&#10;-만렙 15로 조정 그에따른 경험치 부여 조정 : 소외된 관광지 방문시 exp 25 -&gt; 35 상향, 리뷰 ex24-&gt;35 상향 / 15렙 달성시 만렙칭호 부여">
-      <change afterPath="$PROJECT_DIR$/backend/media/레벨칭호1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/레벨칭호2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/레벨칭호3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/리뷰칭호1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/리뷰칭호2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/리뷰칭호3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/리뷰칭호4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/리뷰칭호5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/퀘스트칭호1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/퀘스트칭호2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/퀘스트칭호3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/퀘스트칭호4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/퀘스트칭호5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Crawiling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Crawiling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/media/a.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/media/camel.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/media/ex.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/media/x.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
-    </list>
+    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,10 +22,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-150">
+            <state relative-caret-position="-4503">
               <caret line="303" selection-start-line="303" selection-end-line="303" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -75,9 +54,21 @@
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호5.png">
           <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="59">
+              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="59" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -88,15 +79,6 @@
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ReadMe">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -182,8 +164,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1630" />
-    <option name="y" value="207" />
+    <option name="x" value="-1738" />
+    <option name="y" value="70" />
     <option name="width" value="1152" />
     <option name="height" value="618" />
   </component>
@@ -204,12 +186,6 @@
               <item name="DailyOaisBackEnd" type="b2602c69:ProjectViewProjectNode" />
               <item name="DailyOaisBackEnd" type="462c0819:PsiDirectoryNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DailyOaisBackEnd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DailyOaisBackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DailyOaisBackEnd" type="b2602c69:ProjectViewProjectNode" />
@@ -308,13 +284,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565614495831</updated>
-    </task>
-    <task id="LOCAL-00056" summary="-좌표값추가">
-      <created>1569344806398</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1569344806398</updated>
     </task>
     <task id="LOCAL-00057" summary="-개발 완료 api 테스트 및 추가 개발 완료">
       <created>1569387183539</created>
@@ -652,7 +621,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570368054878</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="이미지추가">
+      <created>1570439736351</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1570439736352</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TodoView">
@@ -665,14 +641,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1630" y="207" width="1152" height="618" extended-state="0" />
+    <frame x="-1280" y="50" width="1152" height="618" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.41202873" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.41202873" />
       <window_info id="Structure" order="1" sideWeight="0.5016251" side_tool="true" weight="0.19072708" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17561984" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.17561984" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41949618" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -706,7 +683,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- /current_user -&gt; /currentUser&#10;- Activity mapx, mapy 속성 User와 통일&#10;- /allQuestAllocation, /questAllocation : 근거리순으로 추천하는 기능 추가 / 이전에 완료한 퀘스트 추천하지 않는 기능 추가&#10;- /finishQest : '발걸음이_적은' 태그가 달려있을 경우 exp +25 추가로 적용 &#10;- 새로운 api characterList/ : 모든 케릭터 정보 제공&#10;- 새로운 api titleList/ : 모든 칭호 정보제공" />
     <MESSAGE value="디비교체" />
     <MESSAGE value="makemigartions 다시함" />
     <MESSAGE value="QuestAllocation 수정" />
@@ -731,7 +707,8 @@
     <MESSAGE value="CurrentUser 오류수정" />
     <MESSAGE value="ActivityReview 오류수정" />
     <MESSAGE value="-/finishQuest, /writeReview 시 획득 exp 정보 반환 : Total exp(총획득량), questFinishExp(퀘스트완료 경험치), reviewExp(리뷰작성경험치), alienateActivityExp(소외관광지 추가 경험치)&#10;-만렙 15로 조정 그에따른 경험치 부여 조정 : 소외된 관광지 방문시 exp 25 -&gt; 35 상향, 리뷰 ex24-&gt;35 상향 / 15렙 달성시 만렙칭호 부여" />
-    <option name="LAST_COMMIT_MESSAGE" value="-/finishQuest, /writeReview 시 획득 exp 정보 반환 : Total exp(총획득량), questFinishExp(퀘스트완료 경험치), reviewExp(리뷰작성경험치), alienateActivityExp(소외관광지 추가 경험치)&#10;-만렙 15로 조정 그에따른 경험치 부여 조정 : 소외된 관광지 방문시 exp 25 -&gt; 35 상향, 리뷰 ex24-&gt;35 상향 / 15렙 달성시 만렙칭호 부여" />
+    <MESSAGE value="이미지추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="이미지추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1031,16 +1008,6 @@
     <entry file="file://$PROJECT_DIR$/backend/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ReadMe">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1078,16 +1045,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-150">
-          <caret line="303" selection-start-line="303" selection-end-line="303" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호2.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1102,6 +1059,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호5.png">
       <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4503">
+          <caret line="303" selection-start-line="303" selection-end-line="303" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
