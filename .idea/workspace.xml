@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="" />
+    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/media/사막여우1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/media/사막여우2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/media/사막여우3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/media/사막여우4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/media/사막여우5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/media/선인장1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/media/선인장2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/media/선인장3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/media/선인장4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/media/선인장5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/쿼카1.png" beforeDir="false" afterPath="$PROJECT_DIR$/backend/media/쿼카1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/쿼카2.png" beforeDir="false" afterPath="$PROJECT_DIR$/backend/media/쿼카2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/쿼카3.png" beforeDir="false" afterPath="$PROJECT_DIR$/backend/media/쿼카3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/쿼카4.png" beforeDir="false" afterPath="$PROJECT_DIR$/backend/media/쿼카4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/쿼카5.png" beforeDir="false" afterPath="$PROJECT_DIR$/backend/media/쿼카5.png" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
+            <state relative-caret-position="901">
               <caret line="59" column="3" selection-start-line="59" selection-start-column="3" selection-end-line="59" selection-end-column="3" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -22,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4503">
-              <caret line="303" selection-start-line="303" selection-end-line="303" />
+            <state relative-caret-position="9248">
+              <caret line="557" column="43" selection-start-line="557" selection-start-column="43" selection-end-line="557" selection-end-column="43" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -59,11 +76,11 @@
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="59" />
+            <state relative-caret-position="211">
+              <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -74,7 +91,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Crawiling.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="2584">
               <caret line="156" column="53" selection-start-line="156" selection-start-column="53" selection-end-line="156" selection-end-column="53" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
@@ -163,11 +180,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1738" />
-    <option name="y" value="70" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1529" />
+    <option name="y" value="94" />
     <option name="width" value="1152" />
-    <option name="height" value="618" />
+    <option name="height" value="627" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -175,6 +192,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,13 +208,13 @@
             <path>
               <item name="DailyOaisBackEnd" type="b2602c69:ProjectViewProjectNode" />
               <item name="DailyOaisBackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -204,13 +222,13 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bbwwp\PycharmProjects\DailyOaisBackEnd\backend\media" />
+      <recent name="C:\Users\bbwwp\PycharmProjects\DailyOaisBackEnd" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bbwwp\PycharmProjects\DailyOaisBackEnd\backend\media" />
       <recent name="C:\Users\bbwwp\PycharmProjects\DailyOaisBackEnd\static" />
-      <recent name="C:\Users\bbwwp\PycharmProjects\DailyOaisBackEnd" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\bbwwp\PycharmProjects\DailyOaisBackEnd\backend\media" />
       <recent name="C:\Users\bbwwp\PycharmProjects\DailyOaisBackEnd" />
     </key>
   </component>
@@ -284,13 +302,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565614495831</updated>
-    </task>
-    <task id="LOCAL-00057" summary="-개발 완료 api 테스트 및 추가 개발 완료">
-      <created>1569387183539</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1569387183540</updated>
     </task>
     <task id="LOCAL-00058" summary="-writeReview 조건설정및 DoneQuest, CurrnetQuest 수정">
       <created>1569399155234</created>
@@ -628,7 +639,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570439736352</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="쿼카 케릭터 이미지추가">
+      <created>1570472556157</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1570472556157</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TodoView">
@@ -641,15 +659,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1280" y="50" width="1152" height="618" extended-state="0" />
-    <editor active="true" />
+    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.41202873" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.24183351" />
       <window_info id="Structure" order="1" sideWeight="0.5016251" side_tool="true" weight="0.19072708" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.17561984" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35950413" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41949618" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -683,7 +700,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="디비교체" />
     <MESSAGE value="makemigartions 다시함" />
     <MESSAGE value="QuestAllocation 수정" />
     <MESSAGE value="QuestAllocation 수정2" />
@@ -708,7 +724,8 @@
     <MESSAGE value="ActivityReview 오류수정" />
     <MESSAGE value="-/finishQuest, /writeReview 시 획득 exp 정보 반환 : Total exp(총획득량), questFinishExp(퀘스트완료 경험치), reviewExp(리뷰작성경험치), alienateActivityExp(소외관광지 추가 경험치)&#10;-만렙 15로 조정 그에따른 경험치 부여 조정 : 소외된 관광지 방문시 exp 25 -&gt; 35 상향, 리뷰 ex24-&gt;35 상향 / 15렙 달성시 만렙칭호 부여" />
     <MESSAGE value="이미지추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="이미지추가" />
+    <MESSAGE value="쿼카 케릭터 이미지추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="쿼카 케릭터 이미지추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -933,9 +950,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/media/camel.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/media/camel.jpg" />
     <entry file="file://$PROJECT_DIR$/temp.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1955">
@@ -1015,19 +1030,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="901">
           <caret line="59" column="3" selection-start-line="59" selection-start-column="3" selection-end-line="59" selection-end-column="3" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -1035,20 +1040,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Crawiling.py">
+    <entry file="file://$PROJECT_DIR$/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="156" column="53" selection-start-line="156" selection-start-column="53" selection-end-line="156" selection-end-column="53" />
+        <state relative-caret-position="9248">
+          <caret line="557" column="43" selection-start-line="557" selection-start-column="43" selection-end-line="557" selection-end-column="43" />
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호2.png">
+    <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호1.png">
+    <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호2.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호3.png">
@@ -1060,22 +1065,32 @@
     <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호5.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/settings.py">
+    <entry file="file://$PROJECT_DIR$/Crawiling.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="59" />
+        <state relative-caret-position="2584">
+          <caret line="156" column="53" selection-start-line="156" selection-start-column="53" selection-end-line="156" selection-end-column="53" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views.py">
+    <entry file="file://$PROJECT_DIR$/main/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4503">
-          <caret line="303" selection-start-line="303" selection-end-line="303" />
+        <state relative-caret-position="969">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
