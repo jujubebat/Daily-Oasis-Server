@@ -358,9 +358,7 @@ class Signup(APIView):
         user_serializer = UserSerializerWithToken(data=request.data)
         if user_serializer.is_valid():
             user_serializer.save()
-            #b=user_serializer.instance.character_num_id
             characterImage = CharacterImage.objects.get(level=1, character_num_id=user_serializer.instance.character_num_id)
-            newUserCharacter = User_Character.objects.create(characterImage_num_id=characterImage.num, user_num_id=user_serializer.instance.id)
             characterImage_serializer=CharacterImageSerializer(characterImage)
 
             return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
@@ -372,10 +370,9 @@ class Signup(APIView):
 @api_view(['GET'])
 def CurrentUser(request):
     user_serializer = UserSerializer(request.user)
-
-    user_character = User_Character.objects.get(user_num_id=request.user)#유저-케릭터 관계 테이블에서 유저의 현재 케릭터 이미지 pk 가져옴
-
-    characterImage = User_Character.objects.get(user_num_id=request.user.id)
+    user_character = User_Character.objects.get(user_num_id=request.user.id)
+    a=1
+    characterImage = CharacterImage.objects.get(pk=user_character.characterImage_num_id)
     characterImage_serializer = CharacterImageSerializer(characterImage) #유저의 케릭터 이미지 정보 직렬화
 
     return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
