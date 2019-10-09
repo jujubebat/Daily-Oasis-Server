@@ -24,6 +24,7 @@ urlpatterns = [
     path('updateUserAddress', views.UpdateUserAddress.as_view()), #유저의 주소 업데이트
     path('updateUserTitle', views.UpdateUserTitle.as_view()), #유저의 대표칭호 업데이트
     path('updateUserPreference', views.UpdateUserPreference.as_view()), #유저의 태그 업데이트
+    path('updateUserNickname', views.UpdateUserNickname.as_view()), #유저의 닉네임 업데이트
     #토큰 필요없음
     path('login', obtain_jwt_token), #검수완료 / 로그인
     path('activityList', views.ActivityList.as_view()), #검수완료 / 모든 엑티비티 데이터 제공

@@ -424,6 +424,15 @@ def CurrentUser(request):
 
 
 #주소 업데이트
+class UpdateUserNickname(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def post(self, request, format=None):
+        User.objects.filter(pk=request.user.id).update(address=request.data.get('nickName'))
+        user_serializer = UserSerializer(request.user)
+        return Response({"UpdatedUser": user_serializer.data})
+
+
+#주소 업데이트
 class UpdateUserAddress(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="367" column="37" lean-forward="true" selection-start-line="367" selection-start-column="37" selection-end-line="367" selection-end-column="37" />
+            <state relative-caret-position="185">
+              <caret line="424" lean-forward="true" selection-start-line="424" selection-end-line="424" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -62,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="27" column="48" lean-forward="true" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+            <state relative-caret-position="214">
+              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -89,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
+            <state relative-caret-position="347">
+              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -134,8 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Set</find>
-      <find>decimal</find>
       <find>Pref</find>
       <find>UpdateUserAddress</find>
       <find>ActivityPreferenceSerializer</find>
@@ -164,6 +162,8 @@
       <find>Wr</find>
       <find>Dfsfdf</find>
       <find>request.user.id</find>
+      <find>Update</find>
+      <find>UpdateUser</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -183,16 +183,16 @@
         <option value="$PROJECT_DIR$/backend/settings.py" />
         <option value="$PROJECT_DIR$/Crawiling.py" />
         <option value="$PROJECT_DIR$/main/models.py" />
-        <option value="$PROJECT_DIR$/main/urls.py" />
         <option value="$PROJECT_DIR$/temp.py" />
         <option value="$PROJECT_DIR$/main/serializers.py" />
         <option value="$PROJECT_DIR$/main/views.py" />
+        <option value="$PROJECT_DIR$/main/urls.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-1927" />
-    <option name="width" value="1163" />
+    <option name="width" value="1185" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -305,20 +305,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565614495831</updated>
-    </task>
-    <task id="LOCAL-00074" summary="-WriteReview 완료시 UpdateUser와 NewTitle 반환함">
-      <created>1569603749745</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1569603749745</updated>
-    </task>
-    <task id="LOCAL-00075" summary="&lt;업데이트 사항(AWS반영 완료)&gt;&#10;-디비 초기화-&gt;샘플 데이터 넣는 작업 필요&#10;-signup : 케릭터 이미지 정보 제공(엑티비티, 리뷰 제공 안되게 수정)&#10;-current_user : 케릭터 이미지 정보 제공&#10;-레벨에 따른 케릭터 변화 로직 추가&#10;-finishQuest, writeReview에서 UpdateUser,NewTitle,NewCharacterImage 데이터 제공 &#10;-writeReview시 고정 경험치 25 제공 &#10;-Activity 평점 계산로직 추가(writeReview로 테스트 바람)&#10;- /allQuestAllocation : 모든 유저의 퀘스트 업데이트 &#10;- /questAllocation : 유저 한명의 퀘스트 업데이트 api(회원가입시 활용 바람) request로 token 보내줘야함&#10;- UTC시간 한국시간으로 변경 / 리뷰작성 시간 속성명 변경 date -&gt; doneTime(finishQeust와 통일)">
-      <created>1569813569762</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1569813569763</updated>
     </task>
     <task id="LOCAL-00076" summary="-">
       <created>1569814096694</created>
@@ -649,7 +635,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570625852262</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="writeReview 오류 수정10">
+      <created>1570626194008</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1570626194008</updated>
+    </task>
+    <task id="LOCAL-00124" summary="writeReview 오류 수정11">
+      <created>1570626892130</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1570626892130</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TodoView">
@@ -662,16 +662,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1927" y="0" width="1163" height="1047" extended-state="0" />
+    <frame x="-1927" y="0" width="1185" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.19822222" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.19442023" />
       <window_info id="Structure" order="1" sideWeight="0.5016251" side_tool="true" weight="0.19072708" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.24424973" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.42935377" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.17524645" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3274918" />
@@ -704,8 +704,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="currentQeust, DoneQuest, activityReview 시 태그목록 반환" />
-    <MESSAGE value="업데이트 관련 리턴 데이터명 다음과 같이 수정 : UpdatedUser, UpdatedTitle,UpdatedTag" />
     <MESSAGE value="코드 오타 수정" />
     <MESSAGE value="userPreferenceList api 추가" />
     <MESSAGE value="ActivityReview에 태그정보 리턴 추가" />
@@ -729,7 +727,9 @@
     <MESSAGE value="writeReview 오류 수정7" />
     <MESSAGE value="writeReview 오류 수정8" />
     <MESSAGE value="writeReview 오류 수정9" />
-    <option name="LAST_COMMIT_MESSAGE" value="writeReview 오류 수정9" />
+    <MESSAGE value="writeReview 오류 수정10" />
+    <MESSAGE value="writeReview 오류 수정11" />
+    <option name="LAST_COMMIT_MESSAGE" value="writeReview 오류 수정11" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -746,18 +746,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main/views.py</url>
-          <line>369</line>
+          <line>368</line>
           <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main/views.py</url>
-          <line>368</line>
+          <line>367</line>
           <option name="timeStamp" value="109" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main/views.py</url>
-          <line>370</line>
+          <line>369</line>
           <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/views.py</url>
+          <line>365</line>
+          <option name="timeStamp" value="111" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1041,20 +1046,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="27" column="48" lean-forward="true" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
+        <state relative-caret-position="347">
+          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -1063,10 +1058,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="367" column="37" lean-forward="true" selection-start-line="367" selection-start-column="37" selection-end-line="367" selection-end-column="37" />
+        <state relative-caret-position="185">
+          <caret line="424" lean-forward="true" selection-start-line="424" selection-end-line="424" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
