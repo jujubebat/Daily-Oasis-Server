@@ -227,8 +227,12 @@ def UpdateTitle(request):
     #후기 작성수 기반 칭호 부여
     UsersReview = Review.objects.filter(user_num_id=user_id)
     UsersReviewNum = Review.objects.filter(user_num_id=user_id).count()
+    print('UsersReviewNum')
+    print(UsersReviewNum)
+
     if UsersReviewNum == 1:
         newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=6)
+        print('if UsersReviewNum == 1:')
     elif UsersReviewNum == 4:
         newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=7)
     elif UsersReviewNum == 6:
