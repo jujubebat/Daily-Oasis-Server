@@ -232,7 +232,6 @@ def UpdateTitle(request):
 
     if UsersReviewNum == 1:
         newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=6)
-        print('if UsersReviewNum == 1:')
     elif UsersReviewNum == 4:
         newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=7)
     elif UsersReviewNum == 6:
@@ -309,7 +308,7 @@ class FinishQuest(APIView):
         # 유저가 보유한 퀘스트이면서 완료되지 않은 퀘스트일 경우만
 
         if (quest.get().user_num_id == request.user.id and quest.get().questDone == False):
-            #print("Dfsfdf")
+            print("Dfsfdf")
             quest.update(questDone=True)
 
             now = datetime.datetime.now()
@@ -370,8 +369,7 @@ class WriteReview(APIView):
                 review = serializer.instance
                 review.date = datetime.datetime.now().date()
                 review.user_num_id = request.user.id
-                review.save()
-
+                #review.save()
                 expInfoList = [0, 0, 0, 0]
 
                 newUser = UpdateLevel(request, True, False, expInfoList)#isReview = True, isAlienate = Fase, '발걸음이_적은' 태그 추가 경험치는 findQuest일 경우에만
