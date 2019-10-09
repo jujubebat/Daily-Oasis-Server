@@ -369,7 +369,8 @@ class WriteReview(APIView):
                 serializer.save()
                 review = serializer.instance
                 review.date = datetime.datetime.now().date()
-                #review.user_num_id = request.user.id
+                review.user_num_id = request.user.id
+                review.save()
 
                 expInfoList = [0, 0, 0, 0]
 
