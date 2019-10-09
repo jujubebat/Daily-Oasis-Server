@@ -10,7 +10,6 @@ urlpatterns = [
     path('silk', include('silk.urls', namespace='silk')),
     path('allQuestAllocation', views.AllQuestAllocation), #모든 유저에게 새로운 퀘스트 할당
     path('questAllocation', views.QuestAllocation), #한 명의 유저에게 새로운 퀘스트 할당
-
     #토큰 필요
     path('signup', Signup.as_view()), #검수완료/ 회원가입
     path('writeReview', views.WriteReview.as_view()),  # 검수완료/ 리뷰작성로직 실행
