@@ -89,7 +89,7 @@ class ActivityList(APIView):
     def get(self, request):
         data = Activity.objects.all()
         serializer = ActivitySerializer(data, many=True)
-
+        a=1
         return Response({"ActivityList" : serializer.data})#, "sadddsas" : serializer2.data})
 
 
@@ -434,7 +434,8 @@ class Signup(APIView):
             user_serializer.save()
             characterImage = CharacterImage.objects.get(level=1, character_num_id=user_serializer.instance.character_num_id)
             characterImage_serializer=CharacterImageSerializer(characterImage)
-            User_Character.objects.create(user_num_id=request.user.id, characterImage_num_id=characterImage.num)
+            User_Character.objects.create(user_num_id=user_serializer.data['id'], characterImage_num_id=characterImage.num)
+
             return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

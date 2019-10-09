@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="CurrentUser 오류수정">
+    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/temp.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,11 +16,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="151" column="29" lean-forward="true" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
+            <state relative-caret-position="293">
+              <caret line="435" column="78" selection-start-line="435" selection-start-column="78" selection-end-line="435" selection-end-column="78" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/silk/middleware.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="65" selection-start-line="65" selection-end-line="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="493" selection-start-line="493" selection-end-line="493" />
             </state>
           </provider>
         </entry>
@@ -41,8 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/temp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="152" column="63" selection-start-line="152" selection-start-column="63" selection-end-line="152" selection-end-column="63" />
+            <state relative-caret-position="287">
+              <caret line="137" column="51" selection-start-line="137" selection-start-column="51" selection-end-line="137" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -50,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="31" column="67" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
+            <state relative-caret-position="380">
+              <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -60,15 +74,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호5.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="173">
+              <caret line="24" column="59" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="59" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -79,22 +88,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-266">
-              <caret line="37" column="52" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="52" />
+            <state relative-caret-position="538">
+              <caret line="154" column="69" selection-start-line="154" selection-start-column="69" selection-end-line="154" selection-end-column="69" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -136,9 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>isAlienate</find>
-      <find>깡</find>
-      <find>TitleList</find>
       <find>user_num</find>
       <find>jacard_similarity</find>
       <find>SetUserTitle</find>
@@ -146,8 +140,6 @@
       <find>decimal</find>
       <find>Pref</find>
       <find>UpdateUserAddress</find>
-      <find>User_Character</find>
-      <find>Sign</find>
       <find>ActivityPreferenceSerializer</find>
       <find>activity_num_id</find>
       <find>tel</find>
@@ -166,6 +158,11 @@
       <find>items</find>
       <find>query_params</find>
       <find>activity_items</find>
+      <find>annotate</find>
+      <find>User_Character</find>
+      <find>create</find>
+      <find>Sign</find>
+      <find>activityList</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,17 +181,17 @@
         <option value="$PROJECT_DIR$/python_library.txt" />
         <option value="$PROJECT_DIR$/backend/settings.py" />
         <option value="$PROJECT_DIR$/Crawiling.py" />
-        <option value="$PROJECT_DIR$/temp.py" />
         <option value="$PROJECT_DIR$/main/serializers.py" />
         <option value="$PROJECT_DIR$/main/models.py" />
         <option value="$PROJECT_DIR$/main/urls.py" />
+        <option value="$PROJECT_DIR$/temp.py" />
         <option value="$PROJECT_DIR$/main/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-1927" />
-    <option name="width" value="1039" />
+    <option name="width" value="1317" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -312,20 +309,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565614495831</updated>
-    </task>
-    <task id="LOCAL-00060" summary="-디비 수정">
-      <created>1569399305320</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1569399305320</updated>
-    </task>
-    <task id="LOCAL-00061" summary="-CurrentQuest, DoneQuest 수정 및 User_Activity 모델 수정">
-      <created>1569466952113</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1569466952114</updated>
     </task>
     <task id="LOCAL-00062" summary="-디비 RDS로 교체">
       <created>1569467180554</created>
@@ -656,7 +639,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570555302272</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="activityListByPreference 추가">
+      <created>1570604021516</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1570604021517</updated>
+    </task>
+    <task id="LOCAL-00110" summary="signup 수정">
+      <created>1570618150458</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1570618150459</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TodoView">
@@ -669,19 +666,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1927" y="0" width="1039" height="1047" extended-state="0" />
+    <frame x="-1927" y="0" width="1317" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.16683316" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.17435497" />
       <window_info id="Structure" order="1" sideWeight="0.5016251" side_tool="true" weight="0.19072708" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28148958" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.31215772" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36582693" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.381161" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32765958" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3274918" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.33406353" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.20481928" />
@@ -711,8 +708,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="QuestAllocation 수정" />
-    <MESSAGE value="QuestAllocation 수정2" />
     <MESSAGE value="QuestAllocation 수정3" />
     <MESSAGE value="ReviewSerializer 수정" />
     <MESSAGE value="ReviewSerializer 수정4" />
@@ -736,9 +731,30 @@
     <MESSAGE value="쿼카 케릭터 이미지추가" />
     <MESSAGE value="선인장, 사막여우 케릭터 이미지추가" />
     <MESSAGE value="CurrentUser 오류수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="CurrentUser 오류수정" />
+    <MESSAGE value="activityListByPreference 추가" />
+    <MESSAGE value="signup 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="signup 수정" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/views.py</url>
+          <line>118</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/views.py</url>
+          <line>107</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/views.py</url>
+          <line>126</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="quest.query" />
@@ -919,13 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1615">
-          <caret line="110" column="4" selection-start-line="110" selection-start-column="4" selection-end-line="110" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/views/generic/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
@@ -978,37 +987,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="152" column="63" selection-start-line="152" selection-start-column="63" selection-end-line="152" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="15" selection-start-column="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-266">
-          <caret line="37" column="52" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1022,20 +1004,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/rest_framework/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="493" selection-start-line="493" selection-end-line="493" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/silk/middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="154" column="69" selection-start-line="154" selection-start-column="69" selection-end-line="154" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="137" column="51" selection-start-line="137" selection-start-column="51" selection-end-line="137" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="31" column="67" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
+        <state relative-caret-position="380">
+          <caret line="32" column="1" lean-forward="true" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="24" column="59" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="151" column="29" lean-forward="true" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
+        <state relative-caret-position="293">
+          <caret line="435" column="78" selection-start-line="435" selection-start-column="78" selection-end-line="435" selection-end-column="78" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
