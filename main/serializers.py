@@ -96,7 +96,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         instance.text = text
         instance.grade = grade
         instance.activity_num_id = activity_num.num
-        instance.user_num_id = user_id
+        instance.user_num_id = 1
         instance.save()
 
         return instance
