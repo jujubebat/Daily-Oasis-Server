@@ -152,3 +152,25 @@ serializer = ActivitySerializer(data, many=True)
 print(data)
 return Response({"ActivityListByPreference" : serializer.data})
 '''
+
+'''
+class ActivityListByPreference(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def get(self, request):
+
+        request_tag = [6, 7, 8]
+        request_len = len(request_tag)
+        activity_list = []
+        activity_items = Activity.objects.filter()
+        activity_nums = activity_items.values_list('num', flat=True)
+        for activity_num in activity_nums:
+            print(activity_num)
+            preference_nums = Activity_Preference.objects.filter(activity_num_id=activity_num)
+            items =preference_nums.filter(preference_num_id__in=request_tag).values_list('preference_num_id', flat=True)
+            cnt = list(items)
+            a=1
+            if(request_tag==list(items)):
+                print('포함합니다.')
+                activity_list.append(activity_num)
+'''

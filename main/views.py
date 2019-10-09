@@ -12,6 +12,7 @@ from django.db import transaction
 from django.db.models import Avg
 from scipy.spatial import distance
 import pprint, re
+from django.db.models import Count
 
 #api.dailyoasis.shop
 
@@ -97,9 +98,44 @@ class ActivityList(APIView):
 #엑티비티 번호 리스트로 엑티비티 직렬화
 #http://127.0.0.1:8000/activityListByPreference?tag1=0&tag2=0&tag3=0&tag4=0&tag5=0
 
+# class ActivityListByPreference(APIView):
+#     permission_classes = (permissions.AllowAny,)
+#     def get(self, request):
+#
+#
+#         request_tag = [6, 7, 8]
+#         request_tag = Activity_Preference.objects.filter(preference_num_id__in=request_tag).values_list('preference_num_id',flat=True).distinct()
+#         b=1
+#         activity_list = []
+#         activity_items = Activity.objects.filter()
+#         activity_nums=activity_items.values_list('num', flat=True)
+#
+#         b=1
+#         for activity_num in activity_nums:
+#             print(activity_num)
+#             activity_preference_items = Activity_Preference.objects.filter(activity_num_id=activity_num)
+#             activity_tag= activity_preference_items.values_list('preference_num_id',flat=True)
+#
+#             a=1
+#             #activity_tag=list(preference_nums)
+#             #
+#             #intersection = set(request_tag).intersection(set(activity_tag))
+#             #inter_list = list(intersection)
+#             #inter_list.sort()
+#             for tag in activity_tag:
+#
+#             c=1
+#             # if (request_tag == preference_nums):
+#             #      print('포함합니다.')
+#             #      activity_list.append(activity_num)
+#
+#         print('끝')
+#         data = Activity.objects.filter(pk__in=activity_list)
+#         serializer = ActivitySerializer(data, many=True)
+#         print(data)
+#
+#         return Response({"ActivityListByPreference" : serializer.data})
 
-
-#취향별 엑티비티 리스트 제공
 class ActivityListByPreference(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
@@ -114,7 +150,7 @@ class ActivityListByPreference(APIView):
             activity_tag = []
             preference_nums= activity_preference_items.values_list('preference_num_id',flat=True)
             activity_tag=list(preference_nums)
-            
+
             intersection = set([])
             intersection = set(request_tag).intersection(set(activity_tag))
             inter_list = list(intersection)
@@ -126,45 +162,11 @@ class ActivityListByPreference(APIView):
         for activity_preference_item in activity_preference_items:
             activity_tag.append(activity_preference_item.preference_num_id)
 
-        print(activity_list)
         print('끝')
         data = Activity.objects.filter(pk__in=activity_list)
         serializer = ActivitySerializer(data, many=True)
         print(data)
         return Response({"ActivityListByPreference" : serializer.data})
-
-
-class ActivityListByPreference(APIView):
-    permission_classes = (permissions.AllowAny,)
-
-    def get(self, request):
-        request_tag = [6, 7, 8]
-        activity_list = []
-        activity_items = Activity.objects.filter()
-        activity_nums = activity_items.values_list('num', flat=True)
-        b = 1
-        for activity_num in activity_nums:
-            print(activity_num)
-            preference_nums = Activity_Preference.objects.filter(activity_num_id=activity_num).values_list('preference_num_id', flat=True)
-            activity_tag = list(preference_nums)
-            intersection = set(request_tag).intersection(set(activity_tag))
-            inter_list = list(intersection)
-            inter_list.sort()
-            if (request_tag == inter_list):
-                print('포함합니다.')
-                activity_list.append(activity_num)
-
-        #activity_preference_items = Activity_Preference.objects.all()
-        '''
-        for activity_preference_item in activity_preference_items:
-            activity_tag.append(activity_preference_item.preference_num_id)
-        '''
-        print(activity_list)
-        print('끝')
-        data = Activity.objects.filter(pk__in=activity_list)
-        serializer = ActivitySerializer(data, many=True)
-        print(data)
-        return Response({"ActivityListByPreference": serializer.data})
 
 #모든 칭호 리스트 제공
 class TitleList(APIView):
@@ -432,7 +434,7 @@ class Signup(APIView):
             user_serializer.save()
             characterImage = CharacterImage.objects.get(level=1, character_num_id=user_serializer.instance.character_num_id)
             characterImage_serializer=CharacterImageSerializer(characterImage)
-
+            User_Character.objects.create(user_num_id=request.user.id, characterImage_num_id=characterImage.num)
             return Response({"User": user_serializer.data, "UserCharacterImage": characterImage_serializer.data})
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
