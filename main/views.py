@@ -98,48 +98,14 @@ class ActivityList(APIView):
 #엑티비티 번호 리스트로 엑티비티 직렬화
 #http://127.0.0.1:8000/activityListByPreference?tag1=0&tag2=0&tag3=0&tag4=0&tag5=0
 
-# class ActivityListByPreference(APIView):
-#     permission_classes = (permissions.AllowAny,)
-#     def get(self, request):
-#
-#
-#         request_tag = [6, 7, 8]
-#         request_tag = Activity_Preference.objects.filter(preference_num_id__in=request_tag).values_list('preference_num_id',flat=True).distinct()
-#         b=1
-#         activity_list = []
-#         activity_items = Activity.objects.filter()
-#         activity_nums=activity_items.values_list('num', flat=True)
-#
-#         b=1
-#         for activity_num in activity_nums:
-#             print(activity_num)
-#             activity_preference_items = Activity_Preference.objects.filter(activity_num_id=activity_num)
-#             activity_tag= activity_preference_items.values_list('preference_num_id',flat=True)
-#
-#             a=1
-#             #activity_tag=list(preference_nums)
-#             #
-#             #intersection = set(request_tag).intersection(set(activity_tag))
-#             #inter_list = list(intersection)
-#             #inter_list.sort()
-#             for tag in activity_tag:
-#
-#             c=1
-#             # if (request_tag == preference_nums):
-#             #      print('포함합니다.')
-#             #      activity_list.append(activity_num)
-#
-#         print('끝')
-#         data = Activity.objects.filter(pk__in=activity_list)
-#         serializer = ActivitySerializer(data, many=True)
-#         print(data)
-#
-#         return Response({"ActivityListByPreference" : serializer.data})
 
 class ActivityListByPreference(APIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request):
-        request_tag = [6, 7, 8]
+
+        quest_num = request.query_params
+        request_tag_dict = dict(quest_num.lists())
+        request_tag = list(map(int,request_tag_dict['tag']))
         activity_list = []
         activity_items = Activity.objects.filter()
         activity_nums=activity_items.values_list('num', flat=True)
