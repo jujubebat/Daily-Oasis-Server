@@ -11,7 +11,7 @@ from .models import Activity, User_Preference, Preference, Activity_Preference, 
 from django.db import transaction
 from django.db.models import Avg
 from scipy.spatial import distance
-import pprint
+import pprint, re
 
 #api.dailyoasis.shop
 
@@ -88,7 +88,83 @@ class ActivityList(APIView):
     def get(self, request):
         data = Activity.objects.all()
         serializer = ActivitySerializer(data, many=True)
-        return Response({"ActivityList" : serializer.data})
+
+        return Response({"ActivityList" : serializer.data})#, "sadddsas" : serializer2.data})
+
+
+#먼저 태그 배열에서 태그 목록 리스트 만듬
+#엑티비티_프리퍼런스에서 태그목록을 모두 가지는 엑티비티만 추출해서 엑티비티 번호 리스트 만듬
+#엑티비티 번호 리스트로 엑티비티 직렬화
+#http://127.0.0.1:8000/activityListByPreference?tag1=0&tag2=0&tag3=0&tag4=0&tag5=0
+
+
+
+#취향별 엑티비티 리스트 제공
+class ActivityListByPreference(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def get(self, request):
+        request_tag = [6, 7, 8]
+        activity_list = []
+        activity_items = Activity.objects.filter()
+        activity_nums=activity_items.values_list('num', flat=True)
+        b=1
+        for activity_num in activity_nums:
+            print(activity_num)
+            activity_preference_items = Activity_Preference.objects.filter(activity_num_id=activity_num)
+            activity_tag = []
+            preference_nums= activity_preference_items.values_list('preference_num_id',flat=True)
+            activity_tag=list(preference_nums)
+            
+            intersection = set([])
+            intersection = set(request_tag).intersection(set(activity_tag))
+            inter_list = list(intersection)
+            inter_list.sort()
+            if (request_tag == inter_list):
+                print('포함합니다.')
+                activity_list.append(activity_num)
+        activity_preference_items = Activity_Preference.objects.all()
+        for activity_preference_item in activity_preference_items:
+            activity_tag.append(activity_preference_item.preference_num_id)
+
+        print(activity_list)
+        print('끝')
+        data = Activity.objects.filter(pk__in=activity_list)
+        serializer = ActivitySerializer(data, many=True)
+        print(data)
+        return Response({"ActivityListByPreference" : serializer.data})
+
+
+class ActivityListByPreference(APIView):
+    permission_classes = (permissions.AllowAny,)
+
+    def get(self, request):
+        request_tag = [6, 7, 8]
+        activity_list = []
+        activity_items = Activity.objects.filter()
+        activity_nums = activity_items.values_list('num', flat=True)
+        b = 1
+        for activity_num in activity_nums:
+            print(activity_num)
+            preference_nums = Activity_Preference.objects.filter(activity_num_id=activity_num).values_list('preference_num_id', flat=True)
+            activity_tag = list(preference_nums)
+            intersection = set(request_tag).intersection(set(activity_tag))
+            inter_list = list(intersection)
+            inter_list.sort()
+            if (request_tag == inter_list):
+                print('포함합니다.')
+                activity_list.append(activity_num)
+
+        #activity_preference_items = Activity_Preference.objects.all()
+        '''
+        for activity_preference_item in activity_preference_items:
+            activity_tag.append(activity_preference_item.preference_num_id)
+        '''
+        print(activity_list)
+        print('끝')
+        data = Activity.objects.filter(pk__in=activity_list)
+        serializer = ActivitySerializer(data, many=True)
+        print(data)
+        return Response({"ActivityListByPreference": serializer.data})
 
 #모든 칭호 리스트 제공
 class TitleList(APIView):
@@ -113,18 +189,14 @@ class CharacterList(APIView):
 #Activity에 '소외된'(발걸음이_적은) 태그가 있는 경우 판별
 def isAlienate(activity):
     activity_tags = Activity_Preference.objects.filter(activity_num_id=activity.pk)
-    a=1
     for activity_tag in activity_tags :
-        a=1
         tag = Preference.objects.get(pk=activity_tag.preference_num_id)
         if tag.name == '발걸음이_적은':
-            a=1
             return True
     return False
 
 
 #[0]Total exp, [1]questFinishExp, [2]reviewExp, [3]alienateActivityExp
-
 #레벨 보상 관련 로직
 #레벨 1부터시작 / 3업마다 외형 변화 / 12랩이 만랩
 def UpdateLevel(request, isReview, isAlienate, expInfoList):
@@ -149,7 +221,7 @@ def UpdateLevel(request, isReview, isAlienate, expInfoList):
         pass
 
     expInfoList[0] += int(expInfoList[1]+expInfoList[2]+expInfoList[3])
-    a=1
+
     if(user.exp >= 100):
         user.level += 1
         user.exp %= 100

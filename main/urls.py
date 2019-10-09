@@ -29,6 +29,7 @@ urlpatterns = [
     path('activityList', views.ActivityList.as_view()), #검수완료 / 모든 엑티비티 데이터 제공
     path('characterList',views.CharacterList.as_view()), #전체 케릭터정보(케릭터이미지정보포함)제공
     path('titleList', views.TitleList.as_view()), #전체 칭호 데이터 제공
+    path('activityListByPreference', views.ActivityListByPreference.as_view()), #취향(태그)별 엑티비티 데이터 제공(별점순으로)
 ]
 
 #API 자동화 문서 라이브러리 관련(django swagger)

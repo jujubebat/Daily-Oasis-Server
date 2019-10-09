@@ -113,3 +113,42 @@ class FinishQuest(APIView):
 
             return Response({"UpdateUser": user_serializer.data, "NewTitle": title_serializer.data, "NewCharacterImage": newCharacterImage_serializer.data })
         return Response(status=status.HTTP_400_BAD_REQUEST) #유저가 보유한 퀘스트가 아니거나 이미 완료한 퀘스트면 400리턴
+
+
+'''
+#취향별 엑티비티 리스트 제공
+class ActivityListByPreference(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def get(self, request):
+        request_tag = []
+        '''
+for tag_num in request.query_params['tag']:
+    n = tag_num
+    a=1
+'''
+
+request_tag = [6, 7, 8]
+activity_list = []
+activity_items = Activity.objects.filter()
+for activity_item in activity_items:
+    #print(activity_item.num)
+    activity_preference_items = Activity_Preference.objects.filter(activity_num_id=activity_item.num)
+    activity_tag = []
+    for activity_preference_item in activity_preference_items:
+        activity_tag.append(activity_preference_item.preference_num_id)
+    intersection = set([])
+    intersection = set(request_tag).intersection(set(activity_tag))
+    inter_list = list(intersection)
+    inter_list.sort()
+    if (request_tag == inter_list):
+        #print('포함합니다.')
+        activity_list.append(activity_item.num)
+
+print('끝')
+
+#activity_list=[1,2]
+data = Activity.objects.filter(pk__in=activity_list)
+serializer = ActivitySerializer(data, many=True)
+print(data)
+return Response({"ActivityListByPreference" : serializer.data})
+'''

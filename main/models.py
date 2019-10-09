@@ -48,9 +48,9 @@ class Activity(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True) #엑티비티 이름
     eventStartDate = models.CharField(max_length=100, blank=True, null=True) #엑티비티 시작일
     eventEndDate = models.CharField(max_length=100, blank=True, null=True) #엑티비티 종료일
-    eventTime = models.TextField(max_length=1000, blank=True, null=True) #엑티비티 시간
-    eventPlace = models.TextField(max_length=1000, blank=True, null=True) #엑티비티 장소명
-    discription = models.TextField(max_length=1000, blank=True, null=True)  # 엑티비티 설명
+    eventTime = models.TextField(blank=True, null=True) #엑티비티 시간
+    eventPlace = models.TextField( blank=True, null=True) #엑티비티 장소명
+    discription = models.TextField( blank=True, null=True)  # 엑티비티 설명
     longitude = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True) #x좌표
     latitude = models.DecimalField(max_digits=20, decimal_places=12, blank=True, null=True) #y좌표
     tel = models.CharField(max_length=255, blank=True, null=True) #엑티비티 전화번호
