@@ -84,8 +84,8 @@ class ReviewSerializer(serializers.ModelSerializer):
         activity_num = validated_data.pop('activity_num', None)
         user_num = validated_data.pop('user_num', None)
 
-        print(activity_num)
-        print(user_num)
+        #print(activity_num)
+        #print(user_num)
         instance = self.Meta.model(**validated_data) #Review 인스턴스 생성
 
         now = datetime.datetime.now()

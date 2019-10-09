@@ -360,7 +360,7 @@ class ActivityReview(APIView):
 class WriteReview(APIView):
     permission_classes = (permissions.AllowAny,)
     def post(self, request, format=None):
-        quest = User_Activity.objects.filter(user_num_id=1, activity_num_id=request.data.get('activity_num'), questDone=1, reviewDone=0)
+        quest = User_Activity.objects.filter(user_num_id=request.user.id, activity_num_id=request.data.get('activity_num'), questDone=1, reviewDone=0)
         isQuestExist = quest.exists()
         if isQuestExist: #사용자가 완료한 퀘스트가 존재하고 아직 리뷰를 작성하지 않았을 경우에만 리뷰작성 가능
             quest.update(reviewDone = True)

@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="370" column="60" lean-forward="true" selection-start-line="370" selection-start-column="60" selection-end-line="370" selection-end-column="60" />
+            <state relative-caret-position="222">
+              <caret line="367" column="37" lean-forward="true" selection-start-line="367" selection-start-column="37" selection-end-line="367" selection-end-column="37" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -86,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+            <state relative-caret-position="310">
+              <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -185,8 +185,8 @@
         <option value="$PROJECT_DIR$/main/models.py" />
         <option value="$PROJECT_DIR$/main/urls.py" />
         <option value="$PROJECT_DIR$/temp.py" />
-        <option value="$PROJECT_DIR$/main/views.py" />
         <option value="$PROJECT_DIR$/main/serializers.py" />
+        <option value="$PROJECT_DIR$/main/views.py" />
       </list>
     </option>
   </component>
@@ -305,20 +305,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565614495831</updated>
-    </task>
-    <task id="LOCAL-00072" summary="-WrtieReview수정">
-      <created>1569601522462</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1569601522462</updated>
-    </task>
-    <task id="LOCAL-00073" summary="-날짜 수정">
-      <created>1569602110666</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1569602110666</updated>
     </task>
     <task id="LOCAL-00074" summary="-WriteReview 완료시 UpdateUser와 NewTitle 반환함">
       <created>1569603749745</created>
@@ -649,7 +635,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570624613004</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="writeReview 오류 수정8">
+      <created>1570625390780</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1570625390782</updated>
+    </task>
+    <task id="LOCAL-00122" summary="writeReview 오류 수정9">
+      <created>1570625852262</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1570625852262</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TodoView">
@@ -677,7 +677,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3274918" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.33406353" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.20481928" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.37677985" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32765958" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -704,8 +704,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updateUserTitle,&#10;updateUserPreference&#10;구현" />
-    <MESSAGE value="updateUserTitle,&#10;updateUserPreference&#10;수정" />
     <MESSAGE value="currentQeust, DoneQuest, activityReview 시 태그목록 반환" />
     <MESSAGE value="업데이트 관련 리턴 데이터명 다음과 같이 수정 : UpdatedUser, UpdatedTitle,UpdatedTag" />
     <MESSAGE value="코드 오타 수정" />
@@ -729,7 +727,9 @@
     <MESSAGE value="writeReview 오류 수정5" />
     <MESSAGE value="writeReview 오류 수정6" />
     <MESSAGE value="writeReview 오류 수정7" />
-    <option name="LAST_COMMIT_MESSAGE" value="writeReview 오류 수정7" />
+    <MESSAGE value="writeReview 오류 수정8" />
+    <MESSAGE value="writeReview 오류 수정9" />
+    <option name="LAST_COMMIT_MESSAGE" value="writeReview 오류 수정9" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -743,16 +743,6 @@
           <url>file://$PROJECT_DIR$/main/views.py</url>
           <line>227</line>
           <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main/serializers.py</url>
-          <line>86</line>
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main/serializers.py</url>
-          <line>87</line>
-          <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main/views.py</url>
@@ -1051,16 +1041,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="370" column="60" lean-forward="true" selection-start-line="370" selection-start-column="60" selection-end-line="370" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -1073,10 +1053,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
+        <state relative-caret-position="310">
+          <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="367" column="37" lean-forward="true" selection-start-line="367" selection-start-column="37" selection-end-line="367" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
