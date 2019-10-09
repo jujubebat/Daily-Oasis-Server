@@ -4,6 +4,7 @@
     <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +17,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-634">
-              <caret line="312" column="40" lean-forward="true" selection-start-line="312" selection-start-column="40" selection-end-line="312" selection-end-column="40" />
+            <state relative-caret-position="278">
+              <caret line="370" column="60" lean-forward="true" selection-start-line="370" selection-start-column="60" selection-end-line="370" selection-end-column="60" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -88,7 +89,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
+            <state relative-caret-position="253">
               <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -133,7 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SetUserTitle</find>
       <find>Set</find>
       <find>decimal</find>
       <find>Pref</find>
@@ -163,6 +163,7 @@
       <find>User_Character</find>
       <find>Wr</find>
       <find>Dfsfdf</find>
+      <find>request.user.id</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,7 +192,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-1927" />
-    <option name="width" value="1296" />
+    <option name="width" value="1163" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -304,20 +305,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565614495831</updated>
-    </task>
-    <task id="LOCAL-00070" summary="-WriteReview 수정">
-      <created>1569601077466</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1569601077466</updated>
-    </task>
-    <task id="LOCAL-00071" summary="-수정">
-      <created>1569601263516</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1569601263516</updated>
     </task>
     <task id="LOCAL-00072" summary="-WrtieReview수정">
       <created>1569601522462</created>
@@ -648,7 +635,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570623860438</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="writeReview 오류 수정6">
+      <created>1570623992436</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1570623992437</updated>
+    </task>
+    <task id="LOCAL-00120" summary="writeReview 오류 수정7">
+      <created>1570624613003</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1570624613004</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TodoView">
@@ -661,16 +662,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1927" y="0" width="1296" height="1047" extended-state="0" />
+    <frame x="-1927" y="0" width="1163" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.1772655" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.19822222" />
       <window_info id="Structure" order="1" sideWeight="0.5016251" side_tool="true" weight="0.19072708" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24424973" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.42935377" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.24424973" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.42935377" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3274918" />
@@ -703,8 +704,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="UpdateUserAddress수정2" />
-    <MESSAGE value="updateUserAddress 기능 구현" />
     <MESSAGE value="updateUserTitle,&#10;updateUserPreference&#10;구현" />
     <MESSAGE value="updateUserTitle,&#10;updateUserPreference&#10;수정" />
     <MESSAGE value="currentQeust, DoneQuest, activityReview 시 태그목록 반환" />
@@ -728,7 +727,9 @@
     <MESSAGE value="writeReview 오류 수정3" />
     <MESSAGE value="writeReview 오류 수정4" />
     <MESSAGE value="writeReview 오류 수정5" />
-    <option name="LAST_COMMIT_MESSAGE" value="writeReview 오류 수정5" />
+    <MESSAGE value="writeReview 오류 수정6" />
+    <MESSAGE value="writeReview 오류 수정7" />
+    <option name="LAST_COMMIT_MESSAGE" value="writeReview 오류 수정7" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -742,6 +743,31 @@
           <url>file://$PROJECT_DIR$/main/views.py</url>
           <line>227</line>
           <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/serializers.py</url>
+          <line>86</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/serializers.py</url>
+          <line>87</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/views.py</url>
+          <line>369</line>
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/views.py</url>
+          <line>368</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/views.py</url>
+          <line>370</line>
+          <option name="timeStamp" value="110" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1025,6 +1051,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="370" column="60" lean-forward="true" selection-start-line="370" selection-start-column="60" selection-end-line="370" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -1035,19 +1071,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-634">
-          <caret line="312" column="40" lean-forward="true" selection-start-line="312" selection-start-column="40" selection-end-line="312" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
+        <state relative-caret-position="253">
           <caret line="87" column="23" lean-forward="true" selection-start-line="87" selection-start-column="23" selection-end-line="87" selection-end-column="23" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
