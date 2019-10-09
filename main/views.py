@@ -309,7 +309,7 @@ class FinishQuest(APIView):
         # 유저가 보유한 퀘스트이면서 완료되지 않은 퀘스트일 경우만
 
         if (quest.get().user_num_id == request.user.id and quest.get().questDone == False):
-            print("Dfsfdf")
+            #print("Dfsfdf")
             quest.update(questDone=True)
 
             now = datetime.datetime.now()
