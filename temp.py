@@ -174,3 +174,75 @@ class ActivityListByPreference(APIView):
                 print('포함합니다.')
                 activity_list.append(activity_num)
 '''
+
+
+'''
+#칭호 보상 관련 로직
+#완료한 퀘스트 1, 3, 5, 7, 9, 12
+def UpdateTitle(request, isReview):
+    user_id = request.user.id
+    user = User.objects.get(pk=user_id)
+    # 완료된 퀘스트수 기반 칭호 부여
+    DoneQuest = User_Activity.objects.filter(user_num_id=user_id, questDone=1) #유저가 완료한 퀘스트 목록
+    DoneQuestNum = DoneQuest.count()
+
+    title_nums =[]
+
+    if DoneQuestNum == 1:
+        newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=1)
+    elif DoneQuestNum == 3:
+        newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=2)
+    elif DoneQuestNum == 5:
+        newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=3)
+    elif DoneQuestNum == 7:
+        newUserQuestTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=4)
+    elif DoneQuestNum == 9:
+        newUserQuestTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=5)
+    else:
+        newUserQuestTitle = None
+
+    if  newUserQuestTitle != None:
+        title_nums.append(newUserQuestTitle.title_num_id)
+
+    #후기 작성수 기반 칭호 부여
+    UsersReview = Review.objects.filter(user_num_id=user_id)
+    UsersReviewNum = Review.objects.filter(user_num_id=user_id).count()
+    print('UsersReviewNum')
+    print(UsersReviewNum)
+
+    if UsersReviewNum == 1:
+        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=6)
+    elif UsersReviewNum == 4:
+        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=7)
+    elif UsersReviewNum == 6:
+        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=8)
+    elif UsersReviewNum == 8:
+        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=9)
+    elif UsersReviewNum == 10:
+        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=10)
+    else:
+        newUserReviewTitle = None
+
+    if  newUserReviewTitle != None:
+        title_nums.append(newUserReviewTitle.title_num_id)
+
+    #레벨 기반 칭호 부여
+    if user.level == 2:
+        newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=11)
+    elif user.level == 7:
+        newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=12)
+    elif user.level == 15:
+        newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=13)
+    else:
+        newUserlevelTitle = None
+
+    if newUserlevelTitle != None:
+        title_nums.append(newUserlevelTitle.title_num_id)
+
+    newTitle = Title.objects.filter(pk__in=title_nums)
+
+    #획득한 타이틀이 다수일 경우 쿼리셋 합쳐서 반환 https://wayhome25.github.io/django/2017/11/26/merge-queryset/
+    return newTitle
+
+
+'''

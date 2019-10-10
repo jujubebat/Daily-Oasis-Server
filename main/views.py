@@ -198,59 +198,17 @@ def UpdateLevel(request, isReview, isAlienate, expInfoList):
 
 #칭호 보상 관련 로직
 #완료한 퀘스트 1, 3, 5, 7, 9, 12
-def UpdateTitle(request):
+def UpdateTitle(request, isReview):
     user_id = request.user.id
     user = User.objects.get(pk=user_id)
-    # 완료된 퀘스트수 기반 칭호 부여
-    DoneQuest = User_Activity.objects.filter(user_num_id=user_id, questDone=1) #유저가 완료한 퀘스트 목록
-    DoneQuestNum = DoneQuest.count()
+    title_nums = []
 
-    title_nums =[]
-
-    if DoneQuestNum == 1:
-        newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=1)
-    elif DoneQuestNum == 3:
-        newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=2)
-    elif DoneQuestNum == 5:
-        newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=3)
-    elif DoneQuestNum == 7:
-        newUserQuestTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=4)
-    elif DoneQuestNum == 9:
-        newUserQuestTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=5)
-    else:
-        newUserQuestTitle = None
-
-    if  newUserQuestTitle != None:
-        title_nums.append(newUserQuestTitle.title_num_id)
-
-    #후기 작성수 기반 칭호 부여
-    UsersReview = Review.objects.filter(user_num_id=user_id)
-    UsersReviewNum = Review.objects.filter(user_num_id=user_id).count()
-    print('UsersReviewNum')
-    print(UsersReviewNum)
-
-    if UsersReviewNum == 1:
-        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=6)
-    elif UsersReviewNum == 4:
-        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=7)
-    elif UsersReviewNum == 6:
-        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=8)
-    elif UsersReviewNum == 8:
-        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=9)
-    elif UsersReviewNum == 10:
-        newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=10)
-    else:
-        newUserReviewTitle = None
-
-    if  newUserReviewTitle != None:
-        title_nums.append(newUserReviewTitle.title_num_id)
-
-    #레벨 기반 칭호 부여
-    if user.level == 2:
+    # 레벨 기반 칭호 부여
+    if user.level == 2 and (User_Title.objects.get(user_num_id=user_id, title_num_id=11) is None): #이미 보유한 칭호인지 확인
         newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=11)
-    elif user.level == 7:
+    elif user.level == 7 and (User_Title.objects.get(user_num_id=user_id, title_num_id=12) is None):
         newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=12)
-    elif user.level == 15:
+    elif user.level == 15 and (User_Title.objects.get(user_num_id=user_id, title_num_id=14) is None):
         newUserlevelTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=13)
     else:
         newUserlevelTitle = None
@@ -258,7 +216,51 @@ def UpdateTitle(request):
     if newUserlevelTitle != None:
         title_nums.append(newUserlevelTitle.title_num_id)
 
-    newTitle = Title.objects.filter(pk__in=title_nums)
+    if (isReview == False): #리뷰가 아닌 퀘스트 완료 시에만 동직
+        # 완료된 퀘스트수 기반 칭호 부여
+        DoneQuest = User_Activity.objects.filter(user_num_id=user_id, questDone=1) #유저가 완료한 퀘스트 목록
+        DoneQuestNum = DoneQuest.count()
+
+        if DoneQuestNum == 1:
+            newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=1)
+        elif DoneQuestNum == 3:
+            newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=2)
+        elif DoneQuestNum == 5:
+            newUserQuestTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=3)
+        elif DoneQuestNum == 7:
+            newUserQuestTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=4)
+        elif DoneQuestNum == 9:
+            newUserQuestTitle =User_Title.objects.create(user_num_id=user_id, title_num_id=5)
+        else:
+            newUserQuestTitle = None
+
+        if  newUserQuestTitle != None:
+            title_nums.append(newUserQuestTitle.title_num_id)
+
+    if(isReview == True): #리뷰 로직 동작시에만 동작
+        # 후기 작성수 기반 칭호 부여
+        UsersReview = Review.objects.filter(user_num_id=user_id)
+        UsersReviewNum = Review.objects.filter(user_num_id=user_id).count()
+        print('UsersReviewNum')
+        print(UsersReviewNum)
+
+        if UsersReviewNum == 1:
+            newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=6)
+        elif UsersReviewNum == 4:
+            newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=7)
+        elif UsersReviewNum == 6:
+            newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=8)
+        elif UsersReviewNum == 8:
+            newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=9)
+        elif UsersReviewNum == 10:
+            newUserReviewTitle = User_Title.objects.create(user_num_id=user_id, title_num_id=10)
+        else:
+            newUserReviewTitle = None
+
+        if newUserReviewTitle != None:
+            title_nums.append(newUserReviewTitle.title_num_id)
+
+    newTitle = Title.objects.filter(pk__in=title_nums)#새로 획득한 타이틀 취합
 
     #획득한 타이틀이 다수일 경우 쿼리셋 합쳐서 반환 https://wayhome25.github.io/django/2017/11/26/merge-queryset/
     return newTitle
@@ -322,8 +324,8 @@ class FinishQuest(APIView):
 
             expInfoList = [0, 0, 0, 0] # [0]Total exp, [1]questFinishExp, [2]reviewExp, [3]alienateActivityExp
 
-            newUser = UpdateLevel(request, False, isAlienate(activity),expInfoList)
-            newTitle= UpdateTitle(request)
+            newUser = UpdateLevel(request, False, isAlienate(activity), expInfoList)
+            newTitle= UpdateTitle(request, False)
             newCharacterImage = UpdateCharacter(request)
 
 
@@ -370,7 +372,7 @@ class WriteReview(APIView):
                 expInfoList = [0, 0, 0, 0]
 
                 newUser = UpdateLevel(request, True, False, expInfoList)#isReview = True, isAlienate = Fase, '발걸음이_적은' 태그 추가 경험치는 findQuest일 경우에만
-                newTitle = UpdateTitle(request)
+                newTitle = UpdateTitle(request, True)
                 newCharacterImage = UpdateCharacter(request)
                 newCharacterImage_serializer = CharacterImageSerializer(newCharacterImage)
 
