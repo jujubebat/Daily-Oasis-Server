@@ -19,8 +19,6 @@ class ActivityPreferenceSerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 1
 
-
-
 class CharacterImageSerializer(serializers.ModelSerializer):
 
     class Meta:

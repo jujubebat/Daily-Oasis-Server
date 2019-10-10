@@ -14,8 +14,6 @@ from scipy.spatial import distance
 import pprint, re
 from django.db.models import Count
 
-#api.dailyoasis.shop
-
 #현재 유저가 진행중인 퀘스트 목록(엑티비티) 리턴
 class CurrentQuest(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -106,6 +104,7 @@ class ActivityListByPreference(APIView):
         quest_num = request.query_params
         request_tag_dict = dict(quest_num.lists())
         request_tag = list(map(int,request_tag_dict['tag']))
+        request_tag.sort()
         activity_list = []
         activity_items = Activity.objects.filter()
         activity_nums=activity_items.values_list('num', flat=True)
@@ -295,8 +294,6 @@ def UpdateCharacter(request):
 #2.레벨업 처리 -> 레벨에 따른 케릭터 변경처리
 #3.칭호처리 -> 완료퀘스트수, 작성한 댓글수, 레벨 기반 칭호 부여
 #4.최종적으로 UdpateUser, UdpateTitle, UdpateCharacter 3개 데이터 반환
-
-
 
 #퀘스트 완료 처리를 해줌. 퀘스트 완료후 보상 적용이 된 유저의 정보와 새로 받은 칭호 정보 리턴(쿼리셋으로 quest_num 보내줘야함)
 class FinishQuest(APIView):
