@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="UpdateUserNickname 오류수정">
+    <list default="true" id="9f88192c-49fe-4278-91a2-72605b4f94d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="106" column="26" lean-forward="true" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
+            <state relative-caret-position="583">
+              <caret line="198" column="16" selection-start-line="198" selection-start-column="16" selection-end-line="198" selection-end-column="16" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -27,10 +27,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/silk/middleware.py">
+        <entry file="file://$PROJECT_DIR$/backend/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="51">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/temp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2329">
-              <caret line="137" column="51" selection-start-line="137" selection-start-column="51" selection-end-line="137" selection-end-column="51" />
+            <state relative-caret-position="4182">
+              <caret line="246" selection-start-line="246" selection-end-line="246" />
             </state>
           </provider>
         </entry>
@@ -65,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="425">
+              <caret line="31" column="34" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="34" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -74,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="24" column="59" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="59" />
+            <state relative-caret-position="328">
+              <caret line="25" column="61" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -89,7 +92,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="289">
               <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -134,7 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>UpdateUserAddress</find>
       <find>ActivityPreferenceSerializer</find>
       <find>activity_num_id</find>
       <find>tel</find>
@@ -164,6 +166,7 @@
       <find>Update</find>
       <find>UpdateUser</find>
       <find>UpdateUserNickname</find>
+      <find>UpdateTitle</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -180,21 +183,21 @@
         <option value="$PROJECT_DIR$/ReadMe" />
         <option value="$PROJECT_DIR$/backend/utils.py" />
         <option value="$PROJECT_DIR$/python_library.txt" />
-        <option value="$PROJECT_DIR$/backend/settings.py" />
         <option value="$PROJECT_DIR$/Crawiling.py" />
         <option value="$PROJECT_DIR$/main/models.py" />
-        <option value="$PROJECT_DIR$/temp.py" />
         <option value="$PROJECT_DIR$/main/urls.py" />
         <option value="$PROJECT_DIR$/main/serializers.py" />
+        <option value="$PROJECT_DIR$/temp.py" />
         <option value="$PROJECT_DIR$/main/views.py" />
+        <option value="$PROJECT_DIR$/backend/settings.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1100" />
-    <option name="height" value="1039" />
+    <option name="x" value="-1928" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -202,6 +205,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,13 +216,17 @@
             <path>
               <item name="DailyOaisBackEnd" type="b2602c69:ProjectViewProjectNode" />
               <item name="DailyOaisBackEnd" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DailyOaisBackEnd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DailyOaisBackEnd" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -306,20 +314,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1565614495831</updated>
-    </task>
-    <task id="LOCAL-00078" summary="-WriteReview 수정">
-      <created>1569932755443</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1569932755444</updated>
-    </task>
-    <task id="LOCAL-00079" summary="- /current_user -&gt; /currentUser&#10;- Activity mapx, mapy 속성 User와 통일&#10;- /allQuestAllocation, /questAllocation : 근거리순으로 추천하는 기능 추가 / 이전에 완료한 퀘스트 추천하지 않는 기능 추가&#10;- /finishQest : '발걸음이_적은' 태그가 달려있을 경우 exp +25 추가로 적용 &#10;- 새로운 api characterList/ : 모든 케릭터 정보 제공&#10;- 새로운 api titleList/ : 모든 칭호 정보제공">
-      <created>1570104059125</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1570104059127</updated>
     </task>
     <task id="LOCAL-00080" summary="디비교체">
       <created>1570104152383</created>
@@ -650,7 +644,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570643137194</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="ActivityListByPreference 쿼리스트링 배열 정렬 코드 추가">
+      <created>1570717476625</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1570717476626</updated>
+    </task>
+    <task id="LOCAL-00128" summary="UpdateTitle title 중복 보상 오류 해결">
+      <created>1570720151214</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1570720151214</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TodoView">
@@ -663,16 +671,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.22604097" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978308" visible="true" weight="0.18018967" />
       <window_info id="Structure" order="1" sideWeight="0.5016251" side_tool="true" weight="0.19072708" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.24424973" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.17524645" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34042552" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3716312" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3274918" />
@@ -705,8 +713,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ActivityReview에 태그정보 리턴 추가" />
-    <MESSAGE value="ActivityReview 오류수정" />
     <MESSAGE value="-/finishQuest, /writeReview 시 획득 exp 정보 반환 : Total exp(총획득량), questFinishExp(퀘스트완료 경험치), reviewExp(리뷰작성경험치), alienateActivityExp(소외관광지 추가 경험치)&#10;-만렙 15로 조정 그에따른 경험치 부여 조정 : 소외된 관광지 방문시 exp 25 -&gt; 35 상향, 리뷰 ex24-&gt;35 상향 / 15렙 달성시 만렙칭호 부여" />
     <MESSAGE value="이미지추가" />
     <MESSAGE value="쿼카 케릭터 이미지추가" />
@@ -730,29 +736,31 @@
     <MESSAGE value="writeReview 오류 수정11" />
     <MESSAGE value="updateUserNickname 구현" />
     <MESSAGE value="UpdateUserNickname 오류수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="UpdateUserNickname 오류수정" />
+    <MESSAGE value="ActivityListByPreference 쿼리스트링 배열 정렬 코드 추가" />
+    <MESSAGE value="UpdateTitle title 중복 보상 오류 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="UpdateTitle title 중복 보상 오류 해결" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main/views.py</url>
-          <line>365</line>
+          <line>367</line>
           <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main/views.py</url>
-          <line>364</line>
+          <line>366</line>
           <option name="timeStamp" value="109" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main/views.py</url>
-          <line>366</line>
+          <line>368</line>
           <option name="timeStamp" value="110" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main/views.py</url>
-          <line>362</line>
+          <line>364</line>
           <option name="timeStamp" value="111" />
         </line-breakpoint>
       </breakpoints>
@@ -969,6 +977,23 @@
     <entry file="file://$PROJECT_DIR$/backend/media/리뷰칭호5.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/silk/middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="198" column="16" selection-start-line="198" selection-start-column="16" selection-end-line="198" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -976,13 +1001,6 @@
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/silk/middleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
         </state>
       </provider>
     </entry>
@@ -1002,27 +1020,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/temp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2329">
-          <caret line="137" column="51" selection-start-line="137" selection-start-column="51" selection-end-line="137" selection-end-column="51" />
+        <state relative-caret-position="4182">
+          <caret line="246" selection-start-line="246" selection-end-line="246" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="425">
+          <caret line="31" column="34" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="34" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/settings.py">
+    <entry file="file://$PROJECT_DIR$/main/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="24" column="59" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="59" />
+        <state relative-caret-position="289">
+          <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1047,22 +1065,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/serializers.py">
+    <entry file="file://$PROJECT_DIR$/backend/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
+        <state relative-caret-position="328">
+          <caret line="25" column="61" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="106" column="26" lean-forward="true" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>

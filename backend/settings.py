@@ -23,6 +23,7 @@ ALLOWED_HOSTS = [
     '15.164.219.72',
     '172.31.40.225',
     'ec2-15-164-219-72.ap-northeast-2.compute.amazonaws.com', #아마존 EC2 인스턴스 주소
+    'ec2-54-180-98-140.ap-northeast-2.compute.amazonaws.com',
     'api.dailyoasis.shop',
 ]
 

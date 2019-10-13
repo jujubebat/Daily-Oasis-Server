@@ -196,7 +196,7 @@ def UpdateLevel(request, isReview, isAlienate, expInfoList):
 
     return user
 
-#칭호 보상 관련 로직
+#칭호 보상 관련 로직putt
 #완료한 퀘스트 1, 3, 5, 7, 9, 12
 def UpdateTitle(request, isReview):
     user_id = request.user.id
