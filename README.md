@@ -15,6 +15,8 @@
 - Back-end : django rest framework
 - Hosting : AWS(EC2, RDS, LB, S3, Route, ACM..)
 
+![캡처](https://user-images.githubusercontent.com/37281119/74719719-ec768e80-5277-11ea-81c7-058eb1bf70c9.JPG)
+
 # 데일리오아시스 API 서버 기능
 데일리오아시스 서버는 서비스 구현한 API를 다음과 같이 제공합니다. 
 - /signup : 회원가입(JWT 토큰인증기반)
