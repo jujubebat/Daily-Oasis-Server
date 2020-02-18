@@ -87,7 +87,6 @@ class ActivityList(APIView):
     def get(self, request):
         data = Activity.objects.all()
         serializer = ActivitySerializer(data, many=True)
-        a=1
         return Response({"ActivityList" : serializer.data})#, "sadddsas" : serializer2.data})
 
 
@@ -108,7 +107,6 @@ class ActivityListByPreference(APIView):
         activity_list = []
         activity_items = Activity.objects.filter()
         activity_nums=activity_items.values_list('num', flat=True)
-        b=1
         for activity_num in activity_nums:
             print(activity_num)
             activity_preference_items = Activity_Preference.objects.filter(activity_num_id=activity_num)

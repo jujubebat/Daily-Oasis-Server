@@ -58,8 +58,6 @@ class Activity(models.Model):
     grade = models.IntegerField(default=None,blank=True, null=True)
 
 
-
-
 #유저들의 취향(태그) 목록
 class User_Preference(models.Model):
     num = models.AutoField(primary_key=True) #번호
