@@ -1,26 +1,2 @@
-<라이브러리는 아래 명령어로 한 번에 설치가능>
-pip install -r python_library.txt
-
-<테이블삭제 프로시저>
-CREATE PROCEDURE `del_activity` ()
-BEGIN
-delete from daily_oasis.main_activity;
-alter table daily_oasis.main_activity auto_increment=0;
-END
-
-request 디버깅을 위해 django-debug-toolbar와 silk 라이브 -러리 사용
-
-<리눅스 관련>
-루트권한 획득 : sudo su
-프로세스 조회 : ps aux | grep -i manage
-데몬으로 서버 돌리기 : nohup python3 manage.py runserver 0.0.0.0:8000 &
-
-<mysql 엔진확인 쿼리>
-SELECT engine FROM information_schema.TABLES where table_name='main_user_activity' AND table_schema='daily_oasis';
-
-
-<장고 모델 쿼리셋과 오브젝트>
-model.objects.filter : 쿼리셋이 날아옴(.을 통해 sql문 가능)
-model.ovjects.get : 오브젝트가 날아옴(.을 통해 직접 속성에 접근가능) -> 단, 값변경후 save() 해줘야함 (커밋인듯)
-
-->장고 쿼리셋은 말그대로 쿼리셋 함수가 포함되고 데이터가 포함된 클래스인듯
+This is an H1
+=============
