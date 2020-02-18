@@ -2,6 +2,10 @@
 개인의 관광 취향을 고려하여 매일 관광지를 추천해주는 서비스
 (본 저장소는 데일리오아시스 API 서버 입니다.)
 
+![캡처2](https://user-images.githubusercontent.com/37281119/74720546-53487780-5279-11ea-93ca-6dc6e276b917.JPG)
+
+
+
 
 
 # 서비스 요약
@@ -14,12 +18,18 @@
 
 
 
+
+
+
 # 기술 스택 & 시스템 구성도
 - Front-end : react
 - Back-end : django rest framework
 - Hosting : AWS(EC2, RDS, LB, S3, Route, ACM..)
 
 ![캡처](https://user-images.githubusercontent.com/37281119/74719719-ec768e80-5277-11ea-81c7-058eb1bf70c9.JPG)
+
+
+
 
 
 
