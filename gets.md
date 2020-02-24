@@ -1,7 +1,7 @@
 # 개인성과 - 새롭게 배운 개발 지식들
 
-- REST API
-- AWS
+- ### REST API
+- ### AWS
 - JWT 토큰 인증
 - 장고
  + 장고의 MVC 모델
