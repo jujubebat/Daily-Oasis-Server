@@ -53,7 +53,7 @@
 - /finishQuest : 관광지 '방문완료' 처리
 - /activityReview : 관광지와 해당 관광지의 리뷰 목록 제공   
 
-
+# 새롭게 알게된 지식들
 
 # 기타
 - 한국관광공사·SKT 주관 '2019 스마트관광 앱 개발 공모전' 장려상 수상 (http://www.donga.com/news/article/all/20191031/98157139/2)
