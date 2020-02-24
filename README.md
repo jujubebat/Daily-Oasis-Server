@@ -14,7 +14,7 @@
 3. 사용자는 퀘스트 수행을 완료함으로써 경험치, 칭호등의 보상을 받아 사용자의 케릭터를 육성 시킬 수 있습니다. 
 4. 데일리 오아시스에서 제공하는 관광 정보는 모두 한국광관공사 Tour api로 부터 제공받아 양질의 관광지에 대한 선별을 거쳤습니다.
 5. 사용자는 지도에 표시되는 관광지에 대한 상세정보(운영시간, 상세설명, 리뷰)를 얻을 수 있습니다.
-6. 관광지 리뷰는 사용자가 실제로 '방문완료'를 해야 작성할 수 있기 때문에 신뢰도가 높은 리뷰 입니다. 
+6. 관광지 리뷰는 사용자가 실제로 '방문완료'를 해야 작성할 수 있기 때문에 신뢰도가 높은 리뷰 입니다.   
 
 
 
@@ -26,7 +26,7 @@
 - Back-end : django rest framework
 - Hosting : AWS(EC2, RDS, LB, S3, Route, ACM..)
 
-![캡처](https://user-images.githubusercontent.com/37281119/74719719-ec768e80-5277-11ea-81c7-058eb1bf70c9.JPG)
+![캡처](https://user-images.githubusercontent.com/37281119/74719719-ec768e80-5277-11ea-81c7-058eb1bf70c9.JPG)  
 
 
 
@@ -51,7 +51,7 @@
 - /titleList : 칭호 데이터 제공
 - /writeReview : 리뷰 작성 기능
 - /finishQuest : 관광지 '방문완료' 처리
-- /activityReview : 관광지와 해당 관광지의 리뷰 목록 제공
+- /activityReview : 관광지와 해당 관광지의 리뷰 목록 제공  
 
 
 
