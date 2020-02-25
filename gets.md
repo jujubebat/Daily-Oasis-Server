@@ -1,13 +1,13 @@
 # 프로젝트를 통해 배운 지식
 
 - ## Django Framework
- + 장고의 MVC 모델
- + Serializer
- + ORM
- + QuerySet
+ + ### 장고의 MVC 모델
+ + ### Serializer
+ + ### ORM
+ + ### QuerySet
 - ## OPEN API를 활용한 데이터 크롤링
- + 한국 관광공사 Tour API
- + Python, MySQL 연동을 통한 데이터 크롤링
+ + ### 한국 관광공사 Tour API
+ + ### Python, MySQL 연동을 통한 데이터 크롤링
 - ## 작업 스케쥴러
 - ## Stored procedure
 - ## REST API
