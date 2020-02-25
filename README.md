@@ -56,6 +56,6 @@
 
 # 기타
 - 한국관광공사·SKT 주관 '2019 스마트관광 앱 개발 공모전' 장려상 수상 (http://www.donga.com/news/article/all/20191031/98157139/2)
-- 개인성과
+- [프로젝트를 통해 배운 지식](https://help.github.com/categories/writing-on-github/)
 
 
