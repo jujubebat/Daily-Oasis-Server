@@ -24,8 +24,8 @@
     + QuerySet, Model instance 등의 복잡한 데이터를 JSON, XML 등으로 변환시켜줌
   
 * ## OPEN API를 활용한 데이터 크롤링
- - ### 한국 관광공사 Tour API
- - ### Python, MySQL 연동을 통한 데이터 크롤링 진행
+    + 한국 관광공사 Tour API
+    + Python, MySQL 연동을 통한 데이터 크롤링 진행
  
 * ## 작업 스케쥴러
  - ### [윈도우 작업 스케쥴러](https://wikidocs.net/5857)
