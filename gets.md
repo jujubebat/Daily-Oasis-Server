@@ -18,14 +18,20 @@
     + 전달받은 Django Model의 객체 목록, QuerySet은 데이터베이스로부터 데이터를 읽고, 필터를 걸거나 정렬을 할 수 있다. 
     + objects - Model Manager, 데이터베이스와 Django Model 사이의 Query 인터페이스 역할을 한다.
     + objects를 사용하여 다수의 데이터를 가져오는 함수를 사용할 때 반환되는 객체가 QuerySet
+    <br/>
+    
 * ## DRF(Django Rest Framework)
   - ### REST API 개발을 도와주는 Django 라이브러리 
   - ### Serializer(직렬화)
     + QuerySet, Model instance 등의 복잡한 데이터를 JSON, XML 등으로 변환시켜줌
+    
+    
   
 * ## OPEN API를 활용한 데이터 크롤링
     + 한국 관광공사 Tour API
     + Python, MySQL 연동을 통한 데이터 크롤링 진행
+    
+    
  
 * ## 작업 스케쥴러
     + [윈도우 작업 스케쥴러](https://wikidocs.net/5857)
